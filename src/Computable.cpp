@@ -9,13 +9,13 @@ using namespace std;
 
 class Computable {
 public:
-    virtual double compute(vector<double> &params);
+    virtual double compute(vector<double> &params)=0;
 };
 
 
 class Add : public Computable {
 public:
-    double compute(vector<double> &params) {
+    double compute(vector<double> &params) override {
         double acc{0};
         for (const auto &i: params) {
             acc += i;
@@ -27,7 +27,7 @@ public:
 
 class Sub : public Computable {
 public:
-    double compute(vector<double> &params) {
+    double compute(vector<double> &params) override {
         double acc{0};
         for (const auto &i: params) {
             acc -= i;
@@ -39,8 +39,7 @@ public:
 
 int main(int argc, char **argv) {
 
-    Computable a;
-    a = Add{};
+    Add a{};
     vector<double> v{1, 2, 3};
     cout << a.compute(v) << "\n";
 
