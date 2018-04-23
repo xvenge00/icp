@@ -7,41 +7,29 @@
 
 using namespace std;
 
-class Computable {
-public:
-    virtual double compute(vector<double> &params)=0;
-};
-
-
-class Add : public Computable {
-public:
-    double compute(vector<double> &params) override {
-        double acc{0};
-        for (const auto &i: params) {
-            acc += i;
-        }
-
-        return acc;
+double Computable::add(vector<double> &params) {
+    double acc{0};
+    for (const auto &i: params) {
+        acc += i;
     }
-};
 
-class Sub : public Computable {
-public:
-    double compute(vector<double> &params) override {
-        double acc{0};
-        for (const auto &i: params) {
-            acc -= i;
-        }
+    return acc;
+}
 
-        return acc;
+double Computable::sub(vector<double> &params) {
+    if (params.size() != 2) {
+//            throw Something
     }
-};
+    double acc{0};
+    for (const auto &i: params) {
+        acc -= i;
+    }
 
-int main(int argc, char **argv) {
+    return acc;
+}
 
-    Add a{};
-    vector<double> v{1, 2, 3};
-    cout << a.compute(v) << "\n";
-
+double Computable::custom(vector<double> &params) {
+    //TODO
     return 0;
 }
+
