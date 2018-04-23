@@ -4,18 +4,21 @@
 #include "connection.h"
 #include <vector>
 #include <ostream>
+#include <fstream>
 
 using namespace std;
 
-ostream &operator<<(ostream &s, const Schema &schema) {
-    for (const auto &i: schema.blocks) {
-        s << i;
-    }
-    for (const auto &i: schema.connections) {
-        s << i;
-    }
+Schema::Schema() {
+    this->blocks = vector<Block>{};
+    this->connections = vector<Connection>{};
+}
 
-    return s;
+void Schema::save(const string &file_name) {
+    ofstream out_stream;
+    out_stream.open(file_name);
+
+    out_stream<< *this;
+    out_stream.close();
 }
 
 void Schema::newBlock(blck_type type, int pos_x, int pos_y) {
@@ -49,9 +52,16 @@ Block *Schema::getBlckByID(uint32_t ID) {
     }
 }
 
-Schema::Schema() {
-    this->blocks = vector<Block>{};
-    this->connections = vector<Connection>{};
+ostream &operator<<(ostream &s, const Schema &schema) {
+    for (const auto &i: schema.blocks) {
+        s << i;
+    }
+    for (const auto &i: schema.connections) {
+        s << i;
+    }
+    s<<"\n";
+
+    return s;
 }
 
 int main(int argc, char **argv) {
@@ -60,7 +70,8 @@ int main(int argc, char **argv) {
     a.newBlock(ADD);
     a.newBlock(SUB);
     a.newConnection(a.getBlckByID(0), a.getBlckByID(1));
-    cout << a;
+//    cout << a;
+    a.save("tmp");
 
     return 0;
 }

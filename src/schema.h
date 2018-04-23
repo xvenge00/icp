@@ -15,6 +15,8 @@ class Schema {
 public:
     Schema();
 
+    void save(const string &file_name);
+
     void newBlock(blck_type type, int pos_x = 1, int pos_y = 1);
 
     void newConnection(Block *in, Block *out);

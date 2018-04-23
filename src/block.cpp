@@ -44,6 +44,10 @@ istream &operator>>(istream &s, Block &b) {
     return s;
 }
 
+/*
+ * example out:
+ * [1,2]
+ */
 ostream &operator<<(ostream &s, const std::vector<Connection *> vect) {
     for (const auto &i: vect) {
         s << "[" << i << "]";
@@ -51,6 +55,16 @@ ostream &operator<<(ostream &s, const std::vector<Connection *> vect) {
     return s;
 }
 
+/*
+ * example out:
+ * Block: {
+ * 	  ID: 0
+ *	  pos_x: 1
+ *	  pos_y: 1
+ *	  type: 0
+ *	  input: [1,2][3,2]
+ *}
+ */
 ostream &operator<<(ostream &s, const Block &b) {
     return s << "Block: {\n" <<
              "\tID: " << b.ID << "\n" <<
@@ -60,3 +74,4 @@ ostream &operator<<(ostream &s, const Block &b) {
              "\tinput: " << b.input << "\n" <<
              "}\n";
 }
+
