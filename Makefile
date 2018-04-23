@@ -4,6 +4,8 @@
 AUTHOR_MATO=xkasta02
 AUTHOR_ADAM=xvenge00
 
+SHELL=/bin/sh
+
 AUTHOR=$(AUTHOR_MATO)
 ifeq ($(AUTHOR), $(AUTHOR_MATO))
     AUTHOR2=$(AUTHOR_ADAM)
@@ -13,12 +15,7 @@ else
     $(error Wrong author name)
 endif
 
-#TODO(mato): migrate to cmake compilaion
-
-ICP_BIN=icp
-SHELL=/bin/sh
-
-FINAL_ARCHIVE=$(AUTHOR)-$(AUTHOR2)#-100-0
+FINAL_ARCHIVE=$(AUTHOR)-$(AUTHOR2)
 REMOTE_SOURCE_DIR=~/dev/icp/
 
 # variables for remote compilation
@@ -28,23 +25,15 @@ REMOTE_TRANSFER_FILES=*.cc *.h Makefile
 
 ARCHIVE_FILES=src/ examples/ doc/ README.txt Makefile
 
-EXECUTABLE=blockeditor
+all : compile
 
-# flags used for compilation
-CFLAGS=-Wall -Wextra --pedantic -std=c99
-CXXFLAGS=-Wall -Wextra --pedantic -std=c++11
-LDFLAGS=-Wall -Wextra --pedantic
+.PHONY : run clean dist-clean pack format merlin eva debug compile
 
-all : debug
-# all : $(EXECUTABLE)
+compile : 
+	cd src && qmake -Wall && make
 
-$(EXECUTABLE) : $(O_FILES)
-	$(CXX) $(LDFLAGS) $^ -o $@
-
-.PHONY : run clean dist-clean pack format merlin eva debug
-
-debug: CXXFLAGS+=-g -DDEBUG
-debug: $(EXECUTABLE)
+# TODO(mato): qmake debuging a debug.{cpp, h}
+debug: compile
 
 # run the program, for testing purposes
 run: $(EXECUTABLE)
@@ -53,6 +42,7 @@ run: $(EXECUTABLE)
 # clear the repository
 clean :
 	rm -rf $(EXECUTABLE) *.o $(FINAL_ARCHIVE).*
+	cd ./src && qmake -Wall && make clean
 
 dist-clean : clean
 	rm -rf *~ *.orig test/*.orig $(GTEST)
