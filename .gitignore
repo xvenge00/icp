@@ -31,3 +31,7 @@
 *.out
 *.app
 *~
+
+#cmake and clion dir
+cmake-build-debug/
+.idea/
