@@ -35,3 +35,4 @@
 #cmake and clion dir
 cmake-build-debug/
 .idea/
+/.DS_Store

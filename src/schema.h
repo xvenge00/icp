@@ -1,4 +1,3 @@
-
 #ifndef ICP_SCHEMA_H
 #define ICP_SCHEMA_H
 

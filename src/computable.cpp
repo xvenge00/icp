@@ -1,5 +1,5 @@
-
 #include "Computable.h"
+
 #include <vector>
 #include <limits>
 #include <iostream>

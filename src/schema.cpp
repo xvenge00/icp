@@ -1,7 +1,7 @@
-
 #include "schema.h"
 #include "block.h"
 #include "connection.h"
+
 #include <vector>
 #include <ostream>
 #include <fstream>
@@ -50,16 +50,4 @@ Block *Schema::getBlckByID(uint32_t ID) {
 //        }
         return nullptr;
     }
-}
-
-int main(int argc, char **argv) {
-
-    Schema a{};
-    a.newBlock(ADD);
-    a.newBlock(SUB);
-    a.newConnection(a.getBlckByID(0), a.getBlckByID(1));
-//    cout << a;
-    a.save("tmp");
-
-    return 0;
 }
