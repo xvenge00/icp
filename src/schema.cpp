@@ -1,12 +1,9 @@
-#include "schema.h"
-#include "block.h"
-#include "connection.h"
-
-#include <vector>
 #include <ostream>
 #include <fstream>
 
-using namespace std;
+#include "schema.h"
+#include "block.h"
+#include "connection.h"
 
 Schema::Schema() {
     this->blocks = vector<Block>{};

@@ -1,9 +1,9 @@
-
 #ifndef ICP_BLOCK_H
 #define ICP_BLOCK_H
 
 #include <iostream>
 #include <vector>
+
 #include "connection.h"
 
 enum blck_type : int {

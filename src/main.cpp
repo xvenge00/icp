@@ -14,8 +14,7 @@ int main(int argc, char *argv[])
     schema.newBlock(ADD);
     schema.newBlock(SUB);
     schema.newConnection(schema.getBlckByID(0), schema.getBlckByID(1));
-    cout << schema;
-    cout << "Toto je test" << std::endl;
+    std::cout << schema;
     schema.save("tmp");
 
     return a.exec();

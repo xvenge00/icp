@@ -1,15 +1,13 @@
-
 #include <iostream>
+
 #include "block.h"
 #include "connection.h"
 #include "schema.h"
 
-using namespace std;
-
 /*
  * cela schema
  */
-ostream &operator<<(ostream &s, const Schema &schema) {
+std::ostream &operator<<(std::ostream &s, const Schema &schema) {
     for (const auto &i: schema.blocks) {
         s << i;
     }
@@ -25,7 +23,7 @@ ostream &operator<<(ostream &s, const Schema &schema) {
  * example out:
  * [1,2]
  */
-ostream &operator<<(ostream &s, const std::vector<Connection *> vect) {
+std::ostream &operator<<(std::ostream &s, const std::vector<Connection *> vect) {
     for (const auto &i: vect) {
         s << "[" << i << "]";
     }
@@ -42,7 +40,7 @@ ostream &operator<<(ostream &s, const std::vector<Connection *> vect) {
  *	  input: [1,2][3,2]
  *}
  */
-ostream &operator<<(ostream &s, const Block &b) {
+std::ostream &operator<<(std::ostream &s, const Block &b) {
     return s << "Block: {\n" <<
              "\tID: " << b.ID << "\n" <<
              "\tpos_x: " << b.pos_x << "\n" <<
@@ -58,7 +56,7 @@ ostream &operator<<(ostream &s, const Block &b) {
  * out example:
  * 0,1
  */
-ostream &operator<<(ostream &s, const Connection *c) {
+std::ostream &operator<<(std::ostream &s, const Connection *c) {
     s << (*c).input->getID() << "," << (*c).output->getID();
     return s;
 }
@@ -71,7 +69,7 @@ ostream &operator<<(ostream &s, const Connection *c) {
  *      out: 1
  * }
  */
-ostream &operator<<(ostream &s, const Connection &c) {
+std::ostream &operator<<(std::ostream &s, const Connection &c) {
     s << "Connection: {\n" <<
       "\tID: " << c.ID << "\n" <<
       "\tin: " << c.input->getID() << "\n" <<

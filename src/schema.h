@@ -2,9 +2,9 @@
 #define ICP_SCHEMA_H
 
 #include <vector>
+
 #include "block.h"
 #include "connection.h"
-
 
 using namespace std;
 

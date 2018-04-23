@@ -1,11 +1,10 @@
 #include "computable.h"
 
-#include <vector>
 #include <limits>
 #include <iostream>
 #include <algorithm>
 
-using namespace std;
+using std::vector;
 
 double Computable::add(vector<double> &params) {
     double acc{0};

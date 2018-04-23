@@ -1,9 +1,6 @@
-
-#include <array>
-#include <vector>
 #include "block.h"
 
-using namespace std;
+using std::vector;
 
 Block::Block(int pos_x, int pos_y, blck_type type) {
     static uint32_t id_count{0};
