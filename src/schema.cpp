@@ -52,18 +52,6 @@ Block *Schema::getBlckByID(uint32_t ID) {
     }
 }
 
-ostream &operator<<(ostream &s, const Schema &schema) {
-    for (const auto &i: schema.blocks) {
-        s << i;
-    }
-    for (const auto &i: schema.connections) {
-        s << i;
-    }
-    s<<"\n";
-
-    return s;
-}
-
 int main(int argc, char **argv) {
 
     Schema a{};

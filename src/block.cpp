@@ -1,7 +1,6 @@
 
 #include <array>
 #include <vector>
-#include <iostream>
 #include "block.h"
 
 using namespace std;
@@ -39,39 +38,4 @@ bool Block::setNewInput(Connection *con) {
     return true;
 }
 
-istream &operator>>(istream &s, Block &b) {
-
-    return s;
-}
-
-/*
- * example out:
- * [1,2]
- */
-ostream &operator<<(ostream &s, const std::vector<Connection *> vect) {
-    for (const auto &i: vect) {
-        s << "[" << i << "]";
-    }
-    return s;
-}
-
-/*
- * example out:
- * Block: {
- * 	  ID: 0
- *	  pos_x: 1
- *	  pos_y: 1
- *	  type: 0
- *	  input: [1,2][3,2]
- *}
- */
-ostream &operator<<(ostream &s, const Block &b) {
-    return s << "Block: {\n" <<
-             "\tID: " << b.ID << "\n" <<
-             "\tpos_x: " << b.pos_x << "\n" <<
-             "\tpos_y: " << b.pos_y << "\n" <<
-             "\ttype: " << b.type << "\n" <<
-             "\tinput: " << b.input << "\n" <<
-             "}\n";
-}
 
