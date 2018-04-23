@@ -6,15 +6,11 @@
 
 #include "connection.h"
 
-enum blck_type : int {
-    ADD,
-    SUB,
-    CUSTOM
-};
+enum blck_type : int { ADD, SUB, CUSTOM };
 
-//class Block;
-//std::ostream& operator<< (std::ostream& s, const Block& b);
-//int Block::getID();
+// class Block;
+// std::ostream& operator<< (std::ostream& s, const Block& b);
+// int Block::getID();
 
 class Block {
     uint32_t ID;
@@ -22,11 +18,11 @@ class Block {
     int pos_y;
     blck_type type;
     std::vector<Connection *> input;
-//    std::vector<Connection *> output;
+    //    std::vector<Connection *> output;
     double output;
-//    Computable *op;
+    //    Computable *op;
 
-public:
+  public:
     Block(int pos_x, int pos_y, blck_type type);
 
     void setPos(int pos_x, int pos_y);
@@ -42,4 +38,4 @@ public:
     friend std::ostream &operator<<(std::ostream &s, const Block &b);
 };
 
-#endif //ICP_BLOCK_H
+#endif // ICP_BLOCK_H

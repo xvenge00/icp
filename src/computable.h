@@ -4,7 +4,7 @@
 #include <vector>
 
 class Computable {
-public:
+  public:
     static double add(std::vector<double> &params);
 
     static double sub(std::vector<double> &params);
@@ -12,4 +12,4 @@ public:
     static double custom(std::vector<double> &params);
 };
 
-#endif //ICP_COMPUTABLE_H
+#endif // ICP_COMPUTABLE_H

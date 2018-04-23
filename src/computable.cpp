@@ -1,14 +1,14 @@
 #include "computable.h"
 
-#include <limits>
-#include <iostream>
 #include <algorithm>
+#include <iostream>
+#include <limits>
 
 using std::vector;
 
 double Computable::add(vector<double> &params) {
     double acc{0};
-    for (const auto &i: params) {
+    for (const auto &i : params) {
         acc += i;
     }
 
@@ -17,10 +17,10 @@ double Computable::add(vector<double> &params) {
 
 double Computable::sub(vector<double> &params) {
     if (params.size() != 2) {
-//            throw Something
+        //            throw Something
     }
     double acc{0};
-    for (const auto &i: params) {
+    for (const auto &i : params) {
         acc -= i;
     }
 
@@ -28,7 +28,6 @@ double Computable::sub(vector<double> &params) {
 }
 
 double Computable::custom(vector<double> &params) {
-    //TODO
+    // TODO
     return 0;
 }
-

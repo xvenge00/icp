@@ -8,13 +8,13 @@
  * cela schema
  */
 std::ostream &operator<<(std::ostream &s, const Schema &schema) {
-    for (const auto &i: schema.blocks) {
+    for (const auto &i : schema.blocks) {
         s << i;
     }
-    for (const auto &i: schema.connections) {
+    for (const auto &i : schema.connections) {
         s << i;
     }
-    s<<"\n";
+    s << "\n";
 
     return s;
 }
@@ -23,8 +23,9 @@ std::ostream &operator<<(std::ostream &s, const Schema &schema) {
  * example out:
  * [1,2]
  */
-std::ostream &operator<<(std::ostream &s, const std::vector<Connection *> vect) {
-    for (const auto &i: vect) {
+std::ostream &operator<<(std::ostream &s,
+                         const std::vector<Connection *> vect) {
+    for (const auto &i : vect) {
         s << "[" << i << "]";
     }
     return s;
@@ -41,15 +42,14 @@ std::ostream &operator<<(std::ostream &s, const std::vector<Connection *> vect) 
  *}
  */
 std::ostream &operator<<(std::ostream &s, const Block &b) {
-    return s << "Block: {\n" <<
-             "\tID: " << b.ID << "\n" <<
-             "\tpos_x: " << b.pos_x << "\n" <<
-             "\tpos_y: " << b.pos_y << "\n" <<
-             "\ttype: " << b.type << "\n" <<
-             "\tinput: " << b.input << "\n" <<
-             "}\n";
+    return s << "Block: {\n"
+             << "\tID: " << b.ID << "\n"
+             << "\tpos_x: " << b.pos_x << "\n"
+             << "\tpos_y: " << b.pos_y << "\n"
+             << "\ttype: " << b.type << "\n"
+             << "\tinput: " << b.input << "\n"
+             << "}\n";
 }
-
 
 /*
  * Used inside block output
@@ -70,10 +70,10 @@ std::ostream &operator<<(std::ostream &s, const Connection *c) {
  * }
  */
 std::ostream &operator<<(std::ostream &s, const Connection &c) {
-    s << "Connection: {\n" <<
-      "\tID: " << c.ID << "\n" <<
-      "\tin: " << c.input->getID() << "\n" <<
-      "\tout: " << c.output->getID() << "\n" <<
-      "}";
+    s << "Connection: {\n"
+      << "\tID: " << c.ID << "\n"
+      << "\tin: " << c.input->getID() << "\n"
+      << "\tout: " << c.output->getID() << "\n"
+      << "}";
     return s;
 }

@@ -72,6 +72,6 @@ eva :
 	-ssh -X -t $(REMOTE_EVA) "cd $(REMOTE_SOURCE_DIR) && gmake; bash" # gmake for GNU make on eva
 
 # format source files
-# TODO: migrate to clang formatter
+# astyle --indent=spaces --style=java --break-blocks --pad-oper --align-pointer=middle --align-reference=middle --max-code-length=120 *.cc *.h
 format :
-	astyle --indent=spaces --style=java --break-blocks --pad-oper --align-pointer=middle --align-reference=middle --max-code-length=120 *.cc *.h
+	cd src && clang-format -i *.cpp *.h

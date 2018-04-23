@@ -13,7 +13,7 @@ class Connection {
     Block *input;
     Block *output;
 
-public:
+  public:
     Connection(Block *input, Block *output);
 
     double getValue();
@@ -23,4 +23,4 @@ public:
     friend std::ostream &operator<<(std::ostream &s, const Connection &c);
 };
 
-#endif //ICP_CONNECTION_H
+#endif // ICP_CONNECTION_H

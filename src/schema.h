@@ -9,9 +9,10 @@
 using namespace std;
 
 class Schema {
-    vector<Block> blocks;   //TODO co tak hash table a ID bude kluc??
+    vector<Block> blocks; // TODO co tak hash table a ID bude kluc??
     vector<Connection> connections;
-public:
+
+  public:
     Schema();
 
     void save(const string &file_name);
@@ -25,4 +26,4 @@ public:
     friend ostream &operator<<(ostream &s, const Schema &schema);
 };
 
-#endif //ICP_SCHEMA_H
+#endif // ICP_SCHEMA_H

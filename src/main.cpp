@@ -1,11 +1,10 @@
 #include <QApplication>
 
-#include "mainwindow.h"
 #include "computable.h"
+#include "mainwindow.h"
 #include "schema.h"
 
-int main(int argc, char *argv[])
-{
+int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
