@@ -14,11 +14,11 @@ class Connection {
     Block *output;
 
   public:
-    Connection(Block *input, Block *output);
+    Connection(uint32_t ID, Block *input, Block *output);
+
+    uint32_t getID();
 
     double getValue();
-
-    friend std::ostream &operator<<(std::ostream &s, const Connection *c);
 
     friend std::ostream &operator<<(std::ostream &s, const Connection &c);
 };

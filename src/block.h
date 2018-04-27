@@ -6,24 +6,19 @@
 
 #include "connection.h"
 
-enum blck_type : int { ADD, SUB, CUSTOM };
-
-// class Block;
-// std::ostream& operator<< (std::ostream& s, const Block& b);
-// int Block::getID();
+enum func_type : int { ADD, SUB, CUSTOM };
 
 class Block {
     uint32_t ID;
     int pos_x;
     int pos_y;
-    blck_type type;
+    func_type f_type;
     std::vector<Connection *> input;
-    //    std::vector<Connection *> output;
     double output;
     //    Computable *op;
 
   public:
-    Block(int pos_x, int pos_y, blck_type type);
+    Block(uint32_t ID, int pos_x, int pos_y, func_type f_type);
 
     void setPos(int pos_x, int pos_y);
 
@@ -32,8 +27,6 @@ class Block {
     bool setNewInput(Connection *con);
 
     double getValue();
-
-    friend std::istream &operator>>(std::istream &s, Block &b);
 
     friend std::ostream &operator<<(std::ostream &s, const Block &b);
 };

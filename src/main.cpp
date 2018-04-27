@@ -10,11 +10,16 @@ int main(int argc, char *argv[]) {
     w.show();
 
     Schema schema{};
-    schema.newBlock(ADD);
-    schema.newBlock(SUB);
-    schema.newConnection(schema.getBlckByID(0), schema.getBlckByID(1));
-    std::cout << schema;
+    auto blkID1 = schema.newBlock(ADD);
+    auto blkID2 = schema.newBlock(SUB);
+    auto blkID3 = schema.newBlock(ADD);
+    schema.newConnection(schema.getBlckByID(blkID1), schema.getBlckByID(blkID2));
+//    std::cout << schema;
     schema.save("tmp");
+
+    Schema s2{};
+    s2.load("tmp");
+    std::cout << s2;
 
     return a.exec();
 }

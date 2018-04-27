@@ -2,13 +2,11 @@
 
 using std::vector;
 
-Block::Block(int pos_x, int pos_y, blck_type type) {
-    static uint32_t id_count{0};
-
-    this->ID = id_count++;
+Block::Block(uint32_t ID, int pos_x, int pos_y, func_type f_type) {
+    this->ID = ID;
     this->pos_x = pos_x;
     this->pos_y = pos_y;
-    this->type = type;
+    this->f_type = f_type;
     this->input = vector<Connection *>{};
     this->output = {};
 
@@ -30,3 +28,4 @@ bool Block::setNewInput(Connection *con) {
 
     return true;
 }
+

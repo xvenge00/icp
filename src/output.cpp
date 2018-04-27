@@ -8,12 +8,8 @@
  * cela schema
  */
 std::ostream &operator<<(std::ostream &s, const Schema &schema) {
-    for (const auto &i : schema.blocks) {
-        s << i;
-    }
-    for (const auto &i : schema.connections) {
-        s << i;
-    }
+    for (const auto &i : schema.blocks) {s << *i.second;}
+    for (const auto &i : schema.connections) {s << *i.second;}
     s << "\n";
 
     return s;
@@ -25,9 +21,7 @@ std::ostream &operator<<(std::ostream &s, const Schema &schema) {
  */
 std::ostream &operator<<(std::ostream &s,
                          const std::vector<Connection *> vect) {
-    for (const auto &i : vect) {
-        s << "[" << i << "]";
-    }
+    for (const auto &i : vect) {s << "[" << i << "]";}
     return s;
 }
 
@@ -38,7 +32,6 @@ std::ostream &operator<<(std::ostream &s,
  *	  pos_x: 1
  *	  pos_y: 1
  *	  type: 0
- *	  input: [1,2][3,2]
  *}
  */
 std::ostream &operator<<(std::ostream &s, const Block &b) {
@@ -46,19 +39,8 @@ std::ostream &operator<<(std::ostream &s, const Block &b) {
              << "\tID: " << b.ID << "\n"
              << "\tpos_x: " << b.pos_x << "\n"
              << "\tpos_y: " << b.pos_y << "\n"
-             << "\ttype: " << b.type << "\n"
-             << "\tinput: " << b.input << "\n"
+             << "\ttype: " << b.f_type << "\n"
              << "}\n";
-}
-
-/*
- * Used inside block output
- * out example:
- * 0,1
- */
-std::ostream &operator<<(std::ostream &s, const Connection *c) {
-    s << (*c).input->getID() << "," << (*c).output->getID();
-    return s;
 }
 
 /*

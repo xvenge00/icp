@@ -6,10 +6,10 @@ using namespace std;
 
 double Connection::getValue() { return this->input->getValue(); }
 
-Connection::Connection(Block *input, Block *output) {
-    static uint32_t id_count{0};
+uint32_t Connection::getID() { return this->ID;}
 
-    this->ID = id_count++;
+Connection::Connection(uint32_t ID, Block *input, Block *output) {
+    this->ID = ID;
     this->input = input;
     this->output = output;
 }
