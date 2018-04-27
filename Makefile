@@ -32,15 +32,16 @@ REMOTE_TRANSFER_FILES=$(FINAL_ARCHIVE).zip
 
 ARCHIVE_FILES=src/* examples/* doc/* README.txt Makefile
 
-all : compile
+# TODO(mato): change to release
+all : debug
 
 .PHONY : run clean dist-clean pack format merlin eva debug compile
 
 compile : 
 	cd src && qmake -Wall && make
 
-# TODO(mato): qmake debuging a debug.{cpp, h}
-debug: compile
+debug: 
+	cd src && qmake -Wall CONFIG+=icp_debug && make
 
 # run the program, for testing purposes
 run: $(EXECUTABLE)

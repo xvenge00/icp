@@ -3,11 +3,16 @@
 #include "computable.h"
 #include "mainwindow.h"
 #include "schema.h"
+#include "debug.h"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
     w.show();
+
+    LOGE("First error");
+    LOGI("First info");
+    LOGD("First debug");
 
     Schema schema{};
     auto blkID1 = schema.newBlock(ADD);
