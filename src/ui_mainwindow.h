@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created by: Qt User Interface Compiler version 5.6.2
+** Created by: Qt User Interface Compiler version 5.10.1
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
@@ -148,20 +148,22 @@ public:
 
     void retranslateUi(QMainWindow *MainWindow)
     {
-        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "BlockEditor", 0));
-        actionOpen->setText(QApplication::translate("MainWindow", "Open... ", 0));
-        actionOpen->setShortcut(QApplication::translate("MainWindow", "Meta+O, Ctrl+O", 0));
-        actionQuit->setText(QApplication::translate("MainWindow", "Quit", 0));
-        actionAdd->setText(QApplication::translate("MainWindow", "Add", 0));
-        actionRemove->setText(QApplication::translate("MainWindow", "Remove", 0));
-        actionAbout->setText(QApplication::translate("MainWindow", "About", 0));
-        actionLicense->setText(QApplication::translate("MainWindow", "License", 0));
-        actionAuthors->setText(QApplication::translate("MainWindow", "Authors", 0));
-        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "Templates", 0));
-        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Custom", 0));
-        menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
-        menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", 0));
-        menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "BlockEditor", nullptr));
+        actionOpen->setText(QApplication::translate("MainWindow", "Open... ", nullptr));
+#ifndef QT_NO_SHORTCUT
+        actionOpen->setShortcut(QApplication::translate("MainWindow", "Meta+O, Ctrl+O", nullptr));
+#endif // QT_NO_SHORTCUT
+        actionQuit->setText(QApplication::translate("MainWindow", "Quit", nullptr));
+        actionAdd->setText(QApplication::translate("MainWindow", "Add", nullptr));
+        actionRemove->setText(QApplication::translate("MainWindow", "Remove", nullptr));
+        actionAbout->setText(QApplication::translate("MainWindow", "About", nullptr));
+        actionLicense->setText(QApplication::translate("MainWindow", "License", nullptr));
+        actionAuthors->setText(QApplication::translate("MainWindow", "Authors", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "Templates", nullptr));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Custom", nullptr));
+        menuFile->setTitle(QApplication::translate("MainWindow", "File", nullptr));
+        menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", nullptr));
+        menuHelp->setTitle(QApplication::translate("MainWindow", "Help", nullptr));
     } // retranslateUi
 
 };
