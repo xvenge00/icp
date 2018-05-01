@@ -2,15 +2,19 @@
 
 using std::vector;
 
-Block::Block(uint32_t ID, int pos_x, int pos_y, func_type f_type) {
+Block::Block(uint32_t ID, int pos_x, int pos_y, blck_type f_type, uint8_t input_size) {
     this->ID = ID;
     this->pos_x = pos_x;
     this->pos_y = pos_y;
-    this->f_type = f_type;
-    this->input = vector<Connection *>{};
     this->output = {};
+    this->out_set = false;
+    this->block_type = f_type;
 
-    // TODO ukazatel na funkciu vypoctu
+    for (int i = 0; i < MAX_INPUT; i++) { this->input[i] = nullptr; } //TODO
+
+    /* input orez na 0-MAX_INPUT */
+    input_size = input_size > MAX_INPUT ? MAX_INPUT : input_size;
+    this->input_size = input_size;
 }
 
 void Block::setPos(int pos_x, int pos_y) {
@@ -22,10 +26,113 @@ uint32_t Block::getID() { return this->ID; }
 
 double Block::getValue() { return this->output; }
 
-bool Block::setNewInput(Connection *con) {
-    // TODO checks
-    this->input.emplace_back(con);
+blck_type Block::getType() { return this->block_type; }
+
+bool Block::isSet() { return this->out_set; }
+
+double Block::compute(std::vector<double> &params) { return 0; }
+
+bool Block::tryCompute() {
+    vector<double> in_values{};
+    double value;
+
+    //najprv skontroluj ci je nejaky co ma input not set
+    for (int i = 0; i < this->input_size; i++) {
+        if (this->input[i] != nullptr && !this->input[i]->isInputSet()) {
+            return false;
+        }
+    }
+
+    for (int i = 0; i < this->input_size; i++) {
+        if (this->input[i] == nullptr) {
+            std::cout << "Zadajte vstupnú hodnotu pre " << i + 1 << ". vstup: ";
+            std::cin >> value;
+
+//            //vytvor virtualny out block
+//            BlockOut virt_block = BlockOut{0, 0, 0, value};
+//            Connection virt_conn = Connection{};
+
+            in_values.push_back(value);
+        }     //TODO vytvorenie virt blocku
+        else {
+            value = this->input[i]->getValue();
+            in_values.push_back(value);
+        }
+
+    }
+
+    //TODO
+//    /* if all inputs are set */
+//    for (const auto &i : this->input) {
+//        if (!i->isInputSet()) {
+//            return false;
+//        }
+//        in_values.push_back(i->getValue());
+//    }
+//
+//    /* if not all inputs are connected */
+//    for (unsigned long i = in_values.size(); i < this->input_size; i++) {
+//        double value;
+//
+//        std::cout << "Zadajte vstupnú hodnotu pre " << i + 1 << ". vstup: ";
+//        std::cin >> value;
+//
+//        in_values.push_back(value);
+//    }
+
+    /* inputs are set, we can compute */
+    this->output = this->compute(in_values);
+    this->out_set = true;
 
     return true;
 }
 
+bool Block::setNewInput(Connection *con, uint8_t pos) {
+    if (pos < this->input_size) {
+        this->input[pos] = con;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+BlockOut::BlockOut(uint32_t ID, int pos_x, int pos_y, double output) : Block(ID, pos_x, pos_y, OUT, 0) {
+    this->output = output;
+    this->out_set = true;
+}
+
+bool BlockOut::tryCompute() {
+    return true;
+}
+
+BlockAdd::BlockAdd(uint32_t ID, int pos_x, int pos_y, uint8_t input_size) : Block(ID, pos_x, pos_y, ADD, input_size) {
+    /* input orez na 2-MAX_INPUT */
+    if (input_size < 2) { this->input_size = 2; }
+}
+
+double BlockAdd::compute(std::vector<double> &params) {
+    double acc{0};
+    for (const auto &i : params) {
+        acc += i;
+    }
+
+    return acc;
+}
+
+BlockMul::BlockMul(uint32_t ID, int pos_x, int pos_y, uint8_t input_size) : Block(ID, pos_x, pos_y, MUL, input_size) {
+    /* input orez na 2-MAX_INPUT */
+    if (input_size < 2) { this->input_size = 2; }
+}
+
+double BlockMul::compute(std::vector<double> &params) {
+    double acc{1};
+    for (const auto &i : params) {
+        acc *= i;
+    }
+
+    return acc;
+}
+
+BlockSub::BlockSub(uint32_t ID, int pos_x, int pos_y) : Block(ID, pos_x, pos_y, SUB) {}
+
+double BlockSub::compute(std::vector<double> &params) { return params[0] - params[1]; }

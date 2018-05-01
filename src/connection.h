@@ -20,6 +20,8 @@ class Connection {
 
     double getValue();
 
+    bool isInputSet();
+
     friend std::ostream &operator<<(std::ostream &s, const Connection &c);
 };
 

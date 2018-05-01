@@ -1,25 +1,27 @@
-#include <iostream>
-#include <string>
-#include <fstream>
 #include "block.h"
 #include "schema.h"
+#include <fstream>
+#include <iostream>
+#include <string>
 
+//TODO tlaci sa iny format
 Block *parseBlock(std::ifstream &ins) {
-    uint32_t ID{};
-    int pos_x{};
-    int pos_y{};
-    func_type f_type{};
-    int f_type_alias{};
-    std::string dump;
-
-    ins >> dump >> ID >> dump >> pos_x >> dump >> pos_y >> dump >> f_type_alias;
-    getline(ins, dump);     // erase '\n'
-    getline(ins, dump);     // erase '{'
-
-    f_type = static_cast<func_type>(f_type_alias);
-
-    auto new_blck = new Block{ID, pos_x, pos_y, f_type};
-    return new_blck;
+//    uint32_t ID{};
+//    int pos_x{};
+//    int pos_y{};
+//    blck_type f_type{};
+//    int f_type_alias{};
+//    std::string dump;
+//
+//    ins >> dump >> ID >> dump >> pos_x >> dump >> pos_y >> dump >> f_type_alias;
+//    getline(ins, dump); // erase '\n'
+//    getline(ins, dump); // erase '{'
+//
+//    f_type = static_cast<blck_type>(f_type_alias);
+//
+//    auto new_blck = new Block{ID, pos_x, pos_y, f_type};
+//    return new_blck;
+    return nullptr;
 }
 
 Connection *parseConn(std::ifstream &ins, Schema &b) {
@@ -55,4 +57,3 @@ std::istream &operator>>(std::ifstream &s, Schema &b) {
 
     return s;
 }
-

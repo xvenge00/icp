@@ -8,20 +8,14 @@
  * cela schema
  */
 std::ostream &operator<<(std::ostream &s, const Schema &schema) {
-    for (const auto &i : schema.blocks) {s << *i.second;}
-    for (const auto &i : schema.connections) {s << *i.second;}
+    for (const auto &i : schema.blocks) {
+        s << *i.second;
+    }
+    for (const auto &i : schema.connections) {
+        s << *i.second;
+    }
     s << "\n";
 
-    return s;
-}
-
-/*
- * example out:
- * [1,2]
- */
-std::ostream &operator<<(std::ostream &s,
-                         const std::vector<Connection *> vect) {
-    for (const auto &i : vect) {s << "[" << i << "]";}
     return s;
 }
 
@@ -31,7 +25,9 @@ std::ostream &operator<<(std::ostream &s,
  * 	  ID: 0
  *	  pos_x: 1
  *	  pos_y: 1
+ *	  in_size: 3
  *	  type: 0
+ *	  output: 13
  *}
  */
 std::ostream &operator<<(std::ostream &s, const Block &b) {
@@ -39,7 +35,9 @@ std::ostream &operator<<(std::ostream &s, const Block &b) {
              << "\tID: " << b.ID << "\n"
              << "\tpos_x: " << b.pos_x << "\n"
              << "\tpos_y: " << b.pos_y << "\n"
-             << "\ttype: " << b.f_type << "\n"
+             << "\tin_size: "<< b.input_size << "\n"
+             << "\ttype: " << b.block_type << "\n"
+             << "\toutput: " << b.output << "\n"    //TODO otestuj na NaN
              << "}\n";
 }
 
