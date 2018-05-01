@@ -1,18 +1,19 @@
-//#include <QApplication>
-//#include "mainwindow.h"
+#include <QApplication>
+#include "mainwindow.h"
 #include "schema.h"
 #include "debug.h"
 
 int main(int argc, char *argv[]) {
-//    QApplication a(argc, argv);
-//    MainWindow w;
-//    w.show();
+    QApplication a(argc, argv);
+    MainWindow w;
+    w.show();
 
     LOGE("First error");
     LOGI("First info");
     LOGD("First debug");
 
     Schema schema{};
+    //priklad pouzitia
     auto blk1 = schema.newMulBlock();
     auto blk2 = schema.newSubBlock();
     auto blk3 = schema.newOutBlock(2);
@@ -27,10 +28,8 @@ int main(int argc, char *argv[]) {
     schema.newConnection(schema.getBlckByID(blk1),
                           schema.getBlckByID(blk2),0);
 
-    schema.deleteConnection(1);
-
-//    schema.newConnection(schema.getBlckByID(blk2),
-//                            schema.getBlckByID(blk2),0);
+//    schema.deleteConnection(1);
+//
     bool succ=schema.compute();
     cout << "Podarilo sa? " << succ << "\n";
     cout << schema.getBlckByID(blk1)->getValue()<<"\n";
@@ -50,5 +49,5 @@ int main(int argc, char *argv[]) {
 //    s2.load("tmp");
 //    std::cout << s2;
 
-//    return a.exec();
+    return a.exec();
 }

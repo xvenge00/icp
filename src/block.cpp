@@ -10,10 +10,10 @@ Block::Block(unsigned int ID, int pos_x, int pos_y, blck_type f_type,unsigned in
     this->out_set = false;
     this->block_type = f_type;
 
-    for (int i = 0; i < MAX_INPUT; i++) { this->input[i] = nullptr; } //TODO
+    for (int i = 0; i < MAX_IN_SIZE; i++) { this->input[i] = nullptr; } //TODO
 
-    /* input orez na 0-MAX_INPUT */
-    input_size = input_size > MAX_INPUT ? MAX_INPUT : input_size;
+    /* input orez na 0-MAX_IN_SIZE */
+    input_size = input_size > MAX_IN_SIZE ? MAX_IN_SIZE : input_size;
     this->input_size = input_size;
 }
 
@@ -115,7 +115,7 @@ bool BlockOut::tryCompute() {
 }
 
 BlockAdd::BlockAdd(unsigned int ID, int pos_x, int pos_y, unsigned int input_size) : Block(ID, pos_x, pos_y, ADD, input_size) {
-    /* input orez na 2-MAX_INPUT */
+    /* input orez na 2-MAX_IN_SIZE */
     if (input_size < 2) { this->input_size = 2; }
 }
 
@@ -129,7 +129,7 @@ double BlockAdd::compute(std::vector<double> &params) {
 }
 
 BlockMul::BlockMul(unsigned int ID, int pos_x, int pos_y,unsigned int input_size) : Block(ID, pos_x, pos_y, MUL, input_size) {
-    /* input orez na 2-MAX_INPUT */
+    /* input orez na 2-MAX_IN_SIZE */
     if (input_size < 2) { this->input_size = 2; }
 }
 

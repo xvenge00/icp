@@ -24,7 +24,6 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        computable.cpp \
         connection.cpp \
         block.cpp \
         input.cpp \
@@ -35,7 +34,6 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-        computable.h \
         block.h \
         connection.h \
         schema.h \
