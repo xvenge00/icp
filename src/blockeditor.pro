@@ -26,7 +26,6 @@ CONFIG += c++17
 
 SOURCES += \
         main.cpp \
-        computable.cpp \
         connection.cpp \
         block.cpp \
         input.cpp \
@@ -36,7 +35,6 @@ SOURCES += \
 
 HEADERS += \
         mainwindow.h \
-        computable.h \
         block.h \
         connection.h \
         schema.h \

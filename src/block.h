@@ -5,7 +5,7 @@
 #include <iostream>
 #include <vector>
 
-const unsigned int MAX_INPUT = 10;
+const unsigned int MAX_IN_SIZE = 10;
 
 const unsigned int DEFAULT_ADD_INPUT_SIZE = 2;
 const unsigned int DEFAULT_MUL_INPUT_SIZE = 2;
@@ -20,7 +20,7 @@ protected:
     int pos_x;
     int pos_y;
     unsigned int input_size;
-    Connection *input[MAX_INPUT];
+    Connection *input[MAX_IN_SIZE];
     bool out_set;     //weather the output was already set
     double output;
     blck_type block_type;
