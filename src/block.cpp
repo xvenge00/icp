@@ -2,7 +2,7 @@
 
 using std::vector;
 
-Block::Block(uint32_t ID, int pos_x, int pos_y, blck_type f_type, uint8_t input_size) {
+Block::Block(unsigned int ID, int pos_x, int pos_y, blck_type f_type,unsigned int  input_size) {
     this->ID = ID;
     this->pos_x = pos_x;
     this->pos_y = pos_y;
@@ -22,7 +22,7 @@ void Block::setPos(int pos_x, int pos_y) {
     this->pos_y = pos_y;
 }
 
-uint32_t Block::getID() { return this->ID; }
+unsigned int  Block::getID() { return this->ID; }
 
 double Block::getValue() { return this->output; }
 
@@ -87,7 +87,7 @@ bool Block::tryCompute() {
     return true;
 }
 
-bool Block::setNewInput(Connection *con, uint8_t pos) {
+bool Block::setNewInput(Connection *con, unsigned int  pos) {
     if (pos < this->input_size) {
         this->input[pos] = con;
         return true;
@@ -96,7 +96,16 @@ bool Block::setNewInput(Connection *con, uint8_t pos) {
     }
 }
 
-BlockOut::BlockOut(uint32_t ID, int pos_x, int pos_y, double output) : Block(ID, pos_x, pos_y, OUT, 0) {
+bool Block::unsetInput(unsigned int pos) {
+    if (pos < this->input_size) {
+        this->input[pos] = nullptr;
+        return true;
+    } else {
+        return false;
+    }
+}
+
+BlockOut::BlockOut(unsigned int ID, int pos_x, int pos_y, double output) : Block(ID, pos_x, pos_y, OUT, 0) {
     this->output = output;
     this->out_set = true;
 }
@@ -105,7 +114,7 @@ bool BlockOut::tryCompute() {
     return true;
 }
 
-BlockAdd::BlockAdd(uint32_t ID, int pos_x, int pos_y, uint8_t input_size) : Block(ID, pos_x, pos_y, ADD, input_size) {
+BlockAdd::BlockAdd(unsigned int ID, int pos_x, int pos_y, unsigned int input_size) : Block(ID, pos_x, pos_y, ADD, input_size) {
     /* input orez na 2-MAX_INPUT */
     if (input_size < 2) { this->input_size = 2; }
 }
@@ -119,7 +128,7 @@ double BlockAdd::compute(std::vector<double> &params) {
     return acc;
 }
 
-BlockMul::BlockMul(uint32_t ID, int pos_x, int pos_y, uint8_t input_size) : Block(ID, pos_x, pos_y, MUL, input_size) {
+BlockMul::BlockMul(unsigned int ID, int pos_x, int pos_y,unsigned int input_size) : Block(ID, pos_x, pos_y, MUL, input_size) {
     /* input orez na 2-MAX_INPUT */
     if (input_size < 2) { this->input_size = 2; }
 }
@@ -133,6 +142,6 @@ double BlockMul::compute(std::vector<double> &params) {
     return acc;
 }
 
-BlockSub::BlockSub(uint32_t ID, int pos_x, int pos_y) : Block(ID, pos_x, pos_y, SUB) {}
+BlockSub::BlockSub(unsigned int ID, int pos_x, int pos_y) : Block(ID, pos_x, pos_y, SUB) {}
 
 double BlockSub::compute(std::vector<double> &params) { return params[0] - params[1]; }

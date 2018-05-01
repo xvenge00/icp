@@ -9,16 +9,21 @@
 class Block;
 
 class Connection {
-    uint32_t ID;
+    unsigned int ID;
     Block *input;
     Block *output;
+    unsigned int index; //index v blocku output
 
   public:
-    Connection(uint32_t ID, Block *input, Block *output);
+    Connection(unsigned int ID, Block *input, Block *output, unsigned int index);
 
-    uint32_t getID();
+    unsigned int getID();
 
     double getValue();
+
+    Block *getOutBlock();
+
+    unsigned int getIdx();
 
     bool isInputSet();
 

@@ -5,36 +5,89 @@
 #include <string>
 
 //TODO tlaci sa iny format
-Block *parseBlock(std::ifstream &ins) {
-//    uint32_t ID{};
-//    int pos_x{};
-//    int pos_y{};
-//    blck_type f_type{};
-//    int f_type_alias{};
-//    std::string dump;
-//
-//    ins >> dump >> ID >> dump >> pos_x >> dump >> pos_y >> dump >> f_type_alias;
-//    getline(ins, dump); // erase '\n'
-//    getline(ins, dump); // erase '{'
-//
-//    f_type = static_cast<blck_type>(f_type_alias);
-//
-//    auto new_blck = new Block{ID, pos_x, pos_y, f_type};
-//    return new_blck;
+Block *parseBlockAdd(std::ifstream &s) {
+    unsigned int ID{};
+    int pos_x{};
+    int pos_y{};
+    unsigned int in_size{};
+    std::string dump;
+
+    s >> dump >> ID >> dump >> pos_x >> dump >> pos_y >> dump >> in_size;
+    getline(s, dump); // erase '\n'
+    getline(s, dump); // erase '{'
+
+    auto new_blck = new BlockAdd{ID, pos_x, pos_y, in_size};
+    return new_blck;
+}
+
+Block *parseBlockMul(std::ifstream &s) {
+    unsigned int ID{};
+    int pos_x{};
+    int pos_y{};
+    unsigned int in_size{};
+    std::string dump;
+
+    s >> dump >> ID >> dump >> pos_x >> dump >> pos_y >> dump >> in_size;
+    getline(s, dump); // erase '\n'
+    getline(s, dump); // erase '{'
+
+    auto new_blck = new BlockMul{ID, pos_x, pos_y, in_size};
+    return new_blck;
+}
+
+Block *parseBlockSub(std::ifstream &s) {
+    unsigned int ID{};
+    int pos_x{};
+    int pos_y{};
+    std::string dump;
+
+    s >> dump >> ID >> dump >> pos_x >> dump >> pos_y;
+    getline(s, dump); // erase '\n'
+    getline(s, dump); // erase '{'
+
+    auto new_blck = new BlockSub{ID, pos_x, pos_y};
+    return new_blck;
+}
+
+Block *parseBlockDiv(std::ifstream &s) {
+//    TODO
     return nullptr;
 }
 
-Connection *parseConn(std::ifstream &ins, Schema &b) {
-    uint32_t ID{};
-    uint32_t in{};
-    uint32_t out{};
+Block *parseBlockOut(std::ifstream &s) {
+    unsigned int ID{};
+    int pos_x{};
+    int pos_y{};
+    double output;
     std::string dump;
 
-    ins >> dump >> ID >> dump >> in >> dump >> out;
+    s >> dump >> ID >> dump >> pos_x >> dump >> pos_y >> dump >> output;
+    getline(s, dump); // erase '\n'
+    getline(s, dump); // erase '{'
+
+    auto new_blck = new BlockOut{ID, pos_x, pos_y, output};
+    return new_blck;
+}
+
+Connection *parseConn(std::ifstream &ins, Schema &b) {
+    Block *input{};
+    Block *output{};
+
+    unsigned int ID{};
+    unsigned int in{};
+    unsigned int out{};
+    unsigned int index{};
+    std::string dump;
+
+    ins >> dump >> ID >> dump >> in >> dump >> out >> dump >>index;
     getline(ins, dump);
     getline(ins, dump);
 
-    auto new_con = new Connection{ID, b.getBlckByID(in), b.getBlckByID(out)};
+    input = b.getBlckByID(in);
+    output = b.getBlckByID(out);
+    auto new_con = new Connection{ID, input, output, index};
+    output->setNewInput(new_con, index);
+
     return new_con;
 }
 
@@ -44,8 +97,20 @@ std::istream &operator>>(std::ifstream &s, Schema &b) {
     Connection *new_conn;
 
     while (getline(s, line)) {
-        if (line == "Block: {") {
-            new_blck = parseBlock(s);
+        if (line == "Block ADD: {") {
+            new_blck = parseBlockAdd(s);
+            b.loadBlck(new_blck);
+        } else if (line == "Block MUL: {") {
+            new_blck = parseBlockMul(s);
+            b.loadBlck(new_blck);
+        } else if (line == "Block SUB: {") {
+            new_blck = parseBlockSub(s);
+            b.loadBlck(new_blck);
+        } else if (line == "Block DIV: {") {
+            new_blck = parseBlockDiv(s);
+            b.loadBlck(new_blck);
+        } else if (line == "Block OUT: {") {
+            new_blck = parseBlockOut(s);
             b.loadBlck(new_blck);
         } else if (line == "Connection: {") {
             new_conn = parseConn(s, b);

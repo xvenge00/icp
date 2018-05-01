@@ -1,7 +1,6 @@
 #ifndef ICP_SCHEMA_H
 #define ICP_SCHEMA_H
 
-//#include <vector>
 #include <map>
 
 #include "block.h"
@@ -12,8 +11,8 @@ using namespace std;
 class Schema {
     std::map<int, Block *> blocks;
     std::map<int, Connection *> connections;
-    uint32_t block_id_gen;
-    uint32_t conn_id_gen;
+    unsigned int block_id_gen;
+    unsigned int conn_id_gen;
 
     void loadBlck(Block *blck);
 
@@ -29,22 +28,21 @@ class Schema {
     void load(const string &file_name);
 
     /* Returns ID of the new block */
-    uint32_t newAddBlock(uint8_t in_size = DEFAULT_ADD_INPUT_SIZE, int pos_x = 1, int pos_y = 1);
+    unsigned int newAddBlock(unsigned int in_size = DEFAULT_ADD_INPUT_SIZE, int pos_x = 1, int pos_y = 1);
+    unsigned int newMulBlock(unsigned int in_size = DEFAULT_MUL_INPUT_SIZE, int pos_x = 1, int pos_y = 1);
+    unsigned int newSubBlock(int pos_x = 1, int pos_y = 1);
+//    unsigned int newDivBlock(int pos_x = 1, int pos_y = 1);   //TODO
+    unsigned int newOutBlock(double output, int pos_x = 1, int pos_y = 1);
 
-    uint32_t newMulBlock(uint8_t in_size = DEFAULT_MUL_INPUT_SIZE, int pos_x = 1, int pos_y = 1);
+    /* Returns ID of the new connection */
+    unsigned int newConnection(Block *in, Block *out, unsigned int pos);
+    bool deleteConnection(unsigned int ID);
 
-    uint32_t newSubBlock(int pos_x = 1, int pos_y = 1);
+    Block *getBlckByID(unsigned int ID);
 
-//    uint32_t newDivBlock(int pos_x = 1, int pos_y = 1);   //TODO
+    Connection *getConByID(unsigned int ID);
 
-    uint32_t newOutBlock(double output, int pos_x = 1, int pos_y = 1);
-
-    uint32_t newConnection(Block *in, Block *out, uint8_t pos);
-
-    Block *getBlckByID(uint32_t ID);
-
-    Connection *getConByID(uint32_t ID);
-
+    /* On success returns true */
     bool compute();
 
     friend ostream &operator<<(ostream &s, const Schema &schema);

@@ -7,12 +7,17 @@ using namespace std;
 //Must be checked if is set before getting value
 double Connection::getValue() { return this->input->getValue(); }
 
-uint32_t Connection::getID() { return this->ID; }
+unsigned int Connection::getID() { return this->ID; }
 
 bool Connection::isInputSet() { return this->input->isSet(); }
 
-Connection::Connection(uint32_t ID, Block *input, Block *output) {
+Block *Connection::getOutBlock() { return this->output; }
+
+unsigned int Connection::getIdx() { return this->index; }
+
+Connection::Connection(unsigned int ID, Block *input, Block *output, unsigned int index) {
     this->ID = ID;
     this->input = input;
     this->output = output;
+    this->index = index;
 }

@@ -5,10 +5,10 @@
 #include <iostream>
 #include <vector>
 
-const uint8_t MAX_INPUT = 10;
+const unsigned int MAX_INPUT = 10;
 
-const uint8_t DEFAULT_ADD_INPUT_SIZE = 2;
-const uint8_t DEFAULT_MUL_INPUT_SIZE = 2;
+const unsigned int DEFAULT_ADD_INPUT_SIZE = 2;
+const unsigned int DEFAULT_MUL_INPUT_SIZE = 2;
 
 enum blck_type : int {
     ADD, SUB, MUL, DIV, OUT
@@ -16,10 +16,10 @@ enum blck_type : int {
 
 class Block {
 protected:
-    uint32_t ID;
+    unsigned int ID;
     int pos_x;
     int pos_y;
-    uint8_t input_size;
+    unsigned int input_size;
     Connection *input[MAX_INPUT];
     bool out_set;     //weather the output was already set
     double output;
@@ -28,17 +28,20 @@ protected:
     virtual double compute(std::vector<double> &params);
 
 public:
-    Block(uint32_t ID, int pos_x, int pos_y, blck_type f_type, uint8_t input_size = 2);
+    Block(unsigned int ID, int pos_x, int pos_y, blck_type f_type, unsigned int input_size = 2);
 
     void setPos(int pos_x, int pos_y);
 
-    uint32_t getID();
+    unsigned int getID();
 
     double getValue();
 
     blck_type getType();
 
-    bool setNewInput(Connection *con, uint8_t pos);
+    bool setNewInput(Connection *con, unsigned int pos);
+
+    /* doesn't free Connection */
+    bool unsetInput(unsigned int pos);
 
     /*
      * If possible, compute block output, set output, return true.
@@ -54,7 +57,7 @@ public:
 class BlockOut : public Block {
 //    virtual double compute(std::vector<double> &params) override;
 public:
-    BlockOut(uint32_t ID, int pos_x, int pos_y, double output);
+    BlockOut(unsigned int ID, int pos_x, int pos_y, double output);
 
     bool tryCompute() override;
 
@@ -68,7 +71,7 @@ protected:
     double compute(std::vector<double> &params) override;
 
 public:
-    BlockAdd(uint32_t ID, int pos_x, int pos_y, uint8_t input_size = DEFAULT_ADD_INPUT_SIZE);
+    BlockAdd(unsigned int ID, int pos_x, int pos_y, unsigned int input_size = DEFAULT_ADD_INPUT_SIZE);
 };
 
 
@@ -78,7 +81,7 @@ protected:
     double compute(std::vector<double> &params) override;
 
 public:
-    BlockMul(uint32_t ID, int pos_x, int pos_y, uint8_t input_size = DEFAULT_MUL_INPUT_SIZE);
+    BlockMul(unsigned int ID, int pos_x, int pos_y, unsigned int input_size = DEFAULT_MUL_INPUT_SIZE);
 };
 
 
@@ -88,7 +91,7 @@ protected:
     double compute(std::vector<double> &params) override;
 
 public:
-    BlockSub(uint32_t ID, int pos_x, int pos_y);
+    BlockSub(unsigned int ID, int pos_x, int pos_y);
 };
 
 #endif // ICP_BLOCK_H
