@@ -49,6 +49,8 @@ class Schema {
     /* On success returns true */
     bool compute();
 
+    void addBlock(Block *blck);
+
     friend ostream &operator<<(ostream &s, const Schema &schema);
 
     friend std::istream &operator>>(std::ifstream &s, Schema &b);

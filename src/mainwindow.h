@@ -11,10 +11,12 @@ class MainWindow : public QMainWindow {
 
   public:
     MainWindow();
+    void addNewBlock(Block & b);
 
   private:
     SchemaArea *schema_area;
     QGraphicsView *view;
+    QFrame * templates;
 };
 
 #endif // MAINWINDOW_H

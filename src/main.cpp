@@ -8,6 +8,7 @@
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
     MainWindow w;
+    w.setGeometry(100, 100, 900, 600);
     w.show();
 
     LOGE("First error");

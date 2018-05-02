@@ -30,6 +30,11 @@ void Schema::save(const string &file_name) {
     out_stream.close();
 }
 
+void Schema::addBlock(Block * blck) {
+    unsigned int id = ++this->block_id_gen;
+    this->blocks[id] = blck;
+}
+
 void Schema::loadBlck(Block *blck) { this->blocks[blck->getID()] = blck; }
 
 void Schema::loadConn(Connection *conn) {
