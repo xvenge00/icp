@@ -20,7 +20,7 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         return;
     }
 
-    //auto new_block = this->schema.newSubBlock();
+    // auto new_block = this->schema.newSubBlock();
     auto new_block = this->schema.newOutBlock(42);
     BlockGraphicsObject *block_graphics = new BlockGraphicsObject(new_block);
     addItem(block_graphics);

@@ -24,8 +24,7 @@ class Block {
     virtual double compute(std::vector<double> &params);
 
   public:
-    Block(unsigned int ID, blck_type f_type,
-          unsigned int input_size = 2);
+    Block(unsigned int ID, blck_type f_type, unsigned int input_size = 2);
 
     unsigned int getID();
 

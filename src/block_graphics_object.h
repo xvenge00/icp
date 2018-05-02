@@ -12,9 +12,7 @@ const unsigned WIDTH = 60;
 const unsigned HEIGHT = 80;
 const unsigned CONNECTION_POINT_SIZE = 10;
 
-const std::string blck_type_strings[] = {
-"+", "-", "*", "/", "^", "!"
-};
+const std::string blck_type_strings[] = {"+", "-", "*", "/", "^", "!"};
 
 class BlockGraphicsObject : public QGraphicsObject {
   public:
@@ -28,16 +26,22 @@ class BlockGraphicsObject : public QGraphicsObject {
 
     Block *getBlock() { return this->_block; };
 
-    friend std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b);
+    friend std::ostream &operator<<(std::ostream &s,
+                                    const BlockGraphicsObject &b);
 
   private:
     unsigned width;
     unsigned height;
     Block *_block;
 
-    void paintBlockName(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void paintConnectionPoints(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-    void paintEllipseFromCenter(QPainter * painter, qreal x, qreal y, unsigned edge);
+    void paintBlockName(QPainter *painter,
+                        const QStyleOptionGraphicsItem *option,
+                        QWidget *widget);
+    void paintConnectionPoints(QPainter *painter,
+                               const QStyleOptionGraphicsItem *option,
+                               QWidget *widget);
+    void paintEllipseFromCenter(QPainter *painter, qreal x, qreal y,
+                                unsigned edge);
 };
 
 #endif // ICP_BLOCK_GRAPHICS_OBJECT_H

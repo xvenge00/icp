@@ -2,8 +2,7 @@
 
 using std::vector;
 
-Block::Block(unsigned int ID, blck_type f_type,
-             unsigned int input_size) {
+Block::Block(unsigned int ID, blck_type f_type, unsigned int input_size) {
     this->ID = ID;
     this->output = {};
     this->out_set = false;
@@ -95,8 +94,7 @@ unsigned int Block::unsetInput(unsigned int pos) {
     return conn_id;
 }
 
-BlockOut::BlockOut(unsigned int ID, double output)
-    : Block(ID, OUT, 0) {
+BlockOut::BlockOut(unsigned int ID, double output) : Block(ID, OUT, 0) {
     this->output = output;
     this->out_set = true;
 }
@@ -137,8 +135,7 @@ double BlockMul::compute(std::vector<double> &params) {
     return acc;
 }
 
-BlockSub::BlockSub(unsigned int ID)
-    : Block(ID, SUB) {}
+BlockSub::BlockSub(unsigned int ID) : Block(ID, SUB) {}
 
 double BlockSub::compute(std::vector<double> &params) {
     return params[0] - params[1];

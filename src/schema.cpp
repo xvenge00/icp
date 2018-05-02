@@ -70,7 +70,7 @@ BlockOut *Schema::newOutBlock(double output) {
 }
 
 bool Schema::deleteBlock(Block *b) {
-    if (b!= nullptr) {
+    if (b != nullptr) {
         unsigned b_ID = b->getID();
         std::vector<Connection *> inputs = b->getInputs();
         for (const auto &i : inputs) {
@@ -90,7 +90,6 @@ bool Schema::deleteBlock(Block *b) {
     } else {
         return false;
     }
-
 }
 
 /* Returns ID of the new connection */

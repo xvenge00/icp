@@ -18,11 +18,11 @@ class ConnectionGraphicsObject : public QGraphicsObject {
 
     Connection *getConnection() { return this->_connection; };
 
-    //friend std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b); 
+    // friend std::ostream &operator<<(std::ostream &s, const
+    // BlockGraphicsObject &b);
 
   private:
     Connection *_connection;
-
 };
 
 #endif // ICP_CONNECTION_GRAPHICS_OBJECT_H
