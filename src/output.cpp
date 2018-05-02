@@ -1,8 +1,10 @@
 #include <iostream>
 
 #include "block.h"
+#include "block_graphics_object.h"
 #include "connection.h"
 #include "schema.h"
+#include "schema_area.h"
 
 /*
  * cela schema
@@ -32,45 +34,40 @@ std::ostream &operator<<(std::ostream &s, const Schema &schema) {
 std::ostream &operator<<(std::ostream &s, const Block &b) {
     switch (b.block_type) {
     case ADD:
-        return s << "Block ADD: {\n"
-                 << "\tID: " << b.ID << "\n"
-//                 << "\tpos_x: " << b.pos_x << "\n"
-//                 << "\tpos_y: " << b.pos_y << "\n"
-                 << "\tin_size: " << b.input_size << "\n"
-                 << "}\n";
     case MUL:
-        return s << "Block MUL: {\n"
+        return s << "\ttype: " << b.block_type << "\n"
                  << "\tID: " << b.ID << "\n"
-//                 << "\tpos_x: " << b.pos_x << "\n"
-//                 << "\tpos_y: " << b.pos_y << "\n"
-                 << "\tin_size: " << b.input_size << "\n"
-                 << "}\n";
+                 << "\tin_size: " << b.input_size;
     case SUB:
-        return s << "Block SUB: {\n"
-                 << "\tID: " << b.ID << "\n"
-//                 << "\tpos_x: " << b.pos_x << "\n"
-//                 << "\tpos_y: " << b.pos_y << "\n"
-                 << "}\n";
+        return s << "\ttype: " << b.block_type << "\n"
+                 << "\tID: " << b.ID;
     case DIV:
         return s << "Neni implementovane\n";
     case OUT:
-        return s << "Block OUT: {\n"
+        return s << "\ttype: " << b.block_type << "\n"
                  << "\tID: " << b.ID << "\n"
-//                 << "\tpos_x: " << b.pos_x << "\n"
-//                 << "\tpos_y: " << b.pos_y << "\n"
-                 << "\toutput: " << b.output << "\n"
-                 << "}\n";
+                 << "\toutput: " << b.output;
     default:
         return s << "Block: {\n"
                  << "\tID: " << b.ID << "\n"
-//                 << "\tpos_x: " << b.pos_x << "\n"
-//                 << "\tpos_y: " << b.pos_y << "\n"
                  << "\tin_size: " << b.input_size << "\n"
                  << "\ttype: " << b.block_type << "\n"
                  << "\toutput: " << b.output << "\n" //TODO otestuj na NaN
                  << "}\n";
     }
 }
+
+std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
+    return s << "Block {\n"
+             << "x: " << b.positon.x() << "\n"
+             << "y: " << b.positon.y() << "\n"
+             << b._block << "\n"
+             << "}\n";
+}
+
+//std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
+//    for (const auto &i : a.)
+//}
 
 std::ostream &operator<<(std::ostream &s, const BlockMul &b) {
     return s << "BlockMul";
