@@ -36,12 +36,14 @@ class MainWindow : public QMainWindow {
     void toFront();
     void toBack();
     void calculate();
-    void calcucalteStep();
+    void calculateStep();
 
     void lineButtonTriggered();
     void itemColorChanged();
     void fillButtonTriggered();
     void lineColorChanged();
+    void pointerGroupClicked(int id);
+    void sceneScaleChanged(QString);
 
   private:
     SchemaArea *schema_area;

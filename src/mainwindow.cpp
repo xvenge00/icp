@@ -142,6 +142,13 @@ void MainWindow::createActions() {
     connect(toFrontAction, SIGNAL(triggered()), this, SLOT(toFront()));
     toBackAction = new QAction(tr("Move object to back"), this);
     connect(toBackAction, SIGNAL(triggered()), this, SLOT(toBack()));
+
+    calculateAction = new QAction(tr("Calculate all blocks"), this);
+    connect(calculateAction, SIGNAL(triggered()), this, SLOT(calculate()));
+
+    calcucalteStepAction = new QAction(tr("Step calculation"), this);
+    connect(calcucalteStepAction, SIGNAL(triggered()), this,
+            SLOT(calculateStep()));
 }
 
 void MainWindow::createMenus() {
@@ -223,6 +230,10 @@ void MainWindow::lineColorChanged() { LOGE("NOT YET IMPLEMENTED"); }
 
 void MainWindow::lineButtonTriggered() { LOGE("NOT YET IMPLEMENTED!"); }
 
+void MainWindow::pointerGroupClicked(int id) { LOGE("NOT YET IMPLEMENTED!"); }
+
+void MainWindow::sceneScaleChanged(QString) { LOGE("NOT YET IMPLEMENTED!"); }
+
 void MainWindow::newFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::openFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::saveFile() { LOGE("NOT YET IMPLEMENTED!"); }
@@ -239,4 +250,4 @@ void MainWindow::about() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::toFront() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::toBack() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::calculate() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::calcucalteStep() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::calculateStep() { LOGE("NOT YET IMPLEMENTED!"); }

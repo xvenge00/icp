@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[22];
-    char stringdata0[233];
+    QByteArrayData data[25];
+    char stringdata0[273];
 };
 #define QT_MOC_LITERAL(idx, ofs, len)                                          \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(                   \
@@ -45,20 +45,24 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
         QT_MOC_LITERAL(14, 119, 7),  // "toFront"
         QT_MOC_LITERAL(15, 127, 6),  // "toBack"
         QT_MOC_LITERAL(16, 134, 9),  // "calculate"
-        QT_MOC_LITERAL(17, 144, 14), // "calcucalteStep"
-        QT_MOC_LITERAL(18, 159, 19), // "lineButtonTriggered"
-        QT_MOC_LITERAL(19, 179, 16), // "itemColorChanged"
-        QT_MOC_LITERAL(20, 196, 19), // "fillButtonTriggered"
-        QT_MOC_LITERAL(21, 216, 16)  // "lineColorChanged"
+        QT_MOC_LITERAL(17, 144, 13), // "calculateStep"
+        QT_MOC_LITERAL(18, 158, 19), // "lineButtonTriggered"
+        QT_MOC_LITERAL(19, 178, 16), // "itemColorChanged"
+        QT_MOC_LITERAL(20, 195, 19), // "fillButtonTriggered"
+        QT_MOC_LITERAL(21, 215, 16), // "lineColorChanged"
+        QT_MOC_LITERAL(22, 232, 19), // "pointerGroupClicked"
+        QT_MOC_LITERAL(23, 252, 2),  // "id"
+        QT_MOC_LITERAL(24, 255, 17)  // "sceneScaleChanged"
 
     },
     "MainWindow\0newFile\0\0openFile\0saveFile\0"
     "saveAsFile\0quit\0add\0deleteSelection\0"
     "connectBlocks\0rerender\0authors\0license\0"
     "about\0toFront\0toBack\0calculate\0"
-    "calcucalteStep\0lineButtonTriggered\0"
+    "calculateStep\0lineButtonTriggered\0"
     "itemColorChanged\0fillButtonTriggered\0"
-    "lineColorChanged"};
+    "lineColorChanged\0pointerGroupClicked\0"
+    "id\0sceneScaleChanged"};
 #undef QT_MOC_LITERAL
 
 static const uint qt_meta_data_MainWindow[] = {
@@ -67,7 +71,7 @@ static const uint qt_meta_data_MainWindow[] = {
     7,      // revision
     0,      // classname
     0, 0,   // classinfo
-    20, 14, // methods
+    22, 14, // methods
     0, 0,   // properties
     0, 0,   // enums/sets
     0, 0,   // constructors
@@ -75,16 +79,17 @@ static const uint qt_meta_data_MainWindow[] = {
     0,      // signalCount
 
     // slots: name, argc, parameters, tag, flags
-    1, 0, 114, 2, 0x08 /* Private */, 3, 0, 115, 2, 0x08 /* Private */, 4, 0,
-    116, 2, 0x08 /* Private */, 5, 0, 117, 2, 0x08 /* Private */, 6, 0, 118, 2,
-    0x08 /* Private */, 7, 0, 119, 2, 0x08 /* Private */, 8, 0, 120, 2,
-    0x08 /* Private */, 9, 0, 121, 2, 0x08 /* Private */, 10, 0, 122, 2,
-    0x08 /* Private */, 11, 0, 123, 2, 0x08 /* Private */, 12, 0, 124, 2,
-    0x08 /* Private */, 13, 0, 125, 2, 0x08 /* Private */, 14, 0, 126, 2,
-    0x08 /* Private */, 15, 0, 127, 2, 0x08 /* Private */, 16, 0, 128, 2,
-    0x08 /* Private */, 17, 0, 129, 2, 0x08 /* Private */, 18, 0, 130, 2,
-    0x08 /* Private */, 19, 0, 131, 2, 0x08 /* Private */, 20, 0, 132, 2,
-    0x08 /* Private */, 21, 0, 133, 2, 0x08 /* Private */,
+    1, 0, 124, 2, 0x08 /* Private */, 3, 0, 125, 2, 0x08 /* Private */, 4, 0,
+    126, 2, 0x08 /* Private */, 5, 0, 127, 2, 0x08 /* Private */, 6, 0, 128, 2,
+    0x08 /* Private */, 7, 0, 129, 2, 0x08 /* Private */, 8, 0, 130, 2,
+    0x08 /* Private */, 9, 0, 131, 2, 0x08 /* Private */, 10, 0, 132, 2,
+    0x08 /* Private */, 11, 0, 133, 2, 0x08 /* Private */, 12, 0, 134, 2,
+    0x08 /* Private */, 13, 0, 135, 2, 0x08 /* Private */, 14, 0, 136, 2,
+    0x08 /* Private */, 15, 0, 137, 2, 0x08 /* Private */, 16, 0, 138, 2,
+    0x08 /* Private */, 17, 0, 139, 2, 0x08 /* Private */, 18, 0, 140, 2,
+    0x08 /* Private */, 19, 0, 141, 2, 0x08 /* Private */, 20, 0, 142, 2,
+    0x08 /* Private */, 21, 0, 143, 2, 0x08 /* Private */, 22, 1, 144, 2,
+    0x08 /* Private */, 24, 1, 147, 2, 0x08 /* Private */,
 
     // slots: parameters
     QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void,
@@ -92,6 +97,7 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void,
     QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void,
     QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void,
+    QMetaType::Void, QMetaType::Int, 23, QMetaType::Void, QMetaType::QString, 2,
 
     0 // eod
 };
@@ -148,7 +154,7 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             _t->calculate();
             break;
         case 15:
-            _t->calcucalteStep();
+            _t->calculateStep();
             break;
         case 16:
             _t->lineButtonTriggered();
@@ -162,10 +168,15 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         case 19:
             _t->lineColorChanged();
             break;
+        case 20:
+            _t->pointerGroupClicked((*reinterpret_cast<int(*)>(_a[1])));
+            break;
+        case 21:
+            _t->sceneScaleChanged((*reinterpret_cast<QString(*)>(_a[1])));
+            break;
         default:;
         }
     }
-    Q_UNUSED(_a);
 }
 
 const QMetaObject MainWindow::staticMetaObject = {
@@ -190,13 +201,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a) {
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 20)
+        if (_id < 22)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 20;
+        _id -= 22;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 20)
+        if (_id < 22)
             *reinterpret_cast<int *>(_a[0]) = -1;
-        _id -= 20;
+        _id -= 22;
     }
     return _id;
 }
