@@ -4,12 +4,17 @@
 #include <QGraphicsObject>
 #include <QPainter>
 #include <QPoint>
+#include <string>
 
 #include "block.h"
 
 const unsigned WIDTH = 60;
 const unsigned HEIGHT = 80;
 const unsigned CONNECTION_POINT_SIZE = 10;
+
+const std::string blck_type_strings[] = {
+"+", "-", "*", "/", "^", "!"
+};
 
 class BlockGraphicsObject : public QGraphicsObject {
   public:
@@ -31,6 +36,7 @@ class BlockGraphicsObject : public QGraphicsObject {
     unsigned height;
     Block *_block;
 
+    void paintBlockName(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void paintConnectionPoints(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void paintEllipseFromCenter(QPainter * painter, qreal x, qreal y, unsigned edge);
 };
