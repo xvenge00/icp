@@ -18,7 +18,7 @@ const std::string blck_type_strings[] = {
 
 class BlockGraphicsObject : public QGraphicsObject {
   public:
-    BlockGraphicsObject(Block *b, double pos_x, double pos_y, unsigned width = WIDTH,
+    BlockGraphicsObject(Block *b, unsigned width = WIDTH,
                         unsigned height = HEIGHT);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
@@ -31,7 +31,6 @@ class BlockGraphicsObject : public QGraphicsObject {
     friend std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b);
 
   private:
-    QPointF positon;
     unsigned width;
     unsigned height;
     Block *_block;

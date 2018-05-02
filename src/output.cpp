@@ -59,8 +59,8 @@ std::ostream &operator<<(std::ostream &s, const Block &b) {
 
 std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
     return s << "Block {\n"
-             << "x: " << b.positon.x() << "\n"
-             << "y: " << b.positon.y() << "\n"
+             << "x: " << b.pos().x() << "\n"
+             << "y: " << b.pos().y() << "\n"
              << b._block << "\n"
              << "}\n";
 }

@@ -4,9 +4,7 @@
 #include "block_graphics_object.h"
 #include "debug.h"
 
-BlockGraphicsObject::BlockGraphicsObject(Block *b, double pos_x, double pos_y,
-                                         unsigned width, unsigned height) {
-    this->positon = QPointF(pos_x, pos_y);
+BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width, unsigned height) {
     this->_block = b;
     this->width = width;
     this->height = height;
