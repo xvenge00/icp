@@ -4,7 +4,7 @@
 #include <iostream>
 #include <string>
 
-//TODO tlaci sa iny format
+// TODO tlaci sa iny format
 Block *parseBlockAdd(std::ifstream &s) {
     unsigned int ID{};
     int pos_x{};
@@ -50,7 +50,7 @@ Block *parseBlockSub(std::ifstream &s) {
 }
 
 Block *parseBlockDiv(std::ifstream &s) {
-//    TODO
+    //    TODO
     return nullptr;
 }
 
@@ -79,7 +79,7 @@ Connection *parseConn(std::ifstream &ins, Schema &b) {
     unsigned int index{};
     std::string dump;
 
-    ins >> dump >> ID >> dump >> in >> dump >> out >> dump >>index;
+    ins >> dump >> ID >> dump >> in >> dump >> out >> dump >> index;
     getline(ins, dump);
     getline(ins, dump);
 

@@ -12,10 +12,11 @@ class Connection {
     unsigned int ID;
     Block *input;
     Block *output;
-    unsigned int index; //index v blocku output
+    unsigned int index; // index v blocku output
 
   public:
-    Connection(unsigned int ID, Block *input, Block *output, unsigned int index);
+    Connection(unsigned int ID, Block *input, Block *output,
+               unsigned int index);
 
     unsigned int getID();
 

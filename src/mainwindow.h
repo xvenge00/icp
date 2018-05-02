@@ -1,21 +1,20 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QGraphicsView>
 #include <QMainWindow>
 
-namespace Ui {
-class MainWindow;
-}
+#include "schema_area.h"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
 
   public:
-    explicit MainWindow(QWidget *parent = 0);
-    ~MainWindow();
+    MainWindow();
 
   private:
-    Ui::MainWindow *ui;
+    SchemaArea *schema_area;
+    QGraphicsView *view;
 };
 
 #endif // MAINWINDOW_H

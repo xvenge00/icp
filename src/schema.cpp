@@ -1,6 +1,6 @@
 #include <fstream>
-#include <ostream>
 #include <list>
+#include <ostream>
 
 #include "block.h"
 #include "connection.h"
@@ -24,7 +24,7 @@ Schema::~Schema() {
 
 void Schema::save(const string &file_name) {
     ofstream out_stream;
-    out_stream.open(file_name);     //TODO if fail
+    out_stream.open(file_name); // TODO if fail
 
     out_stream << *this;
     out_stream.close();
@@ -38,7 +38,7 @@ void Schema::loadConn(Connection *conn) {
 
 void Schema::load(const string &file_name) {
     ifstream s;
-    s.open(file_name);  //TODO if fail
+    s.open(file_name); // TODO if fail
 
     s >> *this;
 
@@ -83,9 +83,9 @@ unsigned int Schema::newOutBlock(double output, int pos_x, int pos_y) {
 
 bool Schema::deleteBlock(unsigned int ID) {
     Block *to_del = this->getBlckByID(ID);
-    std::vector<Connection *>inputs = to_del->getInputs();
+    std::vector<Connection *> inputs = to_del->getInputs();
     for (const auto &i : inputs) {
-//        to_del->unsetInput(i->getIdx());
+        //        to_del->unsetInput(i->getIdx());
         this->deleteConnection(i->getID());
     }
 
@@ -114,7 +114,7 @@ unsigned int Schema::newConnection(Block *in, Block *out, unsigned int pos) {
     this->connections[id] = new_con;
 
     /* tell blocks that they have new connection*/
-    out->setNewInput(this->connections[id],pos);
+    out->setNewInput(this->connections[id], pos);
     return id;
 }
 
@@ -134,14 +134,16 @@ bool Schema::deleteConnection(unsigned int ID) {
 
 Block *Schema::getBlckByID(unsigned int ID) { return this->blocks[ID]; }
 
-Connection *Schema::getConByID(unsigned int ID) { return this->connections[ID]; }
+Connection *Schema::getConByID(unsigned int ID) {
+    return this->connections[ID];
+}
 
 bool Schema::compute() {
     /* Here are blocks that have not been calcualted yet */
     /* Output Blocks are ignored */
     std::list<Block *> to_calculate{};
     for (const auto &i : this->blocks) {
-        if (i.second->getType() != OUT){
+        if (i.second->getType() != OUT) {
             to_calculate.push_back(i.second);
         }
     }
@@ -166,5 +168,6 @@ bool Schema::compute() {
         }
     }
 
-    return to_calculate.empty();    //ked je prazdne tak sa podarilo priradit vsetko
+    return to_calculate
+        .empty(); // ked je prazdne tak sa podarilo priradit vsetko
 }

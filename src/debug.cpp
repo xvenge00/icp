@@ -1,8 +1,8 @@
 #include <ctype.h>
 #include <stdio.h>
 
-void hexdump(void * ptr, int buflen) {
-    unsigned char * buf = (unsigned char *)ptr;
+void hexdump(void *ptr, int buflen) {
+    unsigned char *buf = (unsigned char *)ptr;
     int i, j;
 
     for (i = 0; i < buflen; i += 16) {
