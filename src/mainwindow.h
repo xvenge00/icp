@@ -17,7 +17,21 @@ class MainWindow : public QMainWindow {
     void addNewBlock(Block &b);
 
   private slots:
+    void newFile();
+    void openFile();
+    void saveFile();
+    void saveAsFile();
+    void quit();
+    void add();
+    void deleteSelection();
+    void connectBlocks();
+    void rerender();
+    void authors();
+    void license();
     void about();
+
+    void toFront();
+    void toBack();
 
   private:
     SchemaArea *schema_area;
@@ -31,6 +45,7 @@ class MainWindow : public QMainWindow {
     QAction *newAction;
     QAction *openAction;
     QAction *saveAction;
+    QAction *saveAsAction;
     QAction *quitAction;
     QAction *addAction;
     QAction *deleteAction;
