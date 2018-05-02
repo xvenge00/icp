@@ -16,6 +16,8 @@ class SchemaArea : public QGraphicsScene {
     bool save(string file_name);
     bool load(string file_name);
 
+    friend std::ostream &operator<<(std::ostream &s, const SchemaArea &a);
+
   private:
     Schema schema;
 

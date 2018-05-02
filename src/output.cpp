@@ -64,9 +64,9 @@ std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
              << b._block << "\n"
              << "}\n";
 }
-
+//
 //std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
-//    for (const auto &i : a.)
+//    for (const auto &i : a.items()) {    }
 //}
 
 std::ostream &operator<<(std::ostream &s, const BlockMul &b) {

@@ -23,6 +23,8 @@ class BlockGraphicsObject : public QGraphicsObject {
 
     Block *getBlock() { return this->_block; };
 
+    friend std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b);
+
   private:
     QPointF positon;
     unsigned width;
