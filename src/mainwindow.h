@@ -1,11 +1,14 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include <QComboBox>
 #include <QGraphicsView>
 #include <QMainWindow>
 #include <QMenu>
 #include <QMenuBar>
 #include <QToolBar>
+#include <QToolBox>
+#include <QToolButton>
 
 #include "schema_area.h"
 
@@ -32,6 +35,13 @@ class MainWindow : public QMainWindow {
 
     void toFront();
     void toBack();
+    void calculate();
+    void calcucalteStep();
+
+    void lineButtonTriggered();
+    void itemColorChanged();
+    void fillButtonTriggered();
+    void lineColorChanged();
 
   private:
     SchemaArea *schema_area;
@@ -57,14 +67,32 @@ class MainWindow : public QMainWindow {
 
     QAction *toFrontAction;
     QAction *toBackAction;
+    QAction *calculateAction;
+    QAction *calcucalteStepAction;
 
     QToolBar *editToolbar;
     QToolBar *colorToolbar;
     QToolBar *pointerToolbar;
 
+    QComboBox *sceneScaleCombo;
+    QComboBox *itemColorCombo;
+
+    QToolBox *toolBox;
+    QButtonGroup *buttonGroup;
+    QButtonGroup *pointerTypeGroup;
+    QButtonGroup *backgroundButtonGroup;
+    QToolButton *fillColorToolButton;
+    QToolButton *lineColorToolButton;
+    QAction *textAction;
+    QAction *fillAction;
+    QAction *lineAction;
+
     void createActions();
     void createMenus();
     void createTemplates();
+    QMenu *createColorMenu(const char *slot, QColor defaultColor);
+    QIcon createColorIcon(QColor color);
+    QIcon createColorToolButtonIcon(const QString &imageFile, QColor color);
 };
 
 #endif // MAINWINDOW_H

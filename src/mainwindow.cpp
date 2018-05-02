@@ -1,4 +1,5 @@
 #include <QApplication>
+#include <QButtonGroup>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QWidget>
@@ -27,9 +28,61 @@ MainWindow::MainWindow() {
     template_layout->addWidget(new QPushButton("Constant"), 3, 0);
     this->templates->setLayout(template_layout);
 
+    fillColorToolButton = new QToolButton;
+    fillColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+    fillColorToolButton->setMenu(
+        createColorMenu(SLOT(itemColorChanged()), Qt::white));
+    fillAction = fillColorToolButton->menu()->defaultAction();
+    fillColorToolButton->setIcon(
+        createColorToolButtonIcon(":/images/floodfill.png", Qt::white));
+    connect(fillColorToolButton, SIGNAL(clicked()), this,
+            SLOT(fillButtonTriggered()));
+
+    lineColorToolButton = new QToolButton;
+    lineColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
+    lineColorToolButton->setMenu(
+        createColorMenu(SLOT(lineColorChanged()), Qt::black));
+    lineAction = lineColorToolButton->menu()->defaultAction();
+    lineColorToolButton->setIcon(
+        createColorToolButtonIcon(":/images/linecolor.png", Qt::black));
+    connect(lineColorToolButton, SIGNAL(clicked()), this,
+            SLOT(lineButtonTriggered()));
+
+    colorToolbar = addToolBar(tr("Color"));
+    colorToolbar->addWidget(fillColorToolButton);
+    colorToolbar->addWidget(lineColorToolButton);
+
     this->view = new QGraphicsView(schema_area);
     layout->addWidget(this->templates);
     layout->addWidget(this->view);
+
+    QToolButton *pointerButton = new QToolButton;
+    pointerButton->setCheckable(true);
+    pointerButton->setChecked(true);
+    pointerButton->setIcon(QIcon(":/images/pointer.png"));
+    QToolButton *linePointerButton = new QToolButton;
+    linePointerButton->setCheckable(true);
+    linePointerButton->setIcon(QIcon(":/images/linepointer.png"));
+
+    pointerTypeGroup = new QButtonGroup(this);
+    pointerTypeGroup->addButton(pointerButton, int(SchemaArea::MoveBlock));
+    pointerTypeGroup->addButton(linePointerButton,
+                                int(SchemaArea::InsertConnection));
+    connect(pointerTypeGroup, SIGNAL(buttonClicked(int)), this,
+            SLOT(pointerGroupClicked(int)));
+
+    sceneScaleCombo = new QComboBox;
+    QStringList scales;
+    scales << tr("50%") << tr("75%") << tr("100%") << tr("125%") << tr("150%");
+    sceneScaleCombo->addItems(scales);
+    sceneScaleCombo->setCurrentIndex(2);
+    connect(sceneScaleCombo, SIGNAL(currentIndexChanged(QString)), this,
+            SLOT(sceneScaleChanged(QString)));
+
+    pointerToolbar = addToolBar(tr("Pointer type"));
+    pointerToolbar->addWidget(pointerButton);
+    pointerToolbar->addWidget(linePointerButton);
+    pointerToolbar->addWidget(sceneScaleCombo);
 
     QWidget *w = new QWidget();
     w->setLayout(layout);
@@ -118,6 +171,58 @@ void MainWindow::createTemplates() {
     editToolbar->addAction(toBackAction);
 }
 
+QMenu *MainWindow::createColorMenu(const char *slot, QColor defaultColor) {
+    QList<QColor> colors;
+    colors << Qt::black << Qt::white << Qt::red << Qt::blue << Qt::yellow;
+    QStringList names;
+    names << tr("black") << tr("white") << tr("red") << tr("blue")
+          << tr("yellow");
+
+    QMenu *colorMenu = new QMenu(this);
+    for (int i = 0; i < colors.count(); ++i) {
+        QAction *action = new QAction(names.at(i), this);
+        action->setData(colors.at(i));
+        action->setIcon(createColorIcon(colors.at(i)));
+        connect(action, SIGNAL(triggered()), this, slot);
+        colorMenu->addAction(action);
+        if (colors.at(i) == defaultColor)
+            colorMenu->setDefaultAction(action);
+    }
+    return colorMenu;
+}
+
+QIcon MainWindow::createColorToolButtonIcon(const QString &imageFile,
+                                            QColor color) {
+    QPixmap pixmap(50, 80);
+    pixmap.fill(Qt::transparent);
+    QPainter painter(&pixmap);
+    QPixmap image(imageFile);
+    // Draw icon centred horizontally on button.
+    QRect target(4, 0, 42, 43);
+    QRect source(0, 0, 42, 43);
+    painter.fillRect(QRect(0, 60, 50, 80), color);
+    painter.drawPixmap(target, image, source);
+
+    return QIcon(pixmap);
+}
+
+QIcon MainWindow::createColorIcon(QColor color) {
+    QPixmap pixmap(20, 20);
+    QPainter painter(&pixmap);
+    painter.setPen(Qt::NoPen);
+    painter.fillRect(QRect(0, 0, 20, 20), color);
+
+    return QIcon(pixmap);
+}
+
+void MainWindow::itemColorChanged() { LOGE("NOT YET IMPLEMENTED"); }
+
+void MainWindow::fillButtonTriggered() { LOGE("NOT YET IMPLEMENTED"); }
+
+void MainWindow::lineColorChanged() { LOGE("NOT YET IMPLEMENTED"); }
+
+void MainWindow::lineButtonTriggered() { LOGE("NOT YET IMPLEMENTED!"); }
+
 void MainWindow::newFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::openFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::saveFile() { LOGE("NOT YET IMPLEMENTED!"); }
@@ -133,3 +238,5 @@ void MainWindow::about() { LOGE("NOT YET IMPLEMENTED!"); }
 
 void MainWindow::toFront() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::toBack() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::calculate() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::calcucalteStep() { LOGE("NOT YET IMPLEMENTED!"); }

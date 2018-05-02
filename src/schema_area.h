@@ -9,6 +9,7 @@
 
 class SchemaArea : public QGraphicsScene {
   public:
+    enum Operation { InsertBlock, InsertConnection, MoveBlock };
     SchemaArea();
     SchemaArea(const Schema &s);
     void propagate_data(const Schema &s);
