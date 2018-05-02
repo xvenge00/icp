@@ -34,6 +34,8 @@ class Schema {
 //    unsigned int newDivBlock(int pos_x = 1, int pos_y = 1);   //TODO
     unsigned int newOutBlock(double output, int pos_x = 1, int pos_y = 1);
 
+    bool deleteBlock(unsigned int ID);
+
     /* Returns ID of the new connection */
     unsigned int newConnection(Block *in, Block *out, unsigned int pos);
     bool deleteConnection(unsigned int ID);

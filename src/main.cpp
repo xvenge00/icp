@@ -29,11 +29,13 @@ int main(int argc, char *argv[]) {
                           schema.getBlckByID(blk2),0);
 
 //    schema.deleteConnection(1);
-//
-    bool succ=schema.compute();
-    cout << "Podarilo sa? " << succ << "\n";
-    cout << schema.getBlckByID(blk1)->getValue()<<"\n";
-    cout << schema.getBlckByID(blk2)->getValue()<<"\n";
+    schema.deleteBlock(blk1);
+    cout << schema;
+
+//    bool succ=schema.compute();
+//    cout << "Podarilo sa? " << succ << "\n";
+//    cout << schema.getBlckByID(blk1)->getValue()<<"\n";
+//    cout << schema.getBlckByID(blk2)->getValue()<<"\n";
 
 //    Schema schema2{};
 //    schema2.load("tmp");

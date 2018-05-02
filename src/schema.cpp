@@ -81,6 +81,26 @@ unsigned int Schema::newOutBlock(double output, int pos_x, int pos_y) {
     return id;
 }
 
+bool Schema::deleteBlock(unsigned int ID) {
+    Block *to_del = this->getBlckByID(ID);
+    std::vector<Connection *>inputs = to_del->getInputs();
+    for (const auto &i : inputs) {
+//        to_del->unsetInput(i->getIdx());
+        this->deleteConnection(i->getID());
+    }
+
+    for (auto &i : this->connections) {
+        if (i.second->getInput() == to_del) {
+            this->deleteConnection(static_cast<unsigned int>(i.first));
+        }
+    }
+
+    delete to_del;
+    this->blocks.erase(ID);
+
+    return true;
+}
+
 /* Returns ID of the new connection */
 unsigned int Schema::newConnection(Block *in, Block *out, unsigned int pos) {
     /* is it possible?*/
@@ -105,7 +125,6 @@ bool Schema::deleteConnection(unsigned int ID) {
         unsigned int index = conn->getIdx();
 
         blck->unsetInput(index);
-        delete conn;
         this->connections.erase(ID);
 
         return true;
