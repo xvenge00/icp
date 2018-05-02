@@ -38,10 +38,14 @@ public:
 
     blck_type getType();
 
+    std::vector<Connection *> getInputs();
+
+    unsigned int getInputSize();
+
     bool setNewInput(Connection *con, unsigned int pos);
 
-    /* doesn't free Connection */
-    bool unsetInput(unsigned int pos);
+    /* deletes Connection, returns ID of deleted CONNECTION */
+    unsigned int unsetInput(unsigned int pos);
 
     /*
      * If possible, compute block output, set output, return true.

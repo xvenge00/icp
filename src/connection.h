@@ -25,6 +25,8 @@ class Connection {
 
     unsigned int getIdx();
 
+    Block *getInput();
+
     bool isInputSet();
 
     friend std::ostream &operator<<(std::ostream &s, const Connection &c);

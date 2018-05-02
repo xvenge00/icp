@@ -15,6 +15,8 @@ Block *Connection::getOutBlock() { return this->output; }
 
 unsigned int Connection::getIdx() { return this->index; }
 
+Block *Connection::getInput() { return this->input; }
+
 Connection::Connection(unsigned int ID, Block *input, Block *output, unsigned int index) {
     this->ID = ID;
     this->input = input;
