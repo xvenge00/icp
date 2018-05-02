@@ -3,6 +3,7 @@
 
 #include <QGraphicsObject>
 #include <QPainter>
+#include <QPoint>
 
 #include "block.h"
 
@@ -11,7 +12,7 @@ const unsigned HEIGHT = 50;
 
 class BlockGraphicsObject : public QGraphicsObject {
   public:
-    BlockGraphicsObject(Block *b, unsigned width = WIDTH,
+    BlockGraphicsObject(Block *b, double pos_x, double pos_y, unsigned width = WIDTH,
                         unsigned height = HEIGHT);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
@@ -22,6 +23,7 @@ class BlockGraphicsObject : public QGraphicsObject {
     Block *getBlock() { return this->_block; };
 
   private:
+    QPointF positon;
     unsigned width;
     unsigned height;
     Block *_block;

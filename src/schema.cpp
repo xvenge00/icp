@@ -22,14 +22,6 @@ Schema::~Schema() {
     }
 }
 
-void Schema::save(const string &file_name) {
-    ofstream out_stream;
-    out_stream.open(file_name); // TODO if fail
-
-    out_stream << *this;
-    out_stream.close();
-}
-
 void Schema::addBlock(Block *blck) {
     unsigned int id = ++this->block_id_gen;
     this->blocks[id] = blck;
@@ -41,46 +33,37 @@ void Schema::loadConn(Connection *conn) {
     this->connections[conn->getID()] = conn;
 }
 
-void Schema::load(const string &file_name) {
-    ifstream s;
-    s.open(file_name); // TODO if fail
-
-    s >> *this;
-
-    s.close();
-}
-
-BlockAdd *Schema::newAddBlock(unsigned int in_size, int pos_x, int pos_y) {
+BlockAdd *Schema::newAddBlock(unsigned int in_size) {
     unsigned int id = ++this->block_id_gen;
 
-    auto new_blck = new BlockAdd{id, pos_x, pos_y, in_size};
+    auto new_blck = new BlockAdd{id, in_size};
     this->blocks[id] = new_blck;
 
     return new_blck;
 }
 
-BlockMul *Schema::newMulBlock(unsigned int in_size, int pos_x, int pos_y) {
+BlockMul *Schema::newMulBlock(unsigned int in_size) {
     unsigned int id = ++this->block_id_gen;
 
-    auto new_blck = new BlockMul{id, pos_x, pos_y, in_size};
+    auto new_blck = new BlockMul{id, in_size};
     this->blocks[id] = new_blck;
 
     return new_blck;
 }
 
-BlockSub *Schema::newSubBlock(int pos_x, int pos_y) {
+BlockSub *Schema::newSubBlock() {
     unsigned int id = ++this->block_id_gen;
 
-    auto new_blck = new BlockSub{id, pos_x, pos_y};
+    auto new_blck = new BlockSub{id};
     this->blocks[id] = new_blck;
 
     return new_blck;
 }
 
-BlockOut *Schema::newOutBlock(double output, int pos_x, int pos_y) {
+BlockOut *Schema::newOutBlock(double output) {
     unsigned int id = ++this->block_id_gen;
 
-    auto new_blck = new BlockOut{id, pos_x, pos_y, output};
+    auto new_blck = new BlockOut{id, output};
     this->blocks[id] = new_blck;
 
     return new_blck;
@@ -111,7 +94,7 @@ bool Schema::deleteBlock(Block *b) {
 }
 
 /* Returns ID of the new connection */
-unsigned int Schema::newConnection(Block *in, Block *out, unsigned int pos) {
+Connection *Schema::newConnection(Block *in, Block *out, unsigned int pos) {
     /* is it possible?*/
     // TODO
 
@@ -123,8 +106,8 @@ unsigned int Schema::newConnection(Block *in, Block *out, unsigned int pos) {
     this->connections[id] = new_con;
 
     /* tell blocks that they have new connection*/
-    out->setNewInput(this->connections[id], pos);
-    return id;
+    out->setNewInput(new_con, pos);
+    return new_con;
 }
 
 bool Schema::deleteConnection(Connection *conn) {

@@ -16,7 +16,7 @@ Block *parseBlockAdd(std::ifstream &s) {
     getline(s, dump); // erase '\n'
     getline(s, dump); // erase '{'
 
-    auto new_blck = new BlockAdd{ID, pos_x, pos_y, in_size};
+    auto new_blck = new BlockAdd{ID, in_size};
     return new_blck;
 }
 
@@ -31,7 +31,7 @@ Block *parseBlockMul(std::ifstream &s) {
     getline(s, dump); // erase '\n'
     getline(s, dump); // erase '{'
 
-    auto new_blck = new BlockMul{ID, pos_x, pos_y, in_size};
+    auto new_blck = new BlockMul{ID, in_size};
     return new_blck;
 }
 
@@ -45,7 +45,7 @@ Block *parseBlockSub(std::ifstream &s) {
     getline(s, dump); // erase '\n'
     getline(s, dump); // erase '{'
 
-    auto new_blck = new BlockSub{ID, pos_x, pos_y};
+    auto new_blck = new BlockSub{ID};
     return new_blck;
 }
 
@@ -65,7 +65,7 @@ Block *parseBlockOut(std::ifstream &s) {
     getline(s, dump); // erase '\n'
     getline(s, dump); // erase '{'
 
-    auto new_blck = new BlockOut{ID, pos_x, pos_y, output};
+    auto new_blck = new BlockOut{ID, output};
     return new_blck;
 }
 
