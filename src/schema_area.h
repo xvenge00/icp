@@ -1,0 +1,25 @@
+#ifndef ICP_SCHEMA_AREA_H
+#define ICP_SCHEMA_AREA_H
+
+#include <QGraphicsScene>
+
+#include "block_graphics_object.h"
+#include "block.h"
+#include "schema.h"
+
+class SchemaArea : public QGraphicsScene {
+  public:
+    SchemaArea();
+    SchemaArea(const Schema &s);
+    void propagate_data(const Schema &s);
+    void addBlock(BlockGraphicsObject * b);
+private:
+    Schema schema;
+
+protected:
+    void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
+    void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
+};
+
+#endif // ICP_SCHEMA_AREA_H
