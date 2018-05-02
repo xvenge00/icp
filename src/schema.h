@@ -36,11 +36,11 @@ class Schema {
     //    unsigned int newDivBlock(int pos_x = 1, int pos_y = 1);   //TODO
     BlockOut *newOutBlock(double output, int pos_x = 1, int pos_y = 1);
 
-    bool deleteBlock(unsigned int ID);
+    bool deleteBlock(Block *b);
 
     /* Returns ID of the new connection */
     unsigned int newConnection(Block *in, Block *out, unsigned int pos);
-    bool deleteConnection(unsigned int ID);
+    bool deleteConnection(Connection *conn);
 
     Block *getBlckByID(unsigned int ID);
 

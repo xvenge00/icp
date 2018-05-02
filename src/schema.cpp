@@ -86,24 +86,28 @@ BlockOut *Schema::newOutBlock(double output, int pos_x, int pos_y) {
     return new_blck;
 }
 
-bool Schema::deleteBlock(unsigned int ID) {
-    Block *to_del = this->getBlckByID(ID);
-    std::vector<Connection *> inputs = to_del->getInputs();
-    for (const auto &i : inputs) {
-        //        to_del->unsetInput(i->getIdx());
-        this->deleteConnection(i->getID());
-    }
-
-    for (auto &i : this->connections) {
-        if (i.second->getInput() == to_del) {
-            this->deleteConnection(static_cast<unsigned int>(i.first));
+bool Schema::deleteBlock(Block *b) {
+    if (b!= nullptr) {
+        unsigned b_ID = b->getID();
+        std::vector<Connection *> inputs = b->getInputs();
+        for (const auto &i : inputs) {
+            this->deleteConnection(i);
         }
+
+        for (auto &i : this->connections) {
+            if (i.second->getInput() == b) {
+                this->deleteConnection(i.second);
+            }
+        }
+
+        delete b;
+        this->blocks.erase(b_ID);
+
+        return true;
+    } else {
+        return false;
     }
 
-    delete to_del;
-    this->blocks.erase(ID);
-
-    return true;
 }
 
 /* Returns ID of the new connection */
@@ -123,9 +127,10 @@ unsigned int Schema::newConnection(Block *in, Block *out, unsigned int pos) {
     return id;
 }
 
-bool Schema::deleteConnection(unsigned int ID) {
-    Connection *conn = this->getConByID(ID);
+bool Schema::deleteConnection(Connection *conn) {
     if (conn != nullptr) {
+        unsigned ID = conn->getID();
+
         Block *blck = conn->getOutBlock();
         unsigned int index = conn->getIdx();
 
@@ -133,8 +138,9 @@ bool Schema::deleteConnection(unsigned int ID) {
         this->connections.erase(ID);
 
         return true;
+    } else {
+        return false;
     }
-    return false;
 }
 
 Block *Schema::getBlckByID(unsigned int ID) { return this->blocks[ID]; }
