@@ -6,20 +6,20 @@
 
 #include "block.h"
 
-const unsigned WIDTH = 300;
-const unsigned HEIGHT = 300;
+const unsigned WIDTH = 50;
+const unsigned HEIGHT = 50;
 
 class BlockGraphicsObject : public QGraphicsObject {
   public:
     BlockGraphicsObject(Block *b, unsigned width = WIDTH,
                         unsigned height = HEIGHT);
-    ~BlockGraphicsObject();
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
                QWidget *widget);
 
-    Block * getBlock() {
-	return this->_block;
-    };
+    QRectF boundingRect() const Q_DECL_OVERRIDE;
+
+    Block *getBlock() { return this->_block; };
 
   private:
     unsigned width;

@@ -1,4 +1,5 @@
 #include "block_graphics_object.h"
+#include "debug.h"
 
 BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width,
                                          unsigned height) {
@@ -7,10 +8,14 @@ BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width,
     this->height = height;
 }
 
-BlockGraphicsObject::~BlockGraphicsObject() {}
-
 void BlockGraphicsObject::paint(QPainter *painter,
                                 const QStyleOptionGraphicsItem *option,
                                 QWidget *widget) {
-    painter->drawRoundedRect(-10, -10, 20, 20, 5, 5);
+    painter->drawRect(this->pos().x(), this->pos().y(), this->width,
+                      this->height);
+}
+
+QRectF BlockGraphicsObject::boundingRect() const {
+    // LOGE("NOT IMPLEMENTED!");
+    return {};
 }

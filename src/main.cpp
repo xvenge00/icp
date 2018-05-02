@@ -11,9 +11,6 @@ int main(int argc, char *argv[]) {
     w.setGeometry(100, 100, 900, 600);
     w.show();
 
-    LOGE("First error");
-    LOGI("First info");
-    LOGD("First debug");
     /*
     Schema schema{};
     // priklad pouzitia

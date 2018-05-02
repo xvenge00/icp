@@ -3,8 +3,8 @@
 
 #include <QGraphicsScene>
 
-#include "block_graphics_object.h"
 #include "block.h"
+#include "block_graphics_object.h"
 #include "schema.h"
 
 class SchemaArea : public QGraphicsScene {
@@ -12,14 +12,20 @@ class SchemaArea : public QGraphicsScene {
     SchemaArea();
     SchemaArea(const Schema &s);
     void propagate_data(const Schema &s);
-    void addBlock(BlockGraphicsObject * b);
-private:
+    void addBlock();
+
+  private:
     Schema schema;
 
-protected:
+  signals:
+    void itemInserted(BlockGraphicsObject *item);
+    void itemSelected(QGraphicsItem *item);
+
+  protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
+    void
+    mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
 };
 
 #endif // ICP_SCHEMA_AREA_H
