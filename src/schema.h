@@ -28,13 +28,13 @@ class Schema {
     void load(const string &file_name);
 
     /* Returns ID of the new block */
-    unsigned int newAddBlock(unsigned int in_size = DEFAULT_ADD_INPUT_SIZE,
+    BlockAdd *newAddBlock(unsigned int in_size = DEFAULT_ADD_INPUT_SIZE,
                              int pos_x = 1, int pos_y = 1);
-    unsigned int newMulBlock(unsigned int in_size = DEFAULT_MUL_INPUT_SIZE,
+    BlockMul *newMulBlock(unsigned int in_size = DEFAULT_MUL_INPUT_SIZE,
                              int pos_x = 1, int pos_y = 1);
-    unsigned int newSubBlock(int pos_x = 1, int pos_y = 1);
+    BlockSub *newSubBlock(int pos_x = 1, int pos_y = 1);
     //    unsigned int newDivBlock(int pos_x = 1, int pos_y = 1);   //TODO
-    unsigned int newOutBlock(double output, int pos_x = 1, int pos_y = 1);
+    BlockOut *newOutBlock(double output, int pos_x = 1, int pos_y = 1);
 
     bool deleteBlock(unsigned int ID);
 

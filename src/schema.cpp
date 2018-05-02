@@ -50,40 +50,40 @@ void Schema::load(const string &file_name) {
     s.close();
 }
 
-unsigned int Schema::newAddBlock(unsigned int in_size, int pos_x, int pos_y) {
+BlockAdd *Schema::newAddBlock(unsigned int in_size, int pos_x, int pos_y) {
     unsigned int id = ++this->block_id_gen;
 
     auto new_blck = new BlockAdd{id, pos_x, pos_y, in_size};
     this->blocks[id] = new_blck;
 
-    return id;
+    return new_blck;
 }
 
-unsigned int Schema::newMulBlock(unsigned int in_size, int pos_x, int pos_y) {
+BlockMul *Schema::newMulBlock(unsigned int in_size, int pos_x, int pos_y) {
     unsigned int id = ++this->block_id_gen;
 
     auto new_blck = new BlockMul{id, pos_x, pos_y, in_size};
     this->blocks[id] = new_blck;
 
-    return id;
+    return new_blck;
 }
 
-unsigned int Schema::newSubBlock(int pos_x, int pos_y) {
+BlockSub *Schema::newSubBlock(int pos_x, int pos_y) {
     unsigned int id = ++this->block_id_gen;
 
     auto new_blck = new BlockSub{id, pos_x, pos_y};
     this->blocks[id] = new_blck;
 
-    return id;
+    return new_blck;
 }
 
-unsigned int Schema::newOutBlock(double output, int pos_x, int pos_y) {
+BlockOut *Schema::newOutBlock(double output, int pos_x, int pos_y) {
     unsigned int id = ++this->block_id_gen;
 
     auto new_blck = new BlockOut{id, pos_x, pos_y, output};
     this->blocks[id] = new_blck;
 
-    return id;
+    return new_blck;
 }
 
 bool Schema::deleteBlock(unsigned int ID) {
