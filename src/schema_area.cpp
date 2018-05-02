@@ -20,13 +20,8 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         return;
     }
 
-//    auto new_block = new BlockAdd{id_count++, 2};
-//    schema.loadBlock(new_block);
-//    auto graphics_block = new BlockGraphicsObject{new_block};
-//
-    auto new_block = this->schema.newAddBlock(2, 100, 100);
-//    Block *new_block = this->schema.getBlckByID(new_block_id);
-    BlockGraphicsObject *block_graphics = new BlockGraphicsObject(new_block);
+    auto new_block = this->schema.newAddBlock(2);
+    BlockGraphicsObject *block_graphics = new BlockGraphicsObject(new_block, 100, 100);
     addItem(block_graphics);
     block_graphics->setPos(mouseEvent->scenePos());
 

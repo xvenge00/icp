@@ -13,6 +13,8 @@ class SchemaArea : public QGraphicsScene {
     SchemaArea(const Schema &s);
     void propagate_data(const Schema &s);
     void addBlock();
+    bool save(string file_name);
+    bool load(string file_name);
 
   private:
     Schema schema;

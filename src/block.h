@@ -15,8 +15,6 @@ enum blck_type : int { ADD, SUB, MUL, DIV, OUT };
 class Block {
   protected:
     unsigned int ID;
-    int pos_x;
-    int pos_y;
     unsigned int input_size;
     Connection *input[MAX_IN_SIZE];
     bool out_set; // weather the output was already set
@@ -26,10 +24,8 @@ class Block {
     virtual double compute(std::vector<double> &params);
 
   public:
-    Block(unsigned int ID, int pos_x, int pos_y, blck_type f_type,
+    Block(unsigned int ID, blck_type f_type,
           unsigned int input_size = 2);
-
-    void setPos(int pos_x, int pos_y);
 
     unsigned int getID();
 
@@ -60,7 +56,7 @@ class Block {
 class BlockOut : public Block {
     //    virtual double compute(std::vector<double> &params) override;
   public:
-    BlockOut(unsigned int ID, int pos_x, int pos_y, double output);
+    BlockOut(unsigned int ID, double output);
 
     bool tryCompute() override;
 
@@ -73,8 +69,7 @@ class BlockAdd : public Block {
     double compute(std::vector<double> &params) override;
 
   public:
-    BlockAdd(unsigned int ID, int pos_x, int pos_y,
-             unsigned int input_size = DEFAULT_ADD_INPUT_SIZE);
+    BlockAdd(unsigned int ID, unsigned int input_size = DEFAULT_ADD_INPUT_SIZE);
 };
 
 class BlockMul : public Block {
@@ -82,8 +77,7 @@ class BlockMul : public Block {
     double compute(std::vector<double> &params) override;
 
   public:
-    BlockMul(unsigned int ID, int pos_x, int pos_y,
-             unsigned int input_size = DEFAULT_MUL_INPUT_SIZE);
+    BlockMul(unsigned int ID, unsigned int input_size = DEFAULT_MUL_INPUT_SIZE);
 };
 
 class BlockSub : public Block {
@@ -91,7 +85,7 @@ class BlockSub : public Block {
     double compute(std::vector<double> &params) override;
 
   public:
-    BlockSub(unsigned int ID, int pos_x, int pos_y);
+    BlockSub(unsigned int ID);
 };
 
 #endif // ICP_BLOCK_H

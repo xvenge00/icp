@@ -18,11 +18,14 @@ int main(int argc, char *argv[]) {
     auto blk2 = schema.newSubBlock();
     auto blk3 = schema.newOutBlock(2);
     auto blk4 = schema.newOutBlock(10);
-    schema.newConnection(schema.getBlckByID(blk3), schema.getBlckByID(blk1), 0);
-    schema.newConnection(schema.getBlckByID(blk4), schema.getBlckByID(blk1), 1);
+    schema.newConnection(blk3, blk1, 0);
+    schema.newConnection(blk4, blk1, 1);
 
-    schema.newConnection(schema.getBlckByID(blk1), schema.getBlckByID(blk2), 1);
-    schema.newConnection(schema.getBlckByID(blk1), schema.getBlckByID(blk2), 0);
+    schema.newConnection(blk1, blk2, 1);
+    schema.newConnection(blk1, blk2, 0);
+    schema.compute();
+    cout << blk1->getValue();
+    cout << blk2->getValue();
 
     //    schema.deleteConnection(1);
     schema.deleteBlock(blk1);

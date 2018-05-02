@@ -23,23 +23,15 @@ class Schema {
 
     ~Schema();
 
-    void save(const string &file_name);
-
-    void load(const string &file_name);
-
-    /* Returns ID of the new block */
-    BlockAdd *newAddBlock(unsigned int in_size = DEFAULT_ADD_INPUT_SIZE,
-                             int pos_x = 1, int pos_y = 1);
-    BlockMul *newMulBlock(unsigned int in_size = DEFAULT_MUL_INPUT_SIZE,
-                             int pos_x = 1, int pos_y = 1);
-    BlockSub *newSubBlock(int pos_x = 1, int pos_y = 1);
-    //    unsigned int newDivBlock(int pos_x = 1, int pos_y = 1);   //TODO
-    BlockOut *newOutBlock(double output, int pos_x = 1, int pos_y = 1);
+    BlockAdd *newAddBlock(unsigned int in_size = DEFAULT_ADD_INPUT_SIZE);
+    BlockMul *newMulBlock(unsigned int in_size = DEFAULT_MUL_INPUT_SIZE);
+    BlockSub *newSubBlock();
+    //    unsigned int newDivBlock();   //TODO
+    BlockOut *newOutBlock(double output);
 
     bool deleteBlock(Block *b);
 
-    /* Returns ID of the new connection */
-    unsigned int newConnection(Block *in, Block *out, unsigned int pos);
+    Connection *newConnection(Block *in, Block *out, unsigned int pos);
     bool deleteConnection(Connection *conn);
 
     Block *getBlckByID(unsigned int ID);
