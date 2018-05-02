@@ -84,6 +84,10 @@ MainWindow::MainWindow() {
     pointerToolbar->addWidget(linePointerButton);
     pointerToolbar->addWidget(sceneScaleCombo);
 
+    calculationToolbar = addToolBar(tr("Calculations"));
+    calculationToolbar->addAction(calculateAction);
+    calculationToolbar->addAction(calculateStepAction);
+
     QWidget *w = new QWidget();
     w->setLayout(layout);
 
@@ -146,8 +150,8 @@ void MainWindow::createActions() {
     calculateAction = new QAction(tr("Calculate all blocks"), this);
     connect(calculateAction, SIGNAL(triggered()), this, SLOT(calculate()));
 
-    calcucalteStepAction = new QAction(tr("Step calculation"), this);
-    connect(calcucalteStepAction, SIGNAL(triggered()), this,
+    calculateStepAction = new QAction(tr("Step calculation"), this);
+    connect(calculateStepAction, SIGNAL(triggered()), this,
             SLOT(calculateStep()));
 }
 

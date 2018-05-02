@@ -70,11 +70,12 @@ class MainWindow : public QMainWindow {
     QAction *toFrontAction;
     QAction *toBackAction;
     QAction *calculateAction;
-    QAction *calcucalteStepAction;
+    QAction *calculateStepAction;
 
     QToolBar *editToolbar;
     QToolBar *colorToolbar;
     QToolBar *pointerToolbar;
+    QToolBar *calculationToolbar;
 
     QComboBox *sceneScaleCombo;
     QComboBox *itemColorCombo;
