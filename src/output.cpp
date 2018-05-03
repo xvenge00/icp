@@ -69,9 +69,7 @@ std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
 //    for (const auto &i : a.items()) {    }
 //}
 
-std::ostream &operator<<(std::ostream &s, const BlockMul &b) {
-    return s << "BlockMul";
-}
+std::ostream &operator<<(std::ostream &s, const BlockMul &b) { return s << "BlockMul"; }
 
 /*
  * Used in Schema output.

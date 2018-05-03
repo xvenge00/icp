@@ -19,34 +19,58 @@ MainWindow::MainWindow() {
     QHBoxLayout *layout = new QHBoxLayout();
     this->templates = new QFrame();
     QGridLayout *template_layout = new QGridLayout();
-    template_layout->addWidget(new QPushButton("Addition"), 0, 0);
-    template_layout->addWidget(new QPushButton("Subtraction"), 0, 1);
-    template_layout->addWidget(new QPushButton("Multiplication"), 1, 0);
-    template_layout->addWidget(new QPushButton("Division"), 1, 1);
-    template_layout->addWidget(new QPushButton("Power"), 2, 0);
-    template_layout->addWidget(new QPushButton("Negation"), 2, 1);
-    template_layout->addWidget(new QPushButton("Constant"), 3, 0);
+
+    blockTypeGroup = new QButtonGroup(this);
+    QPushButton *button_addition = new QPushButton("Addition");
+    QPushButton *button_subtraction = new QPushButton("Subtraction");
+    QPushButton *button_multiplication = new QPushButton("Multiplication");
+    QPushButton *button_division = new QPushButton("Division");
+    QPushButton *button_power = new QPushButton("Power");
+    QPushButton *button_negation = new QPushButton("Negation");
+    QPushButton *button_constant = new QPushButton("Constant");
+
+    button_addition->setChecked(true);
+    button_addition->setCheckable(true);
+    button_subtraction->setCheckable(true);
+    button_multiplication->setCheckable(true);
+    button_division->setCheckable(true);
+    button_power->setCheckable(true);
+    button_negation->setCheckable(true);
+    button_constant->setCheckable(true);
+
+    blockTypeGroup->addButton(button_addition, int(ADD));
+    blockTypeGroup->addButton(button_subtraction, int(SUB));
+    blockTypeGroup->addButton(button_multiplication, int(MUL));
+    blockTypeGroup->addButton(button_division, int(DIV));
+    blockTypeGroup->addButton(button_power, int(POW));
+    blockTypeGroup->addButton(button_negation, int(NEG));
+    blockTypeGroup->addButton(button_constant, int(OUT));
+
+    connect(blockTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(toolGroupClicked(int)));
+
+    template_layout->addWidget(button_addition, 0, 0);
+    template_layout->addWidget(button_subtraction, 0, 1);
+    template_layout->addWidget(button_multiplication, 1, 0);
+    template_layout->addWidget(button_division, 1, 1);
+    template_layout->addWidget(button_power, 2, 0);
+    template_layout->addWidget(button_negation, 2, 1);
+    template_layout->addWidget(button_constant, 3, 0);
+
     this->templates->setLayout(template_layout);
 
     fillColorToolButton = new QToolButton;
     fillColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
-    fillColorToolButton->setMenu(
-        createColorMenu(SLOT(itemColorChanged()), Qt::white));
+    fillColorToolButton->setMenu(createColorMenu(SLOT(itemColorChanged()), Qt::white));
     fillAction = fillColorToolButton->menu()->defaultAction();
-    fillColorToolButton->setIcon(
-        createColorToolButtonIcon(":/images/floodfill.png", Qt::white));
-    connect(fillColorToolButton, SIGNAL(clicked()), this,
-            SLOT(fillButtonTriggered()));
+    fillColorToolButton->setIcon(createColorToolButtonIcon(":/images/floodfill.png", Qt::white));
+    connect(fillColorToolButton, SIGNAL(clicked()), this, SLOT(fillButtonTriggered()));
 
     lineColorToolButton = new QToolButton;
     lineColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
-    lineColorToolButton->setMenu(
-        createColorMenu(SLOT(lineColorChanged()), Qt::black));
+    lineColorToolButton->setMenu(createColorMenu(SLOT(lineColorChanged()), Qt::black));
     lineAction = lineColorToolButton->menu()->defaultAction();
-    lineColorToolButton->setIcon(
-        createColorToolButtonIcon(":/images/linecolor.png", Qt::black));
-    connect(lineColorToolButton, SIGNAL(clicked()), this,
-            SLOT(lineButtonTriggered()));
+    lineColorToolButton->setIcon(createColorToolButtonIcon(":/images/linecolor.png", Qt::black));
+    connect(lineColorToolButton, SIGNAL(clicked()), this, SLOT(lineButtonTriggered()));
 
     colorToolbar = addToolBar(tr("Color"));
     colorToolbar->addWidget(fillColorToolButton);
@@ -66,18 +90,15 @@ MainWindow::MainWindow() {
 
     pointerTypeGroup = new QButtonGroup(this);
     pointerTypeGroup->addButton(pointerButton, int(SchemaArea::MoveBlock));
-    pointerTypeGroup->addButton(linePointerButton,
-                                int(SchemaArea::InsertConnection));
-    connect(pointerTypeGroup, SIGNAL(buttonClicked(int)), this,
-            SLOT(pointerGroupClicked(int)));
+    pointerTypeGroup->addButton(linePointerButton, int(SchemaArea::InsertConnection));
+    connect(pointerTypeGroup, SIGNAL(buttonClicked(int)), this, SLOT(pointerGroupClicked(int)));
 
     sceneScaleCombo = new QComboBox;
     QStringList scales;
     scales << tr("50%") << tr("75%") << tr("100%") << tr("125%") << tr("150%");
     sceneScaleCombo->addItems(scales);
     sceneScaleCombo->setCurrentIndex(2);
-    connect(sceneScaleCombo, SIGNAL(currentIndexChanged(QString)), this,
-            SLOT(sceneScaleChanged(QString)));
+    connect(sceneScaleCombo, SIGNAL(currentIndexChanged(QString)), this, SLOT(sceneScaleChanged(QString)));
 
     pointerToolbar = addToolBar(tr("Pointer type"));
     pointerToolbar->addWidget(pointerButton);
@@ -151,8 +172,7 @@ void MainWindow::createActions() {
     connect(calculateAction, SIGNAL(triggered()), this, SLOT(calculate()));
 
     calculateStepAction = new QAction(tr("Step calculation"), this);
-    connect(calculateStepAction, SIGNAL(triggered()), this,
-            SLOT(calculateStep()));
+    connect(calculateStepAction, SIGNAL(triggered()), this, SLOT(calculateStep()));
 }
 
 void MainWindow::createMenus() {
@@ -186,8 +206,7 @@ QMenu *MainWindow::createColorMenu(const char *slot, QColor defaultColor) {
     QList<QColor> colors;
     colors << Qt::black << Qt::white << Qt::red << Qt::blue << Qt::yellow;
     QStringList names;
-    names << tr("black") << tr("white") << tr("red") << tr("blue")
-          << tr("yellow");
+    names << tr("black") << tr("white") << tr("red") << tr("blue") << tr("yellow");
 
     QMenu *colorMenu = new QMenu(this);
     for (int i = 0; i < colors.count(); ++i) {
@@ -202,8 +221,7 @@ QMenu *MainWindow::createColorMenu(const char *slot, QColor defaultColor) {
     return colorMenu;
 }
 
-QIcon MainWindow::createColorToolButtonIcon(const QString &imageFile,
-                                            QColor color) {
+QIcon MainWindow::createColorToolButtonIcon(const QString &imageFile, QColor color) {
     QPixmap pixmap(50, 80);
     pixmap.fill(Qt::transparent);
     QPainter painter(&pixmap);
@@ -240,6 +258,8 @@ void MainWindow::pointerGroupClicked(int id) {
     LOGD("CheckedID: " << pointerTypeGroup->checkedId());
     schema_area->setMode(SchemaArea::Operation(pointerTypeGroup->checkedId()));
 }
+
+void MainWindow::toolGroupClicked(int id) { schema_area->setBlockType(blck_type(blockTypeGroup->checkedId())); }
 
 void MainWindow::newFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::openFile() { LOGE("NOT YET IMPLEMENTED!"); }

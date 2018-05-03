@@ -101,8 +101,7 @@ BlockOut::BlockOut(unsigned int ID, double output) : Block(ID, OUT, 0) {
 
 bool BlockOut::tryCompute() { return true; }
 
-BlockAdd::BlockAdd(unsigned int ID, unsigned int input_size)
-    : Block(ID, ADD, input_size) {
+BlockAdd::BlockAdd(unsigned int ID, unsigned int input_size) : Block(ID, ADD, input_size) {
     /* input orez na 2-MAX_IN_SIZE */
     if (input_size < 2) {
         this->input_size = 2;
@@ -118,8 +117,7 @@ double BlockAdd::compute(std::vector<double> &params) {
     return acc;
 }
 
-BlockMul::BlockMul(unsigned int ID, unsigned int input_size)
-    : Block(ID, MUL, input_size) {
+BlockMul::BlockMul(unsigned int ID, unsigned int input_size) : Block(ID, MUL, input_size) {
     /* input orez na 2-MAX_IN_SIZE */
     if (input_size < 2) {
         this->input_size = 2;
@@ -137,6 +135,4 @@ double BlockMul::compute(std::vector<double> &params) {
 
 BlockSub::BlockSub(unsigned int ID) : Block(ID, SUB) {}
 
-double BlockSub::compute(std::vector<double> &params) {
-    return params[0] - params[1];
-}
+double BlockSub::compute(std::vector<double> &params) { return params[0] - params[1]; }

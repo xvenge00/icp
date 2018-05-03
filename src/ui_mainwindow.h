@@ -74,8 +74,7 @@ class Ui_MainWindow {
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         horizontalLayoutWidget = new QWidget(centralWidget);
-        horizontalLayoutWidget->setObjectName(
-            QStringLiteral("horizontalLayoutWidget"));
+        horizontalLayoutWidget->setObjectName(QStringLiteral("horizontalLayoutWidget"));
         horizontalLayoutWidget->setGeometry(QRect(-1, -1, 831, 431));
         horizontalLayout = new QHBoxLayout(horizontalLayoutWidget);
         horizontalLayout->setSpacing(6);
@@ -145,27 +144,17 @@ class Ui_MainWindow {
     } // setupUi
 
     void retranslateUi(QMainWindow *MainWindow) {
-        MainWindow->setWindowTitle(
-            QApplication::translate("MainWindow", "BlockEditor", 0));
-        actionOpen->setText(
-            QApplication::translate("MainWindow", "Open... ", 0));
-        actionOpen->setShortcut(
-            QApplication::translate("MainWindow", "Meta+O, Ctrl+O", 0));
+        MainWindow->setWindowTitle(QApplication::translate("MainWindow", "BlockEditor", 0));
+        actionOpen->setText(QApplication::translate("MainWindow", "Open... ", 0));
+        actionOpen->setShortcut(QApplication::translate("MainWindow", "Meta+O, Ctrl+O", 0));
         actionQuit->setText(QApplication::translate("MainWindow", "Quit", 0));
         actionAdd->setText(QApplication::translate("MainWindow", "Add", 0));
-        actionRemove->setText(
-            QApplication::translate("MainWindow", "Remove", 0));
+        actionRemove->setText(QApplication::translate("MainWindow", "Remove", 0));
         actionAbout->setText(QApplication::translate("MainWindow", "About", 0));
-        actionLicense->setText(
-            QApplication::translate("MainWindow", "License", 0));
-        actionAuthors->setText(
-            QApplication::translate("MainWindow", "Authors", 0));
-        toolBox->setItemText(
-            toolBox->indexOf(page),
-            QApplication::translate("MainWindow", "Templates", 0));
-        toolBox->setItemText(
-            toolBox->indexOf(page_2),
-            QApplication::translate("MainWindow", "Custom", 0));
+        actionLicense->setText(QApplication::translate("MainWindow", "License", 0));
+        actionAuthors->setText(QApplication::translate("MainWindow", "Authors", 0));
+        toolBox->setItemText(toolBox->indexOf(page), QApplication::translate("MainWindow", "Templates", 0));
+        toolBox->setItemText(toolBox->indexOf(page_2), QApplication::translate("MainWindow", "Custom", 0));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0));
         menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", 0));
         menuHelp->setTitle(QApplication::translate("MainWindow", "Help", 0));

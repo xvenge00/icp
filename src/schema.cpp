@@ -29,9 +29,7 @@ void Schema::addBlock(Block *blck) {
 
 void Schema::loadBlck(Block *blck) { this->blocks[blck->getID()] = blck; }
 
-void Schema::loadConn(Connection *conn) {
-    this->connections[conn->getID()] = conn;
-}
+void Schema::loadConn(Connection *conn) { this->connections[conn->getID()] = conn; }
 
 BlockAdd *Schema::newAddBlock(unsigned int in_size) {
     unsigned int id = ++this->block_id_gen;
@@ -127,9 +125,7 @@ bool Schema::deleteConnection(Connection *conn) {
 
 Block *Schema::getBlckByID(unsigned int ID) { return this->blocks[ID]; }
 
-Connection *Schema::getConByID(unsigned int ID) {
-    return this->connections[ID];
-}
+Connection *Schema::getConByID(unsigned int ID) { return this->connections[ID]; }
 
 bool Schema::compute() {
     /* Here are blocks that have not been calcualted yet */
@@ -161,6 +157,5 @@ bool Schema::compute() {
         }
     }
 
-    return to_calculate
-        .empty(); // ked je prazdne tak sa podarilo priradit vsetko
+    return to_calculate.empty(); // ked je prazdne tak sa podarilo priradit vsetko
 }

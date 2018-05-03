@@ -44,6 +44,7 @@ class MainWindow : public QMainWindow {
     void lineColorChanged();
     void sceneScaleChanged(QString);
     void pointerGroupClicked(int id);
+    void toolGroupClicked(int id);
 
   private:
     SchemaArea *schema_area;
@@ -82,6 +83,7 @@ class MainWindow : public QMainWindow {
 
     QToolBox *toolBox;
     QButtonGroup *buttonGroup;
+    QButtonGroup *blockTypeGroup;
     QButtonGroup *pointerTypeGroup;
     QButtonGroup *backgroundButtonGroup;
     QToolButton *fillColorToolButton;

@@ -10,7 +10,7 @@ const unsigned int MAX_IN_SIZE = 10;
 const unsigned int DEFAULT_ADD_INPUT_SIZE = 2;
 const unsigned int DEFAULT_MUL_INPUT_SIZE = 2;
 
-enum blck_type : int { ADD, SUB, MUL, DIV, OUT };
+enum blck_type : int { ADD, SUB, MUL, DIV, POW, NEG, OUT };
 
 class Block {
   protected:

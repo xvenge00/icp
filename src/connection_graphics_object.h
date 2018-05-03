@@ -11,8 +11,7 @@ class ConnectionGraphicsObject : public QGraphicsObject {
   public:
     ConnectionGraphicsObject(Connection *c);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option,
-               QWidget *widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
 

@@ -11,6 +11,7 @@ class SchemaArea : public QGraphicsScene {
   public:
     enum Operation { InsertBlock, InsertConnection, MoveBlock };
     void setMode(Operation o);
+    void setBlockType(blck_type t);
     SchemaArea();
     SchemaArea(const Schema &s);
     void propagate_data(const Schema &s);
@@ -24,10 +25,9 @@ class SchemaArea : public QGraphicsScene {
   private:
     Schema schema;
     Operation operationMode;
+    blck_type selectedBlockType;
     bool schema_edited;
-
-  public slots:
-    void pointerGroupClicked(int id);
+    Block *getNewBlock();
 
   signals:
     void itemInserted(BlockGraphicsObject *item);
@@ -36,8 +36,7 @@ class SchemaArea : public QGraphicsScene {
   protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
     void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
-    void
-    mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
 };
 
 #endif // ICP_SCHEMA_AREA_H

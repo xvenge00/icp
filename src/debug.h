@@ -18,25 +18,25 @@
 
 // Log error(LOGE) is not conditional and is present in every build
 // Errors are supposed to be shown in every case
-#define LOGE(x)                                                                \
-    do {                                                                       \
-        std::cerr << ANSI_COLOR_RED "ERRO : "                                  \
-                  << "[" << __FILE__ << "][" << __FUNCTION__ << "][Line "      \
-                  << __LINE__ << "] " ANSI_COLOR_RESET << x << std::endl;      \
+#define LOGE(x)                                                                                                        \
+    do {                                                                                                               \
+        std::cerr << ANSI_COLOR_RED "ERRO : "                                                                          \
+                  << "[" << __FILE__ << "][" << __FUNCTION__ << "][Line " << __LINE__ << "] " ANSI_COLOR_RESET << x    \
+                  << std::endl;                                                                                        \
     } while (0)
 
 #ifdef ICP_DEBUG
-#define LOGI(x)                                                                \
-    do {                                                                       \
-        std::cerr << ANSI_COLOR_GREEN "INFO : "                                \
-                  << "[" << __FILE__ << "][" << __FUNCTION__ << "][Line "      \
-                  << __LINE__ << "] " ANSI_COLOR_RESET << x << std::endl;      \
+#define LOGI(x)                                                                                                        \
+    do {                                                                                                               \
+        std::cerr << ANSI_COLOR_GREEN "INFO : "                                                                        \
+                  << "[" << __FILE__ << "][" << __FUNCTION__ << "][Line " << __LINE__ << "] " ANSI_COLOR_RESET << x    \
+                  << std::endl;                                                                                        \
     } while (0)
-#define LOGD(x)                                                                \
-    do {                                                                       \
-        std::cerr << ANSI_COLOR_BLUE "DEBG : "                                 \
-                  << "[" << __FILE__ << "][" << __FUNCTION__ << "][Line "      \
-                  << __LINE__ << "] " ANSI_COLOR_RESET << x << std::endl;      \
+#define LOGD(x)                                                                                                        \
+    do {                                                                                                               \
+        std::cerr << ANSI_COLOR_BLUE "DEBG : "                                                                         \
+                  << "[" << __FILE__ << "][" << __FUNCTION__ << "][Line " << __LINE__ << "] " ANSI_COLOR_RESET << x    \
+                  << std::endl;                                                                                        \
     } while (0)
 #define DEBUG_COMMAND(x) x
 
