@@ -243,12 +243,16 @@ void MainWindow::pointerGroupClicked(int id) {
 
 void MainWindow::newFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::openFile() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::saveFile() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::saveFile() {
+    if (schema_area->edited()) {
+        LOGE("NOT YET IMPLEMENTED!");
+    }
+}
 void MainWindow::saveAsFile() { LOGE("NOT YET IMPLEMENTED!"); }
 
 void MainWindow::quit() {
     saveFile();
-    LOGE("Quit NOT YET IMPLEMENTED!");
+    this->close();
 }
 
 void MainWindow::add() { LOGE("NOT YET IMPLEMENTED!"); }

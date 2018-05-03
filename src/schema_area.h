@@ -9,7 +9,7 @@
 
 class SchemaArea : public QGraphicsScene {
   public:
-enum Operation { InsertBlock, InsertConnection, MoveBlock };
+    enum Operation { InsertBlock, InsertConnection, MoveBlock };
     void setMode(Operation o);
     SchemaArea();
     SchemaArea(const Schema &s);

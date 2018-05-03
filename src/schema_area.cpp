@@ -6,6 +6,7 @@
 
 SchemaArea::SchemaArea() {
     this->operationMode = InsertBlock;
+    this->schema_edited = false;
 }
 
 SchemaArea::SchemaArea(const Schema &s) {}
@@ -20,27 +21,27 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         return;
     }
 
-    Block * new_block;
+    Block *new_block;
     BlockGraphicsObject *block_graphics;
-    switch(this->operationMode) {
+    switch (this->operationMode) {
     case InsertBlock:
 
-	LOGD("Adding new block");
-	new_block = this->schema.newOutBlock(42);
-	block_graphics = new BlockGraphicsObject(new_block);
-	addItem(block_graphics);
-	block_graphics->setPos(mouseEvent->scenePos());
-	break;
+        LOGD("Adding new block");
+        new_block = this->schema.newOutBlock(42);
+        block_graphics = new BlockGraphicsObject(new_block);
+        addItem(block_graphics);
+        block_graphics->setPos(mouseEvent->scenePos());
+        break;
 
     case InsertConnection:
-	LOGD("Adding new connection");
-	new_block = this->schema.newAddBlock(2);
-	block_graphics = new BlockGraphicsObject(new_block);
-	addItem(block_graphics);
-	block_graphics->setPos(mouseEvent->scenePos());
-	break;
+        LOGD("Adding new connection");
+        new_block = this->schema.newAddBlock(2);
+        block_graphics = new BlockGraphicsObject(new_block);
+        addItem(block_graphics);
+        block_graphics->setPos(mouseEvent->scenePos());
+        break;
     default:
-	LOGE("Wrong opeartion mode");
+        LOGE("Wrong opeartion mode");
     }
 
     QGraphicsScene::mousePressEvent(mouseEvent);
@@ -55,6 +56,6 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 }
 
 void SchemaArea::setMode(Operation o) {
-    //LOGD("Operation ID " << static_cast<int>(o));
+    // LOGD("Operation ID " << static_cast<int>(o));
     this->operationMode = o;
 }

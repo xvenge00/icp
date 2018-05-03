@@ -67,5 +67,6 @@ void BlockGraphicsObject::paintEllipseFromCenter(QPainter *painter, qreal x,
 }
 
 QRectF BlockGraphicsObject::boundingRect() const {
-    return QRectF(this->pos().x() - CONNECTION_POINT_SIZE / 2, this->pos().y(), this->width + CONNECTION_POINT_SIZE, this->height);
+    return QRectF(this->pos().x() - CONNECTION_POINT_SIZE / 2, this->pos().y(),
+                  this->width + CONNECTION_POINT_SIZE, this->height);
 }
