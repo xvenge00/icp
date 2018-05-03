@@ -113,7 +113,7 @@ void MainWindow::createActions() {
     connect(saveAsAction, SIGNAL(triggered()), this, SLOT(saveAsFile()));
 
     quitAction = new QAction(tr("Quit"), this);
-    saveAsAction->setShortcut(tr("Ctrl+Q"));
+    quitAction->setShortcut(tr("Ctrl+Q"));
     connect(quitAction, SIGNAL(triggered()), this, SLOT(quit()));
 
     addAction = new QAction(tr("Add Block"), this);
@@ -234,15 +234,23 @@ void MainWindow::lineColorChanged() { LOGE("NOT YET IMPLEMENTED"); }
 
 void MainWindow::lineButtonTriggered() { LOGE("NOT YET IMPLEMENTED!"); }
 
-void MainWindow::pointerGroupClicked(int id) { LOGE("NOT YET IMPLEMENTED!"); }
-
 void MainWindow::sceneScaleChanged(QString) { LOGE("NOT YET IMPLEMENTED!"); }
+
+void MainWindow::pointerGroupClicked(int id) {
+    LOGD("CheckedID: " << pointerTypeGroup->checkedId());
+    schema_area->setMode(SchemaArea::Operation(pointerTypeGroup->checkedId()));
+}
 
 void MainWindow::newFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::openFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::saveFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::saveAsFile() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::quit() { LOGE("NOT YET IMPLEMENTED!"); }
+
+void MainWindow::quit() {
+    saveFile();
+    LOGE("Quit NOT YET IMPLEMENTED!");
+}
+
 void MainWindow::add() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::deleteSelection() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::connectBlocks() { LOGE("NOT YET IMPLEMENTED!"); }

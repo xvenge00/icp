@@ -9,6 +9,10 @@ BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width,
     this->_block = b;
     this->width = width;
     this->height = height;
+
+    setFlag(QGraphicsItem::ItemIsMovable, true);
+    setFlag(QGraphicsItem::ItemIsSelectable, true);
+    setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
 }
 
 void BlockGraphicsObject::paint(QPainter *painter,
@@ -63,6 +67,5 @@ void BlockGraphicsObject::paintEllipseFromCenter(QPainter *painter, qreal x,
 }
 
 QRectF BlockGraphicsObject::boundingRect() const {
-    // LOGE("NOT IMPLEMENTED!");
-    return {};
+    return QRectF(this->pos().x() - CONNECTION_POINT_SIZE / 2, this->pos().y(), this->width + CONNECTION_POINT_SIZE, this->height);
 }

@@ -42,8 +42,8 @@ class MainWindow : public QMainWindow {
     void itemColorChanged();
     void fillButtonTriggered();
     void lineColorChanged();
-    void pointerGroupClicked(int id);
     void sceneScaleChanged(QString);
+    void pointerGroupClicked(int id);
 
   private:
     SchemaArea *schema_area;

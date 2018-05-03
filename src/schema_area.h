@@ -9,18 +9,25 @@
 
 class SchemaArea : public QGraphicsScene {
   public:
-    enum Operation { InsertBlock, InsertConnection, MoveBlock };
+enum Operation { InsertBlock, InsertConnection, MoveBlock };
+    void setMode(Operation o);
     SchemaArea();
     SchemaArea(const Schema &s);
     void propagate_data(const Schema &s);
     void addBlock();
     bool save(string file_name);
     bool load(string file_name);
+    bool edited() { return this->schema_edited; };
 
     friend std::ostream &operator<<(std::ostream &s, const SchemaArea &a);
 
   private:
     Schema schema;
+    Operation operationMode;
+    bool schema_edited;
+
+  public slots:
+    void pointerGroupClicked(int id);
 
   signals:
     void itemInserted(BlockGraphicsObject *item);

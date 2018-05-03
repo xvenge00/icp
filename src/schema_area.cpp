@@ -4,7 +4,9 @@
 #include "debug.h"
 #include "schema_area.h"
 
-SchemaArea::SchemaArea() {}
+SchemaArea::SchemaArea() {
+    this->operationMode = InsertBlock;
+}
 
 SchemaArea::SchemaArea(const Schema &s) {}
 
@@ -14,27 +16,45 @@ void SchemaArea::addBlock() {}
 
 void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 
-    LOGD("Mouse press event in scene");
-
     if (mouseEvent->button() != Qt::LeftButton) {
         return;
     }
 
-    // auto new_block = this->schema.newSubBlock();
-    auto new_block = this->schema.newOutBlock(42);
-    BlockGraphicsObject *block_graphics = new BlockGraphicsObject(new_block);
-    addItem(block_graphics);
-    block_graphics->setPos(mouseEvent->scenePos());
+    Block * new_block;
+    BlockGraphicsObject *block_graphics;
+    switch(this->operationMode) {
+    case InsertBlock:
+
+	LOGD("Adding new block");
+	new_block = this->schema.newOutBlock(42);
+	block_graphics = new BlockGraphicsObject(new_block);
+	addItem(block_graphics);
+	block_graphics->setPos(mouseEvent->scenePos());
+	break;
+
+    case InsertConnection:
+	LOGD("Adding new connection");
+	new_block = this->schema.newAddBlock(2);
+	block_graphics = new BlockGraphicsObject(new_block);
+	addItem(block_graphics);
+	block_graphics->setPos(mouseEvent->scenePos());
+	break;
+    default:
+	LOGE("Wrong opeartion mode");
+    }
 
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
 void SchemaArea::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
-    LOGD("Mouse move event in scene");
     QGraphicsScene::mouseMoveEvent(mouseEvent);
 }
 
 void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
-    LOGD("Mouse released event in scene");
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
+}
+
+void SchemaArea::setMode(Operation o) {
+    //LOGD("Operation ID " << static_cast<int>(o));
+    this->operationMode = o;
 }
