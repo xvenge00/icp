@@ -40,6 +40,7 @@ class MainWindow : public QMainWindow {
 
     void lineButtonTriggered();
     void itemColorChanged();
+    void itemInserted(BlockGraphicsObject *o);
     void fillButtonTriggered();
     void lineColorChanged();
     void sceneScaleChanged(QString);

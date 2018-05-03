@@ -27,6 +27,7 @@ class SchemaArea : public QGraphicsScene {
     Operation operationMode;
     blck_type selectedBlockType;
     bool schema_edited;
+    QGraphicsLineItem *line;
     Block *getNewBlock();
 
   signals:

@@ -1,6 +1,7 @@
 #include <QGraphicsSceneMouseEvent>
 
 #include "block_graphics_object.h"
+#include "connection_graphics_object.h"
 #include "debug.h"
 #include "schema_area.h"
 
@@ -26,26 +27,63 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
     BlockGraphicsObject *block_graphics;
     switch (this->operationMode) {
     case InsertBlock:
-
         LOGD("Adding new block");
+
         new_block = getNewBlock();
         block_graphics = new BlockGraphicsObject(new_block);
         addItem(block_graphics);
         block_graphics->setPos(mouseEvent->scenePos());
+        // emit itemInserted(block_graphics); ?
         break;
 
     case InsertConnection:
         LOGD("Adding new connection");
-        new_block = this->schema.newAddBlock(2);
-        block_graphics = new BlockGraphicsObject(new_block);
-        addItem(block_graphics);
-        block_graphics->setPos(mouseEvent->scenePos());
-        break;
-    default:
-        LOGE("Wrong opeartion mode");
-    }
 
-    QGraphicsScene::mousePressEvent(mouseEvent);
+        line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(), mouseEvent->scenePos()));
+        line->setPen(QPen(Qt::blue, 2));
+        addItem(line);
+        break;
+
+        QGraphicsScene::mousePressEvent(mouseEvent);
+    }
+}
+
+void SchemaArea::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
+    if (this->operationMode == InsertConnection && line != 0) {
+        QLineF newLine(line->line().p1(), mouseEvent->scenePos());
+        line->setLine(newLine);
+    } else if (this->operationMode == MoveBlock) {
+        QGraphicsScene::mouseMoveEvent(mouseEvent);
+    }
+}
+
+void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
+    if (line != 0 && this->operationMode == InsertConnection) {
+        QList<QGraphicsItem *> startItems = items(line->line().p1());
+        if (startItems.count() && startItems.first() == line)
+            startItems.removeFirst();
+        QList<QGraphicsItem *> endItems = items(line->line().p2());
+        if (endItems.count() && endItems.first() == line)
+            endItems.removeFirst();
+
+        removeItem(line);
+        delete line;
+
+        if (startItems.count() > 0 && endItems.count() > 0 && startItems.first() != endItems.first()) {
+            BlockGraphicsObject *startItem = qgraphicsitem_cast<BlockGraphicsObject *>(startItems.first());
+            BlockGraphicsObject *endItem = qgraphicsitem_cast<BlockGraphicsObject *>(endItems.first());
+            Connection *con = new Connection(0, startItem->getBlock(), endItem->getBlock(), 0);
+            ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(con);
+            // con_graphics->setColor(myLineColor);
+            // startItem->addArrow(arrow);
+            // endItem->addArrow(arrow);
+            con_graphics->setZValue(-1000.0);
+            addItem(con_graphics);
+            // con_graphics->updatePosition();
+        }
+    }
+    line = 0;
+    QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
 Block *SchemaArea::getNewBlock() {
@@ -76,12 +114,6 @@ Block *SchemaArea::getNewBlock() {
     default:
         LOGE("Unsuported block type!");
     }
-}
-
-void SchemaArea::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) { QGraphicsScene::mouseMoveEvent(mouseEvent); }
-
-void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
-    QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
 void SchemaArea::setMode(Operation o) {

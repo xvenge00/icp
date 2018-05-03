@@ -7,7 +7,7 @@
 
 #include "connection.h"
 
-class ConnectionGraphicsObject : public QGraphicsObject {
+class ConnectionGraphicsObject : public QGraphicsLineItem {
   public:
     ConnectionGraphicsObject(Connection *c);
 

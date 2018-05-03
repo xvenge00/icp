@@ -15,6 +15,8 @@ MainWindow::MainWindow() {
     createTemplates();
 
     this->schema_area = new SchemaArea();
+    schema_area->setSceneRect(QRectF(0, 0, 5000, 5000));
+    connect(schema_area, SIGNAL(itemInserted(BlockGraphicsObject *)), this, SLOT(itemInserted(BlockGraphicsObject *)));
 
     QHBoxLayout *layout = new QHBoxLayout();
     this->templates = new QFrame();
@@ -118,6 +120,7 @@ MainWindow::MainWindow() {
 }
 
 void MainWindow::createActions() {
+
     newAction = new QAction(tr("New..."), this);
     newAction->setShortcut(tr("Ctrl+N"));
     connect(newAction, SIGNAL(triggered()), this, SLOT(newFile()));
@@ -259,7 +262,18 @@ void MainWindow::pointerGroupClicked(int id) {
     schema_area->setMode(SchemaArea::Operation(pointerTypeGroup->checkedId()));
 }
 
-void MainWindow::toolGroupClicked(int id) { schema_area->setBlockType(blck_type(blockTypeGroup->checkedId())); }
+void MainWindow::itemInserted(BlockGraphicsObject *o) {
+    pointerTypeGroup->button(int(SchemaArea::MoveBlock))->setChecked(true);
+    this->schema_area->setMode(SchemaArea::Operation(pointerTypeGroup->checkedId()));
+    // buttonGroup->button(int(o->diagramType()))->setChecked(false);
+    // uncheck all button from left panel
+}
+
+void MainWindow::toolGroupClicked(int id) {
+    this->schema_area->setBlockType(blck_type(blockTypeGroup->checkedId()));
+    this->schema_area->setMode(SchemaArea::InsertBlock);
+    // this->pointerTypeGroup->button(int(SchemaArea::MoveBlock))->setChecked(false);
+}
 
 void MainWindow::newFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::openFile() { LOGE("NOT YET IMPLEMENTED!"); }
