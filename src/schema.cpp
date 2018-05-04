@@ -67,6 +67,35 @@ BlockOut *Schema::newOutBlock(double output) {
     return new_blck;
 }
 
+BlockDiv *Schema::newDivBlock() {
+    unsigned int id = ++this->block_id_gen;
+
+    auto new_blck = new BlockDiv{id};
+    this->blocks[id] = new_blck;
+
+    return new_blck;
+}
+
+BlockPow *Schema::newPowBlock() {
+    unsigned int id = ++this->block_id_gen;
+
+    auto new_blck = new BlockPow{id};
+    this->blocks[id] = new_blck;
+
+    return new_blck;
+}
+
+BlockNeg *Schema::newNegBlock() {
+    unsigned int id = ++this->block_id_gen;
+
+    auto new_blck = new BlockNeg{id};
+    this->blocks[id] = new_blck;
+
+    return new_blck;
+}
+
+
+
 bool Schema::deleteBlock(Block *b) {
     if (b != nullptr) {
         unsigned b_ID = b->getID();

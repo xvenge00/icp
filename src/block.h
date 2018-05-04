@@ -72,7 +72,7 @@ class BlockAdd : public Block {
     double compute(std::vector<double> &params) override;
 
   public:
-    BlockAdd(unsigned int ID, unsigned int input_size = DEFAULT_ADD_INPUT_SIZE);
+    explicit BlockAdd(unsigned int ID, unsigned int input_size = DEFAULT_ADD_INPUT_SIZE);
 };
 
 class BlockMul : public Block {
@@ -80,7 +80,7 @@ class BlockMul : public Block {
     double compute(std::vector<double> &params) override;
 
   public:
-    BlockMul(unsigned int ID, unsigned int input_size = DEFAULT_MUL_INPUT_SIZE);
+    explicit BlockMul(unsigned int ID, unsigned int input_size = DEFAULT_MUL_INPUT_SIZE);
 };
 
 class BlockSub : public Block {
@@ -88,7 +88,31 @@ class BlockSub : public Block {
     double compute(std::vector<double> &params) override;
 
   public:
-    BlockSub(unsigned int ID);
+    explicit BlockSub(unsigned int ID);
+};
+
+class BlockDiv : public Block {
+protected:
+    double compute(std::vector<double> &params) override;
+
+public:
+    explicit BlockDiv(unsigned int ID);
+};
+
+class BlockPow : public Block {
+protected:
+    double compute(std::vector<double> &params) override;
+
+public:
+    explicit BlockPow(unsigned int ID);
+};
+
+class BlockNeg : public Block {
+protected:
+    double compute(std::vector<double> &params) override;
+
+public:
+    explicit BlockNeg(unsigned int ID);
 };
 
 #endif // ICP_BLOCK_H

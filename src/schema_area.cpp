@@ -1,4 +1,5 @@
 #include <QGraphicsSceneMouseEvent>
+#include <fstream>
 
 #include "block_graphics_object.h"
 #include "connection_graphics_object.h"
@@ -142,7 +143,7 @@ void SchemaArea::setBlockType(blck_type t) {
 }
 
 bool SchemaArea::save(string file_name) {
-    ofstream out_stream;
+    std::ofstream out_stream;
     out_stream.open(file_name);
 
     out_stream << *this;

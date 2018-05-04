@@ -283,7 +283,11 @@ void MainWindow::saveFile() {
         LOGE("NOT YET IMPLEMENTED!");
     }
 }
-void MainWindow::saveAsFile() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::saveAsFile() {
+    schema_area->save("tmp"); //TODO file_name
+    LOGE("PARTIALY IMPLEMENTED!");
+    LOGE("NOT YET IMPLEMENTED!");
+}
 
 void MainWindow::quit() {
     saveFile();

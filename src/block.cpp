@@ -1,3 +1,4 @@
+#include <cmath>
 #include "block.h"
 
 using std::vector;
@@ -140,3 +141,15 @@ double BlockMul::compute(std::vector<double> &params) {
 BlockSub::BlockSub(unsigned int ID) : Block(ID, SUB) {}
 
 double BlockSub::compute(std::vector<double> &params) { return params[0] - params[1]; }
+
+BlockDiv::BlockDiv(unsigned int ID) : Block(ID, DIV) {}
+
+double BlockDiv::compute(std::vector<double> &params) { return params[0]/params[1]; }
+
+BlockPow::BlockPow(unsigned int ID) : Block(ID, POW) {}
+
+double BlockPow::compute(std::vector<double> &params) { return pow(params[0],params[1]); }
+
+BlockNeg::BlockNeg(unsigned int ID) : Block(ID, NEG, 1) {}
+
+double BlockNeg::compute(std::vector<double> &params) { return 0-params[0]; }
