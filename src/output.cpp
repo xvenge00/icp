@@ -3,6 +3,7 @@
 #include "block.h"
 #include "block_graphics_object.h"
 #include "connection.h"
+#include "connection_graphics_object.h"
 #include "schema.h"
 #include "schema_area.h"
 
@@ -40,20 +41,6 @@ std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
              << "}\n";
 }
 
- std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
-    for (const auto &i : a.items()) {
-        void *casted = dynamic_cast<BlockGraphicsObject *>(i);  //TODO connection
-        if (casted != nullptr) {
-            s << *dynamic_cast<BlockGraphicsObject *>(i);
-        } else {
-            s << "connection";
-        }
-    }
-     return s;
-}
-
-std::ostream &operator<<(std::ostream &s, const BlockMul &b) { return s << "BlockMul"; }
-
 /*
  * Used in Schema output.
  * out example:
@@ -71,4 +58,20 @@ std::ostream &operator<<(std::ostream &s, const Connection &c) {
       << "\tindex: " << c.index << "\n"
       << "}\n";
     return s;
+}
+
+std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c) {
+    return s << *c._connection;
+}
+
+ std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
+    for (const auto &i : a.items()) {
+        BlockGraphicsObject *casted_b = dynamic_cast<BlockGraphicsObject *>(i);
+        if (casted_b != nullptr) { s << *casted_b; }
+        else {
+            ConnectionGraphicsObject *casted_c = dynamic_cast<ConnectionGraphicsObject *>(i);
+            if (casted_c != nullptr) { s << *casted_c;}
+        }
+    }
+     return s;
 }
