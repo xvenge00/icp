@@ -79,6 +79,7 @@ MainWindow::MainWindow() {
     colorToolbar->addWidget(lineColorToolButton);
 
     this->view = new QGraphicsView(schema_area);
+    view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     layout->addWidget(this->templates);
     layout->addWidget(this->view);
 

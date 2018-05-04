@@ -33,6 +33,8 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         block_graphics = new BlockGraphicsObject(new_block);
         addItem(block_graphics);
         block_graphics->setPos(mouseEvent->scenePos());
+        LOGD("Moving to: " << mouseEvent->scenePos().x());
+        LOGD("Moving to: " << mouseEvent->scenePos().y());
         // emit itemInserted(block_graphics); ?
         break;
 
@@ -43,9 +45,10 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         line->setPen(QPen(Qt::blue, 2));
         addItem(line);
         break;
-
-        QGraphicsScene::mousePressEvent(mouseEvent);
     }
+    // update(QRectF(0, 0, 5000, 5000));
+    update();
+    QGraphicsScene::mousePressEvent(mouseEvent);
 }
 
 void SchemaArea::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
