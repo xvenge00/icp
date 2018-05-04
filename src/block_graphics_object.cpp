@@ -15,7 +15,7 @@ BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width, unsigned heig
 }
 
 void BlockGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
-    // painter->drawRect(0, 0, this->width, this->height);
+    painter->fillRect(0, 0, this->width, this->height, Qt::white);
     painter->drawRect(0, 0, this->width, this->height);
 
     paintBlockName(painter, option, widget);
