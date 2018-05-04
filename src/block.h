@@ -2,9 +2,9 @@
 #define ICP_BLOCK_H
 
 #include "connection.h"
+#include <array>
 #include <iostream>
 #include <vector>
-#include <array>
 
 const unsigned int MAX_IN_SIZE = 10;
 

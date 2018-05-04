@@ -30,7 +30,9 @@ std::vector<Connection *> Block::getInputs() {
 
 unsigned Block::getFirstFreeIdx() {
     for (unsigned i = 0; i < input_size; i++) {
-        if (input[i] == nullptr) { return i;}
+        if (input[i] == nullptr) {
+            return i;
+        }
     }
     return input_size;
 }

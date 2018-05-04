@@ -39,14 +39,14 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         break;
 
     case InsertConnection:
-        LOGD("Adding new connection");
 
         line = new QGraphicsLineItem(QLineF(mouseEvent->scenePos(), mouseEvent->scenePos()));
         line->setPen(QPen(Qt::blue, 2));
         addItem(line);
         break;
+    default:
+        LOGD("Other action [ID] = " << static_cast<int>(this->operationMode));
     }
-    // update(QRectF(0, 0, 5000, 5000));
     update();
     QGraphicsScene::mousePressEvent(mouseEvent);
 }
@@ -56,27 +56,38 @@ void SchemaArea::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         QLineF newLine(line->line().p1(), mouseEvent->scenePos());
         line->setLine(newLine);
     } else if (this->operationMode == MoveBlock) {
+        // LOGD("Moving the block");
         QGraphicsScene::mouseMoveEvent(mouseEvent);
     }
 }
 
 void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
+    for (auto item : items()) {
+        LOGD("item->pos().x()" << item->pos().x());
+        LOGD("item->pos().y()" << item->pos().y());
+    }
     if (line != 0 && this->operationMode == InsertConnection) {
         QList<QGraphicsItem *> startItems = items(line->line().p1());
+        LOGD("Getting items at [ " << line->line().p1().x() << "][" << line->line().p1().y() << "]");
         if (startItems.count() && startItems.first() == line)
             startItems.removeFirst();
         QList<QGraphicsItem *> endItems = items(line->line().p2());
+        LOGD("Getting items at [ " << line->line().p2().x() << "][" << line->line().p2().y() << "]");
         if (endItems.count() && endItems.first() == line)
             endItems.removeFirst();
 
         removeItem(line);
         delete line;
 
+        LOGD("startItems.count() = " << startItems.count());
+        LOGD("endItems.count() = " << endItems.count());
+
         if (startItems.count() > 0 && endItems.count() > 0 && startItems.first() != endItems.first()) {
+            LOGD("Adding new connection");
             BlockGraphicsObject *startItem = qgraphicsitem_cast<BlockGraphicsObject *>(startItems.first());
             BlockGraphicsObject *endItem = qgraphicsitem_cast<BlockGraphicsObject *>(endItems.first());
-            Connection *con = new Connection(0, startItem->getBlock(), endItem->getBlock(), 0);
-            ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(con);
+            Connection *con = this->schema.newConnection(startItem->getBlock(), endItem->getBlock());
+            ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(startItem, endItem, con);
             // con_graphics->setColor(myLineColor);
             // startItem->addArrow(arrow);
             // endItem->addArrow(arrow);
@@ -86,6 +97,7 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         }
     }
     line = 0;
+    update();
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 

@@ -5,22 +5,25 @@
 #include <QPainter>
 #include <QPoint>
 
+#include "block_graphics_object.h"
 #include "connection.h"
 
 class ConnectionGraphicsObject : public QGraphicsLineItem {
   public:
-    ConnectionGraphicsObject(Connection *c);
+    ConnectionGraphicsObject(BlockGraphicsObject *s, BlockGraphicsObject *e, Connection *c);
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
 
-    QRectF boundingRect() const Q_DECL_OVERRIDE;
-
     Connection *getConnection() { return this->_connection; };
+
+    QLineF getConnectionLine();
 
     // friend std::ostream &operator<<(std::ostream &s, const
     // BlockGraphicsObject &b);
 
   private:
+    BlockGraphicsObject *start_block;
+    BlockGraphicsObject *end_block;
     Connection *_connection;
 };
 

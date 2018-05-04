@@ -12,15 +12,18 @@ const unsigned WIDTH = 60;
 const unsigned HEIGHT = 80;
 const unsigned CONNECTION_POINT_SIZE = 10;
 
-const std::string blck_type_strings[] = {"+", "-", "*", "/", "^", "!"};
+const std::string blck_type_strings[] = {"+", "-", "*", "/", "^", "!", "CONST"};
 
 class BlockGraphicsObject : public QGraphicsObject {
   public:
     BlockGraphicsObject(Block *b, unsigned width = WIDTH, unsigned height = HEIGHT);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
+
+    QPointF getInputPoint(unsigned index);
+    QPointF getOutputPoint();
 
     Block *getBlock() { return this->_block; };
 
@@ -32,6 +35,7 @@ class BlockGraphicsObject : public QGraphicsObject {
     Block *_block;
 
     void paintBlockName(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
+    void paintBlockValue(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void paintConnectionPoints(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
     void paintEllipseFromCenter(QPainter *painter, qreal x, qreal y, unsigned edge);
 };

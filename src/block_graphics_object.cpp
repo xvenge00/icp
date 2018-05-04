@@ -14,22 +14,39 @@ BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width, unsigned heig
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
 }
 
+QPointF BlockGraphicsObject::getInputPoint(unsigned index) {
+    return QPointF(this->pos().x(), this->pos().y() + this->height / (this->_block->getInputSize() + 1) * index);
+}
+
+QPointF BlockGraphicsObject::getOutputPoint() {
+    return QPointF(this->pos().x() + this->width, this->pos().y() + this->height / 2);
+}
+
 void BlockGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     painter->fillRect(0, 0, this->width, this->height, Qt::white);
     painter->drawRect(0, 0, this->width, this->height);
 
+    // TODO(mato): zvazit parametre nasledujucich funkcii
     paintBlockName(painter, option, widget);
+    paintBlockValue(painter, option, widget);
     paintConnectionPoints(painter, option, widget);
 }
 
 void BlockGraphicsObject::paintBlockName(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     QString output = "?";
-    if (this->_block->getType() == OUT) {
+    output = QString::fromUtf8(blck_type_strings[this->_block->getType()].c_str());
+    painter->drawText(0, 0, this->width, this->height, Qt::AlignTop | Qt::AlignHCenter, output);
+}
+
+void BlockGraphicsObject::paintBlockValue(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+    QString output = "?";
+    if (this->_block->isSet()) {
         std::stringstream stream;
         stream << std::fixed << std::setprecision(2) << this->_block->getValue();
         output = QString::fromUtf8(stream.str().c_str());
     } else {
-        output = QString::fromUtf8(blck_type_strings[this->_block->getType()].c_str());
+        output = "None";
+        // TODO(mato): Co vypisat v pripade ze block nema hodnotu?
     }
     painter->drawText(0, 0, this->width, this->height, Qt::AlignCenter, output);
 }
@@ -51,8 +68,4 @@ void BlockGraphicsObject::paintEllipseFromCenter(QPainter *painter, qreal x, qre
     painter->drawEllipse(x - half_edge, y - half_edge, edge, edge);
 }
 
-QRectF BlockGraphicsObject::boundingRect() const {
-    return QRectF(0 - CONNECTION_POINT_SIZE / 2, 0, this->width + CONNECTION_POINT_SIZE, this->height);
-    // return QRectF(this->pos().x() - CONNECTION_POINT_SIZE / 2, this->pos().y(), this->pos().x() + this->width +
-    // CONNECTION_POINT_SIZE / 2, this->pos().y() + this->height);
-}
+QRectF BlockGraphicsObject::boundingRect() const { return QRectF(0, 0, this->width, this->height); }
