@@ -6,31 +6,6 @@
 #include "schema.h"
 #include "schema_area.h"
 
-/*
- * cela schema
- */
-std::ostream &operator<<(std::ostream &s, const Schema &schema) {
-    for (const auto &i : schema.blocks) {
-        s << *i.second;
-    }
-    for (const auto &i : schema.connections) {
-        s << *i.second;
-    }
-
-    return s;
-}
-
-/*
- * example out:
- * Block: {
- * 	  ID: 0
- *	  pos_x: 1
- *	  pos_y: 1
- *	  in_size: 3
- *	  type: 0
- *	  output: 13
- *}
- */
 std::ostream &operator<<(std::ostream &s, const Block &b) {
     switch (b.block_type) {
     case ADD:
@@ -59,15 +34,23 @@ std::ostream &operator<<(std::ostream &s, const Block &b) {
 
 std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
     return s << "Block {\n"
-             << "x: " << b.pos().x() << "\n"
-             << "y: " << b.pos().y() << "\n"
-             << b._block << "\n"
+             << "\tx: " << b.pos().x() << "\n"
+             << "\ty: " << b.pos().y() << "\n"
+             << *b._block << "\n"
              << "}\n";
 }
-//
-// std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
-//    for (const auto &i : a.items()) {    }
-//}
+
+ std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
+    for (const auto &i : a.items()) {
+        void *casted = dynamic_cast<BlockGraphicsObject *>(i);  //TODO connection
+        if (casted != nullptr) {
+            s << *dynamic_cast<BlockGraphicsObject *>(i);
+        } else {
+            s << "connection";
+        }
+    }
+     return s;
+}
 
 std::ostream &operator<<(std::ostream &s, const BlockMul &b) { return s << "BlockMul"; }
 
@@ -77,6 +60,7 @@ std::ostream &operator<<(std::ostream &s, const BlockMul &b) { return s << "Bloc
  * Connection: {
  *      in: 0
  *      out: 1
+ *      index: 2
  * }
  */
 std::ostream &operator<<(std::ostream &s, const Connection &c) {

@@ -140,3 +140,11 @@ void SchemaArea::setBlockType(blck_type t) {
     // LOGD("Operation ID " << static_cast<int>(o));
     this->selectedBlockType = t;
 }
+
+bool SchemaArea::save(string file_name) {
+    ofstream out_stream;
+    out_stream.open(file_name);
+
+    out_stream << *this;
+    out_stream.close();
+}
