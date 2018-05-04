@@ -107,6 +107,11 @@ Connection *Schema::newConnection(Block *in, Block *out, unsigned int pos) {
     return new_con;
 }
 
+Connection *Schema::newConnection(Block *in, Block *out) {
+    unsigned index = out->getFirstFreeIdx();
+    return this->newConnection(in, out, index);
+}
+
 bool Schema::deleteConnection(Connection *conn) {
     if (conn != nullptr) {
         unsigned ID = conn->getID();
@@ -138,7 +143,6 @@ bool Schema::compute() {
     }
 
     bool cont{true};
-    bool tmp{};
 
     while (cont) {
         cont = false;
@@ -147,8 +151,7 @@ bool Schema::compute() {
         // ked sa da, ohlas ze sa aspon 1 zmenilo a vymaz to z to_calculate
         // ked nie, tak chod na dalsi
         for (auto i = to_calculate.begin(); i != to_calculate.end();) {
-            tmp = (*i)->tryCompute();
-            if (tmp) {
+            if ((*i)->tryCompute()) {
                 i = to_calculate.erase(i);
                 cont = true;
             } else {

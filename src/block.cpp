@@ -4,13 +4,8 @@ using std::vector;
 
 Block::Block(unsigned int ID, blck_type f_type, unsigned int input_size) {
     this->ID = ID;
-    this->output = {};
     this->out_set = false;
     this->block_type = f_type;
-
-    for (int i = 0; i < MAX_IN_SIZE; i++) {
-        this->input[i] = nullptr;
-    } // TODO
 
     /* input orez na 0-MAX_IN_SIZE */
     input_size = input_size > MAX_IN_SIZE ? MAX_IN_SIZE : input_size;
@@ -31,6 +26,13 @@ std::vector<Connection *> Block::getInputs() {
         inputs.push_back(this->input[i]);
     }
     return inputs;
+}
+
+unsigned Block::getFirstFreeIdx() {
+    for (unsigned i = 0; i < input_size; i++) {
+        if (input[i] == nullptr) { return i;}
+    }
+    return input_size;
 }
 
 bool Block::isSet() { return this->out_set; }

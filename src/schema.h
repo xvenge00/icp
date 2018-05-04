@@ -32,6 +32,7 @@ class Schema {
     bool deleteBlock(Block *b);
 
     Connection *newConnection(Block *in, Block *out, unsigned int pos);
+    Connection *newConnection(Block *in, Block *out);
     bool deleteConnection(Connection *conn);
 
     Block *getBlckByID(unsigned int ID);

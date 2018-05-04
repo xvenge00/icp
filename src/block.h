@@ -4,6 +4,7 @@
 #include "connection.h"
 #include <iostream>
 #include <vector>
+#include <array>
 
 const unsigned int MAX_IN_SIZE = 10;
 
@@ -16,7 +17,7 @@ class Block {
   protected:
     unsigned int ID;
     unsigned int input_size;
-    Connection *input[MAX_IN_SIZE];
+    std::array<Connection *, MAX_IN_SIZE> input;
     bool out_set; // weather the output was already set
     double output;
     blck_type block_type;
@@ -35,6 +36,9 @@ class Block {
     std::vector<Connection *> getInputs();
 
     unsigned int getInputSize();
+
+    /* If nothing is free, then returns input_size */
+    unsigned getFirstFreeIdx();
 
     bool setNewInput(Connection *con, unsigned int pos);
 
