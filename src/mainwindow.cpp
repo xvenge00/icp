@@ -261,6 +261,7 @@ void MainWindow::lineButtonTriggered() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::sceneScaleChanged(QString) { LOGE("NOT YET IMPLEMENTED!"); }
 
 void MainWindow::pointerGroupClicked(int id) {
+    (void)id;
     LOGD("CheckedID: " << pointerTypeGroup->checkedId());
     schema_area->setMode(SchemaArea::Operation(pointerTypeGroup->checkedId()));
 }
@@ -329,7 +330,35 @@ void MainWindow::authors() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::license() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::about() { LOGE("NOT YET IMPLEMENTED!"); }
 
-void MainWindow::toFront() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::toBack() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::toFront() {
+    if (this->schema_area->selectedItems().isEmpty())
+        return;
+
+    QGraphicsItem *selectedItem = this->schema_area->selectedItems().first();
+    QList<QGraphicsItem *> overlapItems = selectedItem->collidingItems();
+
+    qreal zValue = 0;
+    foreach (QGraphicsItem *item, overlapItems) {
+        if (item->zValue() >= zValue && item->type() == BlockGraphicsObject::Type)
+            zValue = item->zValue() + 0.1;
+    }
+    selectedItem->setZValue(zValue);
+}
+
+void MainWindow::toBack() {
+    if (this->schema_area->selectedItems().isEmpty())
+        return;
+
+    QGraphicsItem *selectedItem = this->schema_area->selectedItems().first();
+    QList<QGraphicsItem *> overlapItems = selectedItem->collidingItems();
+
+    qreal zValue = 0;
+    foreach (QGraphicsItem *item, overlapItems) {
+        if (item->zValue() <= zValue && item->type() == BlockGraphicsObject::Type)
+            zValue = item->zValue() - 0.1;
+    }
+    selectedItem->setZValue(zValue);
+}
+
 void MainWindow::calculate() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::calculateStep() { LOGE("NOT YET IMPLEMENTED!"); }
