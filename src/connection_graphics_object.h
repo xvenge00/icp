@@ -13,6 +13,9 @@ class ConnectionGraphicsObject : public QGraphicsLineItem {
   public:
     ConnectionGraphicsObject(BlockGraphicsObject *s, BlockGraphicsObject *e, Connection *c);
 
+    enum { Type = UserType + 21 };
+    int type() const Q_DECL_OVERRIDE { return Type; }
+
     Connection *getConnection() { return this->_connection; };
 
     void updateConnectionPoints();

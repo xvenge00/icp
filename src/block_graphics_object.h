@@ -18,6 +18,9 @@ class BlockGraphicsObject : public QGraphicsObject {
   public:
     BlockGraphicsObject(Block *b, unsigned width = WIDTH, unsigned height = HEIGHT);
 
+    enum { Type = UserType + 20 };
+    int type() const Q_DECL_OVERRIDE { return Type; }
+
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
