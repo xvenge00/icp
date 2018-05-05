@@ -2,6 +2,7 @@
 #include <QButtonGroup>
 #include <QFileDialog>
 #include <QHBoxLayout>
+#include <QMessageBox>
 #include <QPushButton>
 #include <QWidget>
 
@@ -277,8 +278,31 @@ void MainWindow::toolGroupClicked(int id) {
     // this->pointerTypeGroup->button(int(SchemaArea::MoveBlock))->setChecked(false);
 }
 
-void MainWindow::newFile() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::openFile() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::newFile() {
+    LOGE("PARTIALY IMPLEMENTED!");
+    if (schema_area->getEdited()) {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Are you sure?", "Schema was edited, do you want to save current schema?",
+                                      QMessageBox::Yes | QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            saveFile();
+        }
+    }
+    schema_area->resetSchema();
+}
+void MainWindow::openFile() {
+    LOGE("PARTIALY IMPLEMENTED!");
+    if (schema_area->getEdited()) {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Are you sure?", "Schema was edited, do you want to save current schema?",
+                                      QMessageBox::Yes | QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            saveFile();
+        }
+    }
+    schema_area->resetSchema();
+    schema_area->loadSchema(QFileDialog::getSaveFileName(this, tr("Open file"), "~/").toStdString());
+}
 
 void MainWindow::saveFile() {
     LOGE("PARTIALY IMPLEMENTED!");

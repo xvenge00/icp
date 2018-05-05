@@ -13,7 +13,8 @@ class SchemaArea : public QGraphicsScene {
     enum Operation { InsertBlock, InsertConnection, MoveBlock };
     void setMode(Operation o);
     void setBlockType(blck_type t);
-    void loadSchema(QString path);
+    void loadSchema(std::string path);
+    void resetSchema();
     bool save(string file_name);
     bool load(string file_name);
     bool getEdited() { return this->schema_edited; };

@@ -13,9 +13,9 @@ SchemaArea::SchemaArea() {
     this->selectedBlockType = OUT;
 }
 
-void SchemaArea::loadSchema(QString path) {
+void SchemaArea::loadSchema(std::string path) {
     // path.toStdString() vrati std::string utf8
-    (void)path;
+    LOGD("Trying to load schema from path = " << path);
 }
 
 void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
@@ -139,4 +139,11 @@ bool SchemaArea::save(string file_name) {
     out_stream.close();
 
     return true; // TODO(adam): bool je pre error handling?
+}
+
+void SchemaArea::resetSchema() {
+    LOGD("Reseting the schema");
+    clear();
+    update();
+    // TODO(adam): vymazat obsah schemy, ulozeny by uz mal byt staci len clear vsetko
 }
