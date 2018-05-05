@@ -323,7 +323,14 @@ void MainWindow::quit() {
 }
 
 void MainWindow::add() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::deleteSelection() { LOGE("NOT YET IMPLEMENTED!"); }
+
+void MainWindow::deleteSelection() {
+    for (QGraphicsItem *item : this->schema_area->selectedItems()) {
+        this->schema_area->removeItem(item);
+        delete item;
+        // TODO: vymazanie objektu zo schemy ci uz je to connection alebo blok
+    }
+}
 void MainWindow::connectBlocks() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::rerender() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::authors() { LOGE("NOT YET IMPLEMENTED!"); }
