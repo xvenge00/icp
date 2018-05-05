@@ -13,11 +13,10 @@ SchemaArea::SchemaArea() {
     this->selectedBlockType = OUT;
 }
 
-SchemaArea::SchemaArea(const Schema &s) {}
-
-void SchemaArea::propagate_data(const Schema &s) {}
-
-void SchemaArea::addBlock() {}
+void SchemaArea::loadSchema(QString path) {
+    // path.toStdString() vrati std::string utf8
+    (void)path;
+}
 
 void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 
@@ -118,6 +117,8 @@ Block *SchemaArea::getNewBlock() {
     default:
         LOGE("Unsuported block type!");
     }
+
+    return nullptr;
 }
 
 void SchemaArea::setMode(Operation o) {
@@ -136,4 +137,6 @@ bool SchemaArea::save(string file_name) {
 
     out_stream << *this;
     out_stream.close();
+
+    return true; // TODO(adam): bool je pre error handling?
 }
