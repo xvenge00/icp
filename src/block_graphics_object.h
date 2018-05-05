@@ -21,6 +21,7 @@ class BlockGraphicsObject : public QGraphicsObject {
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
     QRectF boundingRect() const Q_DECL_OVERRIDE;
+    QVariant itemChange(GraphicsItemChange change, const QVariant &value);
 
     QPointF getInputPoint(unsigned index);
     QPointF getOutputPoint();

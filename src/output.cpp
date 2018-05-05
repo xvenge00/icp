@@ -60,18 +60,19 @@ std::ostream &operator<<(std::ostream &s, const Connection &c) {
     return s;
 }
 
-std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c) {
-    return s << *c._connection;
-}
+std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c) { return s << *c._connection; }
 
- std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
+std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
     for (const auto &i : a.items()) {
         BlockGraphicsObject *casted_b = dynamic_cast<BlockGraphicsObject *>(i);
-        if (casted_b != nullptr) { s << *casted_b; }
-        else {
+        if (casted_b != nullptr) {
+            s << *casted_b;
+        } else {
             ConnectionGraphicsObject *casted_c = dynamic_cast<ConnectionGraphicsObject *>(i);
-            if (casted_c != nullptr) { s << *casted_c;}
+            if (casted_c != nullptr) {
+                s << *casted_c;
+            }
         }
     }
-     return s;
+    return s;
 }

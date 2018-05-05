@@ -63,10 +63,6 @@ void SchemaArea::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 }
 
 void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
-    for (auto item : items()) {
-        LOGD("item->pos().x()" << item->pos().x());
-        LOGD("item->pos().y()" << item->pos().y());
-    }
     if (line != 0 && this->operationMode == InsertConnection) {
         QList<QGraphicsItem *> startItems = items(line->line().p1());
         LOGD("Getting items at [ " << line->line().p1().x() << "][" << line->line().p1().y() << "]");
@@ -80,21 +76,14 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         removeItem(line);
         delete line;
 
-        LOGD("startItems.count() = " << startItems.count());
-        LOGD("endItems.count() = " << endItems.count());
-
         if (startItems.count() > 0 && endItems.count() > 0 && startItems.first() != endItems.first()) {
             LOGD("Adding new connection");
             BlockGraphicsObject *startItem = qgraphicsitem_cast<BlockGraphicsObject *>(startItems.first());
             BlockGraphicsObject *endItem = qgraphicsitem_cast<BlockGraphicsObject *>(endItems.first());
-            Connection *con = this->schema.newConnection(startItem->getBlock(), endItem->getBlock());
+            Connection *con = this->schema.newConnection(endItem->getBlock(), startItem->getBlock());
             ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(startItem, endItem, con);
-            // con_graphics->setColor(myLineColor);
-            // startItem->addArrow(arrow);
-            // endItem->addArrow(arrow);
-            con_graphics->setZValue(-1000.0);
+            // con_graphics->setZValue(-1000.0);
             addItem(con_graphics);
-            // con_graphics->updatePosition();
         }
     }
     line = 0;
@@ -112,13 +101,9 @@ Block *SchemaArea::getNewBlock() {
     case MUL:
         return this->schema.newMulBlock(2);
     case DIV:
-        // return this->schema.newDivBlock();
-        LOGE("NOT YET IMPLEMENTED!");
-        break;
+        return this->schema.newDivBlock();
     case POW:
-        // return this->schema.newAddBlock(2);
-        LOGE("NOT YET IMPLEMENTED!");
-        break;
+        return this->schema.newPowBlock();
     case NEG:
         // return this->schema.newAddBlock(2);
         LOGE("NOT YET IMPLEMENTED!");

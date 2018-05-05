@@ -15,7 +15,7 @@ BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width, unsigned heig
 }
 
 QPointF BlockGraphicsObject::getInputPoint(unsigned index) {
-    return QPointF(this->pos().x(), this->pos().y() + this->height / (this->_block->getInputSize() + 1) * index);
+    return QPointF(this->pos().x(), this->pos().y() + this->height / (this->_block->getInputSize() + 1) * (index + 1));
 }
 
 QPointF BlockGraphicsObject::getOutputPoint() {
@@ -66,6 +66,17 @@ void BlockGraphicsObject::paintConnectionPoints(QPainter *painter, const QStyleO
 void BlockGraphicsObject::paintEllipseFromCenter(QPainter *painter, qreal x, qreal y, unsigned edge) {
     unsigned half_edge = edge / 2;
     painter->drawEllipse(x - half_edge, y - half_edge, edge, edge);
+}
+
+QVariant BlockGraphicsObject::itemChange(GraphicsItemChange change, const QVariant &value) {
+    if (change == QGraphicsItem::ItemPositionChange) {
+        LOGE("NOT YET IMPLEMENTED;");
+        // TODO: Tu treba zistit vsetky connection napojene na tento block a zavolat na nich updateConnectionpoints();
+        // V najhorsom pripdate tu zavolajme updateConnectionPoints() na vsetky itemy ktore idu pretypovat na
+        // ConnectionGraphicsItem
+    }
+
+    return value;
 }
 
 QRectF BlockGraphicsObject::boundingRect() const { return QRectF(0, 0, this->width, this->height); }

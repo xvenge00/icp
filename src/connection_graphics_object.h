@@ -1,6 +1,7 @@
 #ifndef ICP_CONNECTION_GRAPHICS_OBJECT_H
 #define ICP_CONNECTION_GRAPHICS_OBJECT_H
 
+#include <QGraphicsLineItem>
 #include <QGraphicsObject>
 #include <QPainter>
 #include <QPoint>
@@ -12,9 +13,9 @@ class ConnectionGraphicsObject : public QGraphicsLineItem {
   public:
     ConnectionGraphicsObject(BlockGraphicsObject *s, BlockGraphicsObject *e, Connection *c);
 
-    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget);
-
     Connection *getConnection() { return this->_connection; };
+
+    void updateConnectionPoints();
 
     QLineF getConnectionLine();
 
