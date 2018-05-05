@@ -1,4 +1,5 @@
 #include <QGraphicsSceneMouseEvent>
+#include <QInputDialog>
 #include <fstream>
 
 #include "block_graphics_object.h"
@@ -93,6 +94,7 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
 
 Block *SchemaArea::getNewBlock() {
     LOGD("Creating new block... type: " << static_cast<int>(this->selectedBlockType));
+    double block_output = 0;
     switch (this->selectedBlockType) {
     case ADD:
         return this->schema.newAddBlock(2);
@@ -109,8 +111,9 @@ Block *SchemaArea::getNewBlock() {
         LOGE("NOT YET IMPLEMENTED!");
         break;
     case OUT:
-        return this->schema.newOutBlock(42);
-        // TODO(mato): volba hodnoty
+        block_output = QInputDialog::getDouble(dynamic_cast<QWidget *>(this), tr("Input the constant block value"),
+                                               tr("Output: "));
+        return this->schema.newOutBlock(block_output);
         break;
     default:
         LOGE("Unsuported block type!");
