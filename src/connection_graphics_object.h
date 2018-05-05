@@ -18,8 +18,7 @@ class ConnectionGraphicsObject : public QGraphicsLineItem {
 
     QLineF getConnectionLine();
 
-    // friend std::ostream &operator<<(std::ostream &s, const
-    // BlockGraphicsObject &b);
+    friend std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c);
 
   private:
     BlockGraphicsObject *start_block;
