@@ -40,16 +40,16 @@ std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
              << "}\n";
 }
 
- std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
+std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
     for (const auto &i : a.items()) {
-        void *casted = dynamic_cast<BlockGraphicsObject *>(i);  //TODO connection
+        void *casted = dynamic_cast<BlockGraphicsObject *>(i); // TODO connection
         if (casted != nullptr) {
             s << *dynamic_cast<BlockGraphicsObject *>(i);
         } else {
             s << "connection";
         }
     }
-     return s;
+    return s;
 }
 
 std::ostream &operator<<(std::ostream &s, const BlockMul &b) { return s << "BlockMul"; }

@@ -92,26 +92,26 @@ class BlockSub : public Block {
 };
 
 class BlockDiv : public Block {
-protected:
+  protected:
     double compute(std::vector<double> &params) override;
 
-public:
+  public:
     explicit BlockDiv(unsigned int ID);
 };
 
 class BlockPow : public Block {
-protected:
+  protected:
     double compute(std::vector<double> &params) override;
 
-public:
+  public:
     explicit BlockPow(unsigned int ID);
 };
 
 class BlockNeg : public Block {
-protected:
+  protected:
     double compute(std::vector<double> &params) override;
 
-public:
+  public:
     explicit BlockNeg(unsigned int ID);
 };
 

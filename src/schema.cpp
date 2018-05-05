@@ -94,8 +94,6 @@ BlockNeg *Schema::newNegBlock() {
     return new_blck;
 }
 
-
-
 bool Schema::deleteBlock(Block *b) {
     if (b != nullptr) {
         unsigned b_ID = b->getID();

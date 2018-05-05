@@ -1,5 +1,6 @@
 #include <QApplication>
 #include <QButtonGroup>
+#include <QFileDialog>
 #include <QHBoxLayout>
 #include <QPushButton>
 #include <QWidget>
@@ -278,15 +279,17 @@ void MainWindow::toolGroupClicked(int id) {
 
 void MainWindow::newFile() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::openFile() { LOGE("NOT YET IMPLEMENTED!"); }
+
 void MainWindow::saveFile() {
-    if (schema_area->edited()) {
-        LOGE("NOT YET IMPLEMENTED!");
+    LOGE("PARTIALY IMPLEMENTED!");
+    if (schema_area->getEdited()) { // TODO: correct edits handling
+        schema_area->save(QFileDialog::getSaveFileName(this, tr("Save file"), "~/").toStdString());
+        schema_area->setEdited(true);
     }
 }
+
 void MainWindow::saveAsFile() {
-    schema_area->save("tmp"); //TODO file_name
-    LOGE("PARTIALY IMPLEMENTED!");
-    LOGE("NOT YET IMPLEMENTED!");
+    schema_area->save(QFileDialog::getSaveFileName(this, tr("Save file"), "~/").toStdString());
 }
 
 void MainWindow::quit() {

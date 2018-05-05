@@ -1,5 +1,5 @@
-#include <cmath>
 #include "block.h"
+#include <cmath>
 
 using std::vector;
 
@@ -144,12 +144,12 @@ double BlockSub::compute(std::vector<double> &params) { return params[0] - param
 
 BlockDiv::BlockDiv(unsigned int ID) : Block(ID, DIV) {}
 
-double BlockDiv::compute(std::vector<double> &params) { return params[0]/params[1]; }
+double BlockDiv::compute(std::vector<double> &params) { return params[0] / params[1]; }
 
 BlockPow::BlockPow(unsigned int ID) : Block(ID, POW) {}
 
-double BlockPow::compute(std::vector<double> &params) { return pow(params[0],params[1]); }
+double BlockPow::compute(std::vector<double> &params) { return pow(params[0], params[1]); }
 
 BlockNeg::BlockNeg(unsigned int ID) : Block(ID, NEG, 1) {}
 
-double BlockNeg::compute(std::vector<double> &params) { return 0-params[0]; }
+double BlockNeg::compute(std::vector<double> &params) { return 0 - params[0]; }
