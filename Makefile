@@ -37,7 +37,7 @@ ARCHIVE_FILES=src/* examples/* doc/* README.txt Makefile
 # TODO(mato): change to release
 all : debug
 
-.PHONY : run clean dist-clean pack format merlin eva debug compile doc
+.PHONY : run clean dist-clean pack format merlin eva debug compile doxygen
 
 compile : 
 	cd src && qmake -Wall && make
@@ -54,7 +54,7 @@ clean :
 	rm -rf $(EXECUTABLE) src/*.o $(FINAL_ARCHIVE).*
 	cd ./src && qmake -Wall && make clean
 
-doc :
+doxygen :
 	cd src && doxygen
 
 dist-clean : clean
