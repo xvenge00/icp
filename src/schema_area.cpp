@@ -52,7 +52,6 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         block_graphics->setPos(mouseEvent->scenePos());
         LOGD("Moving to: " << mouseEvent->scenePos().x());
         LOGD("Moving to: " << mouseEvent->scenePos().y());
-        // emit itemInserted(block_graphics); ?
         break;
 
     case InsertConnection:

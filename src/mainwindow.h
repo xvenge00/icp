@@ -47,12 +47,11 @@ class MainWindow : public QMainWindow {
      * Quit the program
      */
     void quit();
-    void add();
     /**
      * Delete selected blocks
      */
     void deleteSelection();
-    void connectBlocks();
+
     void rerender();
     /**
      * Display the author of program
@@ -88,11 +87,6 @@ class MainWindow : public QMainWindow {
      */
     void calculateStep();
 
-    void lineButtonTriggered();
-    void itemColorChanged();
-    void itemInserted(BlockGraphicsObject *o);
-    void fillButtonTriggered();
-    void lineColorChanged();
     void sceneScaleChanged(const QString &scale);
     void pointerGroupClicked(int id);
     void toolGroupClicked(int id);

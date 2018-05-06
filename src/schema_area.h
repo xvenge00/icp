@@ -101,7 +101,6 @@ class SchemaArea : public QGraphicsScene {
     Block *getNewBlock();
 
   signals:
-    void itemInserted(BlockGraphicsObject *item);
     void itemSelected(QGraphicsItem *item);
 
   protected:

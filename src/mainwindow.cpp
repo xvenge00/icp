@@ -24,7 +24,6 @@ MainWindow::MainWindow() {
 
     this->schema_area = new SchemaArea();
     schema_area->setSceneRect(QRectF(0, 0, 5000, 5000));
-    connect(schema_area, SIGNAL(itemInserted(BlockGraphicsObject *)), this, SLOT(itemInserted(BlockGraphicsObject *)));
 
     QHBoxLayout *layout = new QHBoxLayout();
     this->templates = new QFrame();
@@ -139,17 +138,9 @@ void MainWindow::createActions() {
     quitAction->setShortcut(tr("Ctrl+Q"));
     connect(quitAction, SIGNAL(triggered()), this, SLOT(quit()));
 
-    addAction = new QAction(tr("Add Block"), this);
-    addAction->setShortcut(tr("Ctrl+A"));
-    connect(addAction, SIGNAL(triggered()), this, SLOT(add()));
-
     deleteAction = new QAction(QIcon(":/images/delete.png"), tr("Delete Block"), this);
     deleteAction->setShortcut(tr("Ctrl+D"));
     connect(deleteAction, SIGNAL(triggered()), this, SLOT(deleteSelection()));
-
-    connectAction = new QAction(tr("Connect Blocks"), this);
-    connectAction->setShortcut(tr("Ctrl+C"));
-    connect(connectAction, SIGNAL(triggered()), this, SLOT(connectBlocks()));
 
     rerenderAction = new QAction(tr("Rerender"), this);
     rerenderAction->setShortcut(tr("Ctrl+R"));
@@ -251,14 +242,6 @@ QIcon MainWindow::createColorIcon(QColor color) {
     return QIcon(pixmap);
 }
 
-void MainWindow::itemColorChanged() { LOGE("NOT YET IMPLEMENTED"); }
-
-void MainWindow::fillButtonTriggered() { LOGE("NOT YET IMPLEMENTED"); }
-
-void MainWindow::lineColorChanged() { LOGE("NOT YET IMPLEMENTED"); }
-
-void MainWindow::lineButtonTriggered() { LOGE("NOT YET IMPLEMENTED!"); }
-
 void MainWindow::sceneScaleChanged(const QString &scale) {
     double newScale = scale.left(scale.indexOf(tr("%"))).toDouble() / 100.0;
     QMatrix oldMatrix = view->matrix();
@@ -276,11 +259,6 @@ void MainWindow::pointerGroupClicked(int id) {
         button->setChecked(false);
     }
     blockTypeGroup->setExclusive(true);
-}
-
-void MainWindow::itemInserted(BlockGraphicsObject *o) {
-    pointerTypeGroup->button(int(SchemaArea::MoveBlock))->setChecked(true);
-    this->schema_area->setMode(SchemaArea::Operation(pointerTypeGroup->checkedId()));
 }
 
 void MainWindow::toolGroupClicked(int id) {
@@ -342,8 +320,6 @@ void MainWindow::quit() {
     this->close();
 }
 
-void MainWindow::add() { LOGE("NOT YET IMPLEMENTED!"); }
-
 void MainWindow::deleteSelection() {
     for (QGraphicsItem *item : this->schema_area->selectedItems()) {
         BlockGraphicsObject *block = qgraphicsitem_cast<BlockGraphicsObject *>(item);
@@ -371,7 +347,6 @@ void MainWindow::deleteSelection() {
         // TODO: vymazanie objektu zo schemy ci uz je to connection alebo blok
     }
 }
-void MainWindow::connectBlocks() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::rerender() { this->schema_area->update(); }
 void MainWindow::authors() {
     // TODO: na macu my nevypisuje Title :/ overit
