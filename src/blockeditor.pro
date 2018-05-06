@@ -48,7 +48,9 @@ HEADERS += \
         # if included it signals non-fatal error
 
 FORMS += \
-        # mainwindow.ui
+# mainwindow.ui
+
+RESOURCES = blockeditor.qrc
 
 icp_debug {
         QMAKE_CXXFLAGS += -DICP_DEBUG

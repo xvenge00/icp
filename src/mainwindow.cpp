@@ -62,24 +62,6 @@ MainWindow::MainWindow() {
 
     this->templates->setLayout(template_layout);
 
-    fillColorToolButton = new QToolButton;
-    fillColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
-    fillColorToolButton->setMenu(createColorMenu(SLOT(itemColorChanged()), Qt::white));
-    fillAction = fillColorToolButton->menu()->defaultAction();
-    fillColorToolButton->setIcon(createColorToolButtonIcon(":/images/floodfill.png", Qt::white));
-    connect(fillColorToolButton, SIGNAL(clicked()), this, SLOT(fillButtonTriggered()));
-
-    lineColorToolButton = new QToolButton;
-    lineColorToolButton->setPopupMode(QToolButton::MenuButtonPopup);
-    lineColorToolButton->setMenu(createColorMenu(SLOT(lineColorChanged()), Qt::black));
-    lineAction = lineColorToolButton->menu()->defaultAction();
-    lineColorToolButton->setIcon(createColorToolButtonIcon(":/images/linecolor.png", Qt::black));
-    connect(lineColorToolButton, SIGNAL(clicked()), this, SLOT(lineButtonTriggered()));
-
-    colorToolbar = addToolBar(tr("Color"));
-    colorToolbar->addWidget(fillColorToolButton);
-    colorToolbar->addWidget(lineColorToolButton);
-
     this->view = new QGraphicsView(schema_area);
     view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     layout->addWidget(this->templates);
@@ -88,10 +70,10 @@ MainWindow::MainWindow() {
     QToolButton *pointerButton = new QToolButton;
     pointerButton->setCheckable(true);
     pointerButton->setChecked(true);
-    pointerButton->setIcon(QIcon(":/images/pointer.png"));
+    pointerButton->setIcon(QIcon(":/images/cursor.png"));
     QToolButton *linePointerButton = new QToolButton;
     linePointerButton->setCheckable(true);
-    linePointerButton->setIcon(QIcon(":/images/linepointer.png"));
+    linePointerButton->setIcon(QIcon(":/images/connection.png"));
 
     pointerTypeGroup = new QButtonGroup(this);
     pointerTypeGroup->addButton(pointerButton, int(SchemaArea::MoveBlock));
@@ -147,7 +129,7 @@ void MainWindow::createActions() {
     addAction->setShortcut(tr("Ctrl+A"));
     connect(addAction, SIGNAL(triggered()), this, SLOT(add()));
 
-    deleteAction = new QAction(tr("Delete Block"), this);
+    deleteAction = new QAction(QIcon(":/images/delete.png"), tr("Delete Block"), this);
     deleteAction->setShortcut(tr("Ctrl+D"));
     connect(deleteAction, SIGNAL(triggered()), this, SLOT(deleteSelection()));
 
@@ -172,15 +154,16 @@ void MainWindow::createActions() {
     QtInfoAction = new QAction(tr("Qt Info"), this);
     connect(QtInfoAction, SIGNAL(triggered()), this, SLOT(QtInfo()));
 
-    toFrontAction = new QAction(tr("Move object to front"), this);
+    toFrontAction = new QAction(QIcon(":/images/bringtofront.png"), tr("Move object to front"), this);
     connect(toFrontAction, SIGNAL(triggered()), this, SLOT(toFront()));
-    toBackAction = new QAction(tr("Move object to back"), this);
+
+    toBackAction = new QAction(QIcon(":/images/sendtoback.png"), tr("Move object to back"), this);
     connect(toBackAction, SIGNAL(triggered()), this, SLOT(toBack()));
 
-    calculateAction = new QAction(tr("Calculate all blocks"), this);
+    calculateAction = new QAction(QIcon(":/images/calculate.png"), tr("Calculate all blocks"), this);
     connect(calculateAction, SIGNAL(triggered()), this, SLOT(calculate()));
 
-    calculateStepAction = new QAction(tr("Step calculation"), this);
+    calculateStepAction = new QAction(QIcon(":/images/step.png"), tr("Step calculation"), this);
     connect(calculateStepAction, SIGNAL(triggered()), this, SLOT(calculateStep()));
 }
 
@@ -207,9 +190,9 @@ void MainWindow::createMenus() {
 
 void MainWindow::createTemplates() {
     editToolbar = addToolBar(tr("Edit"));
-    editToolbar->addAction(deleteAction);
     editToolbar->addAction(toFrontAction);
     editToolbar->addAction(toBackAction);
+    editToolbar->addAction(deleteAction);
 }
 
 QMenu *MainWindow::createColorMenu(const char *slot, QColor defaultColor) {
@@ -306,7 +289,7 @@ void MainWindow::openFile() {
         }
     }
     schema_area->resetSchema();
-    schema_area->loadSchema(QFileDialog::getSaveFileName(this, tr("Open file"), "~/").toStdString());
+    schema_area->loadSchema(QFileDialog::getOpenFileName(this, tr("Open file"), "~/").toStdString());
 }
 
 void MainWindow::saveFile() {

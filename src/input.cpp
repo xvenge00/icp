@@ -1,12 +1,12 @@
-#include <fstream>
-#include <iostream>
-#include <string>
-#include <QPointF>
 #include "block.h"
 #include "block_graphics_object.h"
 #include "connection_graphics_object.h"
 #include "schema.h"
 #include "schema_area.h"
+#include <QPointF>
+#include <fstream>
+#include <iostream>
+#include <string>
 
 // TODO tlaci sa iny format
 Block *parseBlockAdd(std::ifstream &s) {
@@ -23,8 +23,6 @@ Block *parseBlockAdd(std::ifstream &s) {
     auto new_blck = new BlockAdd{ID, in_size};
     return new_blck;
 }
-
-
 
 Block *parseBlockMul(std::ifstream &s) {
     unsigned int ID{};
@@ -114,14 +112,14 @@ ConnectionGraphicsObject *parseGraphicsConn(std::ifstream &s, SchemaArea &area) 
         }
     }
 
-    if (g_in != nullptr && g_out != nullptr){
+    if (g_in != nullptr && g_out != nullptr) {
         return new ConnectionGraphicsObject(g_in, g_out, new_conn);
     } else {
         return nullptr;
     }
 }
 
-//std::istream &operator>>(std::ifstream &s, Schema &b) {
+// std::istream &operator>>(std::ifstream &s, Schema &b) {
 //    std::string line;
 //    Block *new_blck;
 //    Connection *new_conn;
@@ -167,38 +165,33 @@ BlockGraphicsObject *parseGraphicsBlock(std::ifstream &s, Schema &schema) {
     unsigned input_size{};
     std::string dump;
 
-    s >> dump >> width
-      >> dump >> height
-      >> dump >> pos_x
-      >> dump >> pos_y
-      >> dump >> ID
-      >> dump >> type_alias;
+    s >> dump >> width >> dump >> height >> dump >> pos_x >> dump >> pos_y >> dump >> ID >> dump >> type_alias;
 
-    type = static_cast<blck_type >(type_alias);
+    type = static_cast<blck_type>(type_alias);
     switch (type) {
-        case DIV:
-            block = schema.newDivBlock();
-            break;
-        case SUB:
-            block = schema.newSubBlock();
-            break;
-        case POW:
-            block = schema.newPowBlock();
-            break;
-        case NEG:
-            block = schema.newNegBlock();
-            break;
-        case ADD:
-            block = schema.newAddBlock(input_size);
-            break;
-        case MUL:
-            block = schema.newMulBlock(input_size);
-            break;
-        case OUT:
-            block = schema.newOutBlock(output);
-            break;
-        default:
-            return nullptr;
+    case DIV:
+        block = schema.newDivBlock();
+        break;
+    case SUB:
+        block = schema.newSubBlock();
+        break;
+    case POW:
+        block = schema.newPowBlock();
+        break;
+    case NEG:
+        block = schema.newNegBlock();
+        break;
+    case ADD:
+        block = schema.newAddBlock(input_size);
+        break;
+    case MUL:
+        block = schema.newMulBlock(input_size);
+        break;
+    case OUT:
+        block = schema.newOutBlock(output);
+        break;
+    default:
+        return nullptr;
     }
 
     block_graphics = new BlockGraphicsObject(block);

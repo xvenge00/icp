@@ -23,7 +23,6 @@ void SchemaArea::loadSchema(std::string path) {
     s.close();
 
     LOGD("Trying to load schema from path = " << path);
-
 }
 
 void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
@@ -84,7 +83,9 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         removeItem(line);
         delete line;
 
-        if (startItems.count() > 0 && endItems.count() > 0 && startItems.first() != endItems.first()) {
+        if (startItems.count() > 0 && endItems.count() > 0 && startItems.first() != endItems.first() &&
+            startItems.first()->type() == BlockGraphicsObject::Type &&
+            endItems.first()->type() == BlockGraphicsObject::Type) {
             LOGD("Adding new connection");
             BlockGraphicsObject *startItem = qgraphicsitem_cast<BlockGraphicsObject *>(startItems.first());
             BlockGraphicsObject *endItem = qgraphicsitem_cast<BlockGraphicsObject *>(endItems.first());

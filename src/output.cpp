@@ -1,32 +1,32 @@
-#include <iostream>
-#include <algorithm>
 #include <QGraphicsScene>
+#include <algorithm>
+#include <iostream>
 
 #include "block.h"
 #include "block_graphics_object.h"
 #include "connection.h"
 #include "connection_graphics_object.h"
+#include "debug.h"
 #include "schema.h"
 #include "schema_area.h"
-#include "debug.h"
 
 std::ostream &operator<<(std::ostream &s, const Block &b) {
     s << "\tID: " << b.ID << "\n"
       << "\ttype: " << b.block_type << "\n";
     switch (b.block_type) {
-        case DIV:
-        case SUB:
-        case POW:
-        case NEG:
-            return s;
-        case ADD:
-        case MUL:
-            return s << "\tin_size: " << b.input_size;
-        case OUT:
-            return s << "\toutput: " << b.output;
-        default:
-            return s << "\tin_size: " << b.input_size << "\n"
-                     << "\toutput: " << b.output;
+    case DIV:
+    case SUB:
+    case POW:
+    case NEG:
+        return s;
+    case ADD:
+    case MUL:
+        return s << "\tin_size: " << b.input_size;
+    case OUT:
+        return s << "\toutput: " << b.output;
+    default:
+        return s << "\tin_size: " << b.input_size << "\n"
+                 << "\toutput: " << b.output;
     }
 }
 
