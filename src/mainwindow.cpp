@@ -347,8 +347,9 @@ void MainWindow::deleteSelection() {
                 ConnectionGraphicsObject *c = qgraphicsitem_cast<ConnectionGraphicsObject *>(i);
                 if (c) {
                     if (c->getStartBlock() == block || c->getEndBlock() == block) {
+                        this->schema_area->removeItem(i);
                         Connection *remove_c = c->getConnection();
-                        this->schema_area->removeConnection(remove_c);
+                        // this->schema_area->removeConnection(remove_c);
                     }
                 }
             }
