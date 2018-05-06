@@ -379,5 +379,8 @@ void MainWindow::toBack() {
     selectedItem->setZValue(zValue);
 }
 
-void MainWindow::calculate() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::calculate() {
+    this->schema_area->calculate();
+    this->schema_area->update();
+}
 void MainWindow::calculateStep() { LOGE("NOT YET IMPLEMENTED!"); }

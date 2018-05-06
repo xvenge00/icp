@@ -15,6 +15,8 @@ class SchemaArea : public QGraphicsScene {
     void setBlockType(blck_type t);
     void loadSchema(std::string path);
     void resetSchema();
+    bool calculate();
+    bool calculateStep();
     bool save(string file_name);
     bool load(string file_name);
     bool getEdited() { return this->schema_edited; };

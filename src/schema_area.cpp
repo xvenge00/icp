@@ -80,7 +80,7 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
             LOGD("Adding new connection");
             BlockGraphicsObject *startItem = qgraphicsitem_cast<BlockGraphicsObject *>(startItems.first());
             BlockGraphicsObject *endItem = qgraphicsitem_cast<BlockGraphicsObject *>(endItems.first());
-            Connection *con = this->schema.newConnection(endItem->getBlock(), startItem->getBlock());
+            Connection *con = this->schema.newConnection(startItem->getBlock(), endItem->getBlock());
             ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(startItem, endItem, con);
             // con_graphics->setZValue(-1000.0);
             addItem(con_graphics);
@@ -147,3 +147,7 @@ void SchemaArea::resetSchema() {
     update();
     // TODO(adam): vymazat obsah schemy, ulozeny by uz mal byt staci len clear vsetko
 }
+
+bool SchemaArea::calculate() { this->schema.compute(); }
+
+bool SchemaArea::calculateStep() {}
