@@ -1,0 +1,12 @@
+* BlockEditor
+
+** TODO Aky je sposob zistenia ze connection sa neda vytvorit
+napr. ked dany blok nema dosta portov alebo uz su obsadene
+
+** TODO Dokumentacia ma byt anglicka alebo slovenska?
+
+** TODO Overit to newConnection bez ID nejak mi blbne kreslenie
+
+** TODO Funkcia na vycistenie schemy
+
+** TODO Pocitanie blokov, mozne az po overeni connections
