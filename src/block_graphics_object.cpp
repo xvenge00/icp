@@ -1,7 +1,9 @@
+#include <QGraphicsScene>
 #include <iomanip>
 #include <sstream>
 
 #include "block_graphics_object.h"
+#include "connection_graphics_object.h"
 #include "debug.h"
 
 BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width, unsigned height) {
@@ -70,12 +72,13 @@ void BlockGraphicsObject::paintEllipseFromCenter(QPainter *painter, qreal x, qre
 
 QVariant BlockGraphicsObject::itemChange(GraphicsItemChange change, const QVariant &value) {
     if (change == QGraphicsItem::ItemPositionChange) {
-        LOGE("NOT YET IMPLEMENTED;");
-        // TODO: Tu treba zistit vsetky connection napojene na tento block a zavolat na nich updateConnectionpoints();
-        // V najhorsom pripdate tu zavolajme updateConnectionPoints() na vsetky itemy ktore idu pretypovat na
-        // ConnectionGraphicsItem
+        for (auto item : scene()->items()) {
+            ConnectionGraphicsObject *casted_item = qgraphicsitem_cast<ConnectionGraphicsObject *>(item);
+            if (casted_item) {
+                casted_item->updateConnectionPoints();
+            }
+        }
     }
-
     return value;
 }
 
