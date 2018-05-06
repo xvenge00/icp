@@ -162,3 +162,5 @@ double BlockPow::compute(std::vector<double> &params) { return pow(params[0], pa
 BlockNeg::BlockNeg(unsigned int ID) : Block(ID, NEG, 1) {}
 
 double BlockNeg::compute(std::vector<double> &params) { return 0 - params[0]; }
+
+void Block::setValue(double value) { this->output = value; }

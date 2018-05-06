@@ -2,6 +2,8 @@
  * @file schema.h
  * @author Matej Kastak <xkasta02>
  * @author Adam  Venger <xvenge00>
+ *
+ * File containing the representation of schema
  */
 
 #ifndef ICP_SCHEMA_H
@@ -14,6 +16,9 @@
 
 using namespace std;
 
+/**
+ * Internal representation of schema, contains blocks and connections.
+ */
 class Schema {
     std::map<int, Block *> blocks;
     std::map<int, Connection *> connections;
@@ -40,6 +45,12 @@ class Schema {
     bool deleteBlock(Block *b);
 
     Connection *newConnection(Block *in, Block *out, unsigned int pos);
+
+    /**
+     * Create new connection between two blocks
+     * @param in output block - input to connection
+     * @param out input block - output to connection
+     */
     Connection *newConnection(Block *in, Block *out);
     bool deleteConnection(Connection *conn);
 
@@ -47,8 +58,16 @@ class Schema {
 
     Connection *getConByID(unsigned int ID);
 
-    /* On success returns true */
+    /**
+     * Calculate the value of blocks in schema
+     * @return True if computation is successfull, otherwise false.
+     */
     bool compute();
+
+    /**
+     * Reset the schema to initial state
+     */
+    void clearSchema();
 
     void addBlock(Block *blck);
 

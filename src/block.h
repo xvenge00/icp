@@ -2,6 +2,8 @@
  * @file block.h
  * @author Matej Kastak <xkasta02>
  * @author Adam  Venger <xvenge00>
+ *
+ * File containing the definition and operation on block
  */
 
 #ifndef ICP_BLOCK_H
@@ -19,6 +21,9 @@ const unsigned int DEFAULT_MUL_INPUT_SIZE = 2;
 
 enum blck_type : int { ADD, SUB, MUL, DIV, POW, NEG, OUT };
 
+/**
+ * Internal data representation of block, contains value, type,...
+ */
 class Block {
   protected:
     unsigned int ID;
@@ -36,6 +41,8 @@ class Block {
     unsigned int getID();
 
     double getValue();
+
+    void setValue(double value);
 
     blck_type getType();
 

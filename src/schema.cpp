@@ -197,3 +197,9 @@ bool Schema::compute() {
 
     return to_calculate.empty(); // ked je prazdne tak sa podarilo priradit vsetko
 }
+
+void Schema::clearSchema() {
+    for (const auto &i : blocks) {
+        this->deleteBlock(i.second);
+    }
+}

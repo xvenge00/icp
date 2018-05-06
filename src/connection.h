@@ -15,6 +15,9 @@
  * else cyclic dependency */
 class Block;
 
+/**
+ * Internal representation of connection, contains input, output, value, type,...
+ */
 class Connection {
     unsigned int ID;
     Block *input;
@@ -26,6 +29,10 @@ class Connection {
 
     unsigned int getID();
 
+    /**
+     * Get the output value of the block connected to.
+     * @return Output value.
+     */
     double getValue();
 
     Block *getOutBlock();

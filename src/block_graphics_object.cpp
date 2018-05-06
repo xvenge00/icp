@@ -5,6 +5,7 @@
  */
 
 #include <QGraphicsScene>
+#include <QInputDialog>
 #include <iomanip>
 #include <sstream>
 
@@ -99,6 +100,15 @@ QVariant BlockGraphicsObject::itemChange(GraphicsItemChange change, const QVaria
     }
 
     return value;
+}
+
+void BlockGraphicsObject::mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) {
+    if (this->_block->getType() == OUT) {
+        double block_output = QInputDialog::getDouble(dynamic_cast<QWidget *>(this),
+                                                      tr("Input the constant block value"), tr("Output: "));
+        this->_block->setValue(block_output);
+    }
+    this->scene()->update();
 }
 
 QRectF BlockGraphicsObject::boundingRect() const { return QRectF(0, 0, this->width, this->height); }

@@ -47,6 +47,8 @@ class BlockGraphicsObject : public QGraphicsObject {
      */
     QVariant itemChange(GraphicsItemChange change, const QVariant &value) Q_DECL_OVERRIDE;
 
+    void mouseDoubleClickEvent(QGraphicsSceneMouseEvent *event) Q_DECL_OVERRIDE;
+
     /**
      * Function to get input connection point for given index
      * @param index index to calculate the point, starting from top

@@ -46,11 +46,12 @@ void ConnectionGraphicsObject::hoverEnterEvent(QGraphicsSceneHoverEvent *event) 
 }
 
 QString ConnectionGraphicsObject::getStringValue() {
-    QString output = "?";
-    std::stringstream stream;
-    stream << std::fixed << std::setprecision(2) << this->_connection->getValue();
-    output = QString::fromUtf8(stream.str().c_str());
-    LOGD("Output of the connection is: " << output.toStdString());
+    QString output = "Value: NoValue";
+    if (this->_connection->isInputSet()) {
+        std::stringstream stream;
+        stream << "Value: " << std::fixed << std::setprecision(2) << this->_connection->getValue();
+        output = QString::fromUtf8(stream.str().c_str());
+    }
     return output;
 }
 
@@ -59,7 +60,7 @@ void ConnectionGraphicsObject::updateConnectionPoints() { setLine(getConnectionL
 QLineF ConnectionGraphicsObject::getConnectionLine() {
     QPointF start_point = this->start_block->getOutputPoint();
     QPointF end_point = this->end_block->getInputPoint(this->_connection->getIdx());
-    LOGD("Connection line [" << start_point.x() << "][" << start_point.y() << "] ---- [" << end_point.x() << "]["
-                             << end_point.y() << "]");
+    // LOGD("Connection line [" << start_point.x() << "][" << start_point.y() << "] ---- [" << end_point.x() << "][" <<
+    // end_point.y() << "]");
     return QLineF(start_point, end_point);
 }

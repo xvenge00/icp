@@ -48,6 +48,14 @@ MainWindow::MainWindow() {
     button_negation->setCheckable(true);
     button_constant->setCheckable(true);
 
+    button_addition->setMinimumHeight(100);
+    button_subtraction->setMinimumHeight(100);
+    button_multiplication->setMinimumHeight(100);
+    button_division->setMinimumHeight(100);
+    button_power->setMinimumHeight(100);
+    button_negation->setMinimumHeight(100);
+    button_constant->setMinimumHeight(100);
+
     blockTypeGroup->addButton(button_addition, int(ADD));
     blockTypeGroup->addButton(button_subtraction, int(SUB));
     blockTypeGroup->addButton(button_multiplication, int(MUL));
@@ -287,7 +295,6 @@ void MainWindow::toolGroupClicked(int id) {
 }
 
 void MainWindow::newFile() {
-    LOGE("PARTIALY IMPLEMENTED!");
     if (schema_area->getEdited()) {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Are you sure?", "Schema was edited, do you want to save current schema?",
@@ -299,8 +306,8 @@ void MainWindow::newFile() {
     schema_area->resetSchema();
     schema_area->setEdited(false);
 }
+
 void MainWindow::openFile() {
-    LOGE("PARTIALY IMPLEMENTED!");
     if (schema_area->getEdited()) {
         QMessageBox::StandardButton reply;
         reply = QMessageBox::question(this, "Are you sure?", "Schema was edited, do you want to save current schema?",
