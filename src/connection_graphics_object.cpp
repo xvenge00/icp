@@ -1,3 +1,9 @@
+/**
+ * @file connection_graphics_object.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include "connection_graphics_object.h"
 #include "debug.h"
 

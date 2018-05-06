@@ -1,3 +1,9 @@
+/**
+ * @file main.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include <QApplication>
 #include <QGraphicsView>
 

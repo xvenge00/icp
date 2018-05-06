@@ -1,3 +1,9 @@
+/**
+ * @file schema.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include <fstream>
 #include <list>
 #include <ostream>

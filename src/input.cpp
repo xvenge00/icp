@@ -1,3 +1,9 @@
+/**
+ * @file input.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include "block.h"
 #include "block_graphics_object.h"
 #include "connection_graphics_object.h"

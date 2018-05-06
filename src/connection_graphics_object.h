@@ -1,5 +1,5 @@
 /**
- * @file connection_graphics_item.h
+ * @file connection_graphics_object.h
  * @author Matej Kastak <xkasta02>
  * @author Adam  Venger <xvenge00>
  *

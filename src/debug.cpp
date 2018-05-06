@@ -1,3 +1,9 @@
+/**
+ * @file debug.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include <ctype.h>
 #include <stdio.h>
 

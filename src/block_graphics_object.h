@@ -1,5 +1,5 @@
 /**
- * @file block_graphics_item.h
+ * @file block_graphics_object.h
  * @author Matej Kastak <xkasta02>
  * @author Adam  Venger <xvenge00>
  *

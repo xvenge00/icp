@@ -1,3 +1,9 @@
+/**
+ * @file block_graphics_object.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include <QGraphicsScene>
 #include <iomanip>
 #include <sstream>

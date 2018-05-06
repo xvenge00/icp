@@ -1,5 +1,11 @@
-// IPK 2k18
-// Author: Matej Kastak <xkasta02>
+/**
+ * @file debug.h
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ *
+ * File containing debbugin macros.
+ * They are only compiled if compiler has ICP_DEBUG set.
+ */
 
 #ifndef DEBUG_H
 #define DEBUG_H

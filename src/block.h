@@ -1,3 +1,9 @@
+/**
+ * @file block.h
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #ifndef ICP_BLOCK_H
 #define ICP_BLOCK_H
 

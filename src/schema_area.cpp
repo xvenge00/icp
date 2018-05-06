@@ -1,3 +1,9 @@
+/**
+ * @file schema_area.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include <QGraphicsSceneMouseEvent>
 #include <QInputDialog>
 #include <fstream>

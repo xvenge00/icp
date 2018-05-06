@@ -1,3 +1,9 @@
+/**
+ * @file connection.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include "connection.h"
 #include "block.h"
 

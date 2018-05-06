@@ -1,3 +1,9 @@
+/**
+ * @file output.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include <QGraphicsScene>
 #include <algorithm>
 #include <iostream>

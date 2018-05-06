@@ -1,0 +1,12 @@
+<!DOCTYPE RCC><RCC version="1.0">
+<qresource>
+    <file>images/bringtofront.png</file>
+    <file>images/calculate.png</file>
+    <file>images/connection.png</file>
+    <file>images/cursor.png</file>
+    <file>images/delete.png</file>
+    <file>images/sendtoback.png</file>
+    <file>images/step.png</file>
+</qresource>
+</RCC>
+
