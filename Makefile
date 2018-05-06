@@ -21,6 +21,8 @@ ifeq ($(UNAME_S),Darwin)
 	EXECUTABLE=src/blockeditor.app/Contents/MacOS/blockeditor
 endif
 
+# TODO(mato): qmake-qt5 na merlinovu
+
 FINAL_ARCHIVE=$(AUTHOR)-$(AUTHOR2)
 REMOTE_SOURCE_DIR=~/dev/icp/
 
@@ -35,7 +37,7 @@ ARCHIVE_FILES=src/* examples/* doc/* README.txt Makefile
 # TODO(mato): change to release
 all : debug
 
-.PHONY : run clean dist-clean pack format merlin eva debug compile
+.PHONY : run clean dist-clean pack format merlin eva debug compile doc
 
 compile : 
 	cd src && qmake -Wall && make
@@ -51,6 +53,9 @@ run: $(EXECUTABLE)
 clean :
 	rm -rf $(EXECUTABLE) src/*.o $(FINAL_ARCHIVE).*
 	cd ./src && qmake -Wall && make clean
+
+doc :
+	cd src && doxygen
 
 dist-clean : clean
 	rm -rf *~ *.orig test/*.orig $(GTEST)
