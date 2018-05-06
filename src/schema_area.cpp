@@ -82,7 +82,7 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
             BlockGraphicsObject *endItem = qgraphicsitem_cast<BlockGraphicsObject *>(endItems.first());
             Connection *con = this->schema.newConnection(startItem->getBlock(), endItem->getBlock());
             ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(startItem, endItem, con);
-            // con_graphics->setZValue(-1000.0);
+            con_graphics->setZValue(-1000.0);
             addItem(con_graphics);
         }
     }
