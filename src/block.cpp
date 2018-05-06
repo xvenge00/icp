@@ -1,3 +1,9 @@
+/**
+ * @file block.cpp
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #include "block.h"
 #include "debug.h"
 #include <cmath>

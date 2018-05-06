@@ -1,4 +1,3 @@
-
 #include "connection.h"
 #include "block.h"
 

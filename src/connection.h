@@ -1,3 +1,10 @@
+/**
+ * @file connection.h
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ *
+ * File containing internal data representation of connection.
+ */
 
 #ifndef ICP_CONNECTION_H
 #define ICP_CONNECTION_H

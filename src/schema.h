@@ -1,3 +1,9 @@
+/**
+ * @file schema.h
+ * @author Matej Kastak <xkasta02>
+ * @author Adam  Venger <xvenge00>
+ */
+
 #ifndef ICP_SCHEMA_H
 #define ICP_SCHEMA_H
 
