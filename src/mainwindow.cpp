@@ -251,6 +251,11 @@ void MainWindow::pointerGroupClicked(int id) {
     (void)id;
     LOGD("CheckedID: " << pointerTypeGroup->checkedId());
     schema_area->setMode(SchemaArea::Operation(pointerTypeGroup->checkedId()));
+    blockTypeGroup->setExclusive(false);
+    for (auto button : blockTypeGroup->buttons()) {
+        button->setChecked(false);
+    }
+    blockTypeGroup->setExclusive(true);
 }
 
 void MainWindow::itemInserted(BlockGraphicsObject *o) {
@@ -334,8 +339,7 @@ void MainWindow::license() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::about() {
     QMessageBox aboutBox(this);
     aboutBox.setWindowTitle("About");
-    aboutBox.setTextFormat(Qt::RichText); // this is what makes the links clickable
-    // aboutBox.setText("<a href='mailto:someone@somewhere.com?Subject=My%20Subject>Email me</a>");
+    aboutBox.setTextFormat(Qt::RichText);
     aboutBox.setText(
         "This program was created as a project for ICP<br/>We are using <a href='https://icons8.com/'>Icons8</a>");
     aboutBox.exec();
