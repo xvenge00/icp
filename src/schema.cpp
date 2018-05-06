@@ -120,7 +120,9 @@ bool Schema::deleteBlock(Block *b) {
 /* Returns ID of the new connection */
 Connection *Schema::newConnection(Block *in, Block *out, unsigned int pos) {
     /* is it possible?*/
-    // TODO
+    if (pos >= out->getInputSize()) {
+        return nullptr;
+    }
 
     /* generate new id */
     unsigned int id = ++this->conn_id_gen;

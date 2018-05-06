@@ -1,4 +1,5 @@
 #include "block.h"
+#include "debug.h"
 #include <cmath>
 
 using std::vector;
@@ -7,6 +8,7 @@ Block::Block(unsigned int ID, blck_type f_type, unsigned int input_size) {
     this->ID = ID;
     this->out_set = false;
     this->block_type = f_type;
+    this->input = std::array<Connection *, MAX_IN_SIZE>{};
 
     /* input orez na 0-MAX_IN_SIZE */
     input_size = input_size > MAX_IN_SIZE ? MAX_IN_SIZE : input_size;
