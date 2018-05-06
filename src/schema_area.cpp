@@ -185,3 +185,7 @@ std::string SchemaArea::setFilePath() {
     }
     return this->file_path;
 }
+
+void SchemaArea::removeBlock(Block *b) { schema.deleteBlock(b); }
+
+void SchemaArea::removeConnection(Connection *c) { schema.deleteConnection(c); }

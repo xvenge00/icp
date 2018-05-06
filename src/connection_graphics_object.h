@@ -34,6 +34,8 @@ class ConnectionGraphicsObject : public QGraphicsLineItem {
     int type() const Q_DECL_OVERRIDE { return Type; }
 
     Connection *getConnection() { return this->_connection; };
+    BlockGraphicsObject *getStartBlock() { return this->start_block; };
+    BlockGraphicsObject *getEndBlock() { return this->end_block; };
 
     /**
      * Update the line connection is represented by.

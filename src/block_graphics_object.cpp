@@ -80,6 +80,7 @@ void BlockGraphicsObject::paintConnectionPoints(QPainter *painter, const QStyleO
 
 void BlockGraphicsObject::paintEllipseFromCenter(QPainter *painter, qreal x, qreal y, unsigned edge) {
     unsigned half_edge = edge / 2;
+    painter->setBrush(Qt::white);
     painter->drawEllipse(x - half_edge, y - half_edge, edge, edge);
 }
 

@@ -340,6 +340,25 @@ void MainWindow::add() { LOGE("NOT YET IMPLEMENTED!"); }
 
 void MainWindow::deleteSelection() {
     for (QGraphicsItem *item : this->schema_area->selectedItems()) {
+        BlockGraphicsObject *block = qgraphicsitem_cast<BlockGraphicsObject *>(item);
+        if (block) {
+            this->schema_area->removeBlock(block->getBlock());
+            for (auto i : this->schema_area->items()) {
+                ConnectionGraphicsObject *c = qgraphicsitem_cast<ConnectionGraphicsObject *>(i);
+                if (c) {
+                    if (c->getStartBlock() == block || c->getEndBlock() == block) {
+                        Connection *remove_c = c->getConnection();
+                        this->schema_area->removeConnection(remove_c);
+                    }
+                }
+            }
+        }
+
+        ConnectionGraphicsObject *conn = qgraphicsitem_cast<ConnectionGraphicsObject *>(item);
+        if (conn) {
+            this->schema_area->removeConnection(conn->getConnection());
+        }
+
         this->schema_area->removeItem(item);
         delete item;
         // TODO: vymazanie objektu zo schemy ci uz je to connection alebo blok
