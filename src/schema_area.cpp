@@ -4,6 +4,7 @@
  * @author Adam  Venger <xvenge00>
  */
 
+#include <QFileDialog>
 #include <QGraphicsSceneMouseEvent>
 #include <QInputDialog>
 #include <fstream>
@@ -46,6 +47,7 @@ void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         new_block = getNewBlock();
         block_graphics = new BlockGraphicsObject(new_block);
         addItem(block_graphics);
+        setEdited(true);
         block_graphics->setPos(mouseEvent->scenePos());
         LOGD("Moving to: " << mouseEvent->scenePos().x());
         LOGD("Moving to: " << mouseEvent->scenePos().y());
@@ -99,6 +101,7 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
             ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(startItem, endItem, con);
             con_graphics->setZValue(-1000.0);
             addItem(con_graphics);
+            setEdited(true);
         }
     }
     line = 0;
@@ -166,3 +169,18 @@ void SchemaArea::resetSchema() {
 bool SchemaArea::calculate() { this->schema.compute(); }
 
 bool SchemaArea::calculateStep() {}
+
+std::string SchemaArea::getFilePath() {
+    if (this->file_path.empty()) {
+        setFilePath();
+    }
+    return this->file_path;
+}
+
+std::string SchemaArea::setFilePath() {
+    QString text = QFileDialog::getSaveFileName(dynamic_cast<QWidget *>(this), tr("Save file"), "~/");
+    if (!text.isEmpty()) {
+        this->file_path = text.toStdString();
+    }
+    return this->file_path;
+}

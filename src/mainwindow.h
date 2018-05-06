@@ -93,7 +93,7 @@ class MainWindow : public QMainWindow {
     void itemInserted(BlockGraphicsObject *o);
     void fillButtonTriggered();
     void lineColorChanged();
-    void sceneScaleChanged(QString);
+    void sceneScaleChanged(const QString &scale);
     void pointerGroupClicked(int id);
     void toolGroupClicked(int id);
 

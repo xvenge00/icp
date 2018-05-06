@@ -14,6 +14,7 @@
 #include "block.h"
 #include "block_graphics_object.h"
 #include "connection_graphics_object.h"
+#include "debug.h"
 #include "schema.h"
 
 /**
@@ -78,7 +79,13 @@ class SchemaArea : public QGraphicsScene {
      * Set the schema edited variable
      * @param e True if schema was edited, else false
      */
-    void setEdited(bool e) { this->schema_edited = e; }
+    void setEdited(bool e) {
+        LOGD("Schema edited = " << e);
+        this->schema_edited = e;
+    }
+
+    std::string getFilePath();
+    std::string setFilePath();
 
     friend std::ostream &operator<<(std::ostream &s, const SchemaArea &a);
     friend std::istream &operator>>(std::ifstream &s, SchemaArea &area);
@@ -86,6 +93,7 @@ class SchemaArea : public QGraphicsScene {
 
   private:
     Schema schema;
+    std::string file_path;
     Operation operationMode;
     blck_type selectedBlockType;
     bool schema_edited;

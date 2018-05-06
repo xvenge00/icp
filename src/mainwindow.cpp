@@ -251,7 +251,13 @@ void MainWindow::lineColorChanged() { LOGE("NOT YET IMPLEMENTED"); }
 
 void MainWindow::lineButtonTriggered() { LOGE("NOT YET IMPLEMENTED!"); }
 
-void MainWindow::sceneScaleChanged(QString) { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::sceneScaleChanged(const QString &scale) {
+    double newScale = scale.left(scale.indexOf(tr("%"))).toDouble() / 100.0;
+    QMatrix oldMatrix = view->matrix();
+    view->resetMatrix();
+    view->translate(oldMatrix.dx(), oldMatrix.dy());
+    view->scale(newScale, newScale);
+}
 
 void MainWindow::pointerGroupClicked(int id) {
     (void)id;
@@ -267,8 +273,6 @@ void MainWindow::pointerGroupClicked(int id) {
 void MainWindow::itemInserted(BlockGraphicsObject *o) {
     pointerTypeGroup->button(int(SchemaArea::MoveBlock))->setChecked(true);
     this->schema_area->setMode(SchemaArea::Operation(pointerTypeGroup->checkedId()));
-    // buttonGroup->button(int(o->diagramType()))->setChecked(false);
-    // uncheck all button from left panel
 }
 
 void MainWindow::toolGroupClicked(int id) {
@@ -311,14 +315,12 @@ void MainWindow::openFile() {
 void MainWindow::saveFile() {
     LOGE("PARTIALY IMPLEMENTED!");
     if (schema_area->getEdited()) { // TODO: correct edits handling
-        schema_area->save(QFileDialog::getSaveFileName(this, tr("Save file"), "~/").toStdString());
+        schema_area->save(schema_area->getFilePath());
         schema_area->setEdited(true);
     }
 }
 
-void MainWindow::saveAsFile() {
-    schema_area->save(QFileDialog::getSaveFileName(this, tr("Save file"), "~/").toStdString());
-}
+void MainWindow::saveAsFile() { schema_area->save(schema_area->setFilePath()); }
 
 void MainWindow::quit() {
     saveFile();

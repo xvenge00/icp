@@ -11,6 +11,7 @@
 #include "block_graphics_object.h"
 #include "connection_graphics_object.h"
 #include "debug.h"
+#include "schema_area.h"
 
 BlockGraphicsObject::BlockGraphicsObject(Block *b, unsigned width, unsigned height) {
     this->_block = b;
@@ -85,6 +86,11 @@ QVariant BlockGraphicsObject::itemChange(GraphicsItemChange change, const QVaria
             }
         }
     }
+    SchemaArea *parent = dynamic_cast<SchemaArea *>(scene());
+    if (parent) {
+        parent->setEdited(true);
+    }
+
     return value;
 }
 
