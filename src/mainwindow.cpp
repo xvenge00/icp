@@ -347,7 +347,7 @@ void MainWindow::deleteSelection() {
                 if (c) {
                     if (c->getStartBlock() == block || c->getEndBlock() == block) {
                         this->schema_area->removeItem(i);
-                        Connection *remove_c = c->getConnection();
+                        // Connection *remove_c = c->getConnection();
                         // this->schema_area->removeConnection(remove_c);
                     }
                 }
