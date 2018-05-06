@@ -167,7 +167,7 @@ void SchemaArea::resetSchema() {
     // TODO(adam): vymazat obsah schemy, ulozeny by uz mal byt staci len clear vsetko
 }
 
-bool SchemaArea::calculate() { this->schema.compute(); }
+bool SchemaArea::calculate() { return this->schema.compute(); }
 
 bool SchemaArea::calculateStep() {}
 

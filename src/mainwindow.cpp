@@ -297,6 +297,7 @@ void MainWindow::newFile() {
         }
     }
     schema_area->resetSchema();
+    schema_area->setEdited(false);
 }
 void MainWindow::openFile() {
     LOGE("PARTIALY IMPLEMENTED!");
@@ -414,7 +415,10 @@ void MainWindow::toBack() {
 }
 
 void MainWindow::calculate() {
-    this->schema_area->calculate();
-    this->schema_area->update();
+    if (this->schema_area->calculate()) {
+        this->schema_area->update();
+    } else {
+        QMessageBox::warning(this, tr("Calculation error"), tr("Schema could not be calculated..."));
+    }
 }
 void MainWindow::calculateStep() { LOGE("NOT YET IMPLEMENTED!"); }

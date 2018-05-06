@@ -20,6 +20,10 @@ ConnectionGraphicsObject::ConnectionGraphicsObject(BlockGraphicsObject *s, Block
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
 }
 
+void ConnectionGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+    QGraphicsLineItem::paint(painter, option, widget);
+}
+
 void ConnectionGraphicsObject::updateConnectionPoints() { setLine(getConnectionLine()); }
 
 QLineF ConnectionGraphicsObject::getConnectionLine() {

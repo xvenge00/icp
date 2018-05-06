@@ -32,6 +32,12 @@ QPointF BlockGraphicsObject::getOutputPoint() {
 }
 
 void BlockGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
+    QPen p;
+    p.setColor(Qt::black);
+    if (isSelected()) {
+        p.setColor(Qt::red);
+    }
+    painter->setPen(p);
     painter->fillRect(0, 0, this->width, this->height, Qt::white);
     painter->drawRect(0, 0, this->width, this->height);
 

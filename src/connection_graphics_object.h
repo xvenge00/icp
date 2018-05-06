@@ -46,6 +46,8 @@ class ConnectionGraphicsObject : public QGraphicsLineItem {
      */
     QLineF getConnectionLine();
 
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
+
     friend std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c);
 
   private:
