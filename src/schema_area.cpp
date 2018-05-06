@@ -139,15 +139,9 @@ Block *SchemaArea::getNewBlock() {
     return nullptr;
 }
 
-void SchemaArea::setMode(Operation o) {
-    // LOGD("Operation ID " << static_cast<int>(o));
-    this->operationMode = o;
-}
+void SchemaArea::setMode(Operation o) { this->operationMode = o; }
 
-void SchemaArea::setBlockType(blck_type t) {
-    // LOGD("Operation ID " << static_cast<int>(o));
-    this->selectedBlockType = t;
-}
+void SchemaArea::setBlockType(blck_type t) { this->selectedBlockType = t; }
 
 bool SchemaArea::save(string file_name) {
     std::ofstream out_stream;

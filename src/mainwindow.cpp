@@ -323,7 +323,15 @@ void MainWindow::saveFile() {
 void MainWindow::saveAsFile() { schema_area->save(schema_area->setFilePath()); }
 
 void MainWindow::quit() {
-    saveFile();
+    if (schema_area->getEdited()) {
+        QMessageBox::StandardButton reply;
+        reply = QMessageBox::question(this, "Are you sure?",
+                                      "Schema was edited, do you want to save schema before quitting the program?",
+                                      QMessageBox::Yes | QMessageBox::No);
+        if (reply == QMessageBox::Yes) {
+            saveFile();
+        }
+    }
     this->close();
 }
 
@@ -340,9 +348,29 @@ void MainWindow::connectBlocks() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::rerender() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::authors() {
     // TODO: na macu my nevypisuje Title :/ overit
-    QMessageBox::about(this, "BlockEditor Authors", "Matej Kastak <xkasta02>\nAdam Venger <xvenge00>\n");
+    QMessageBox::about(this, "BlockEditor Authors", "Matej Kastak xkasta02\nAdam Venger xvenge00\n");
 }
-void MainWindow::license() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::license() {
+    QMessageBox licenseBox(this);
+    licenseBox.setWindowTitle("License");
+    licenseBox.setTextFormat(Qt::RichText);
+    licenseBox.setText("<p align='center'>Copyright 2018 Matej Kastak <xkasta02><br/>"
+                       "Copyright 2018 Adam  Venger <xvenge00><hr/>"
+                       "Permission is hereby granted, free of charge, to any person obtaining a copy of this software "
+                       "and associated documentation files (the \"Software\"), to deal in the Software without "
+                       "restriction, including without limitation the rights to use, copy, modify, merge, publish, "
+                       "distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the "
+                       "Software is furnished to do so, subject to the following conditions:<br/>"
+                       "The above copyright notice and this permission notice shall be included in all copies or "
+                       "substantial portions of the Software.<br/><br/>"
+                       "THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, "
+                       "INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR "
+                       "PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR "
+                       "ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, "
+                       "ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE "
+                       "SOFTWARE.<br/></p>");
+    licenseBox.exec();
+}
 
 void MainWindow::about() {
     QMessageBox aboutBox(this);
