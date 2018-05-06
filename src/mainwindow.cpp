@@ -182,9 +182,9 @@ void MainWindow::createMenus() {
     fileMenu->addAction(quitAction);
 
     editMenu = menuBar()->addMenu(tr("&Edit"));
-    editMenu->addAction(addAction);
+    // editMenu->addAction(addAction);
     editMenu->addAction(deleteAction);
-    editMenu->addAction(connectAction);
+    // editMenu->addAction(connectAction);
     editMenu->addAction(rerenderAction);
 
     helpMenu = menuBar()->addMenu(tr("&Help"));
@@ -365,7 +365,7 @@ void MainWindow::deleteSelection() {
     }
 }
 void MainWindow::connectBlocks() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::rerender() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::rerender() { this->schema_area->update(); }
 void MainWindow::authors() {
     // TODO: na macu my nevypisuje Title :/ overit
     QMessageBox::about(this, "BlockEditor Authors", "Matej Kastak xkasta02\nAdam Venger xvenge00\n");
