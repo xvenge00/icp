@@ -261,9 +261,14 @@ void MainWindow::itemInserted(BlockGraphicsObject *o) {
 }
 
 void MainWindow::toolGroupClicked(int id) {
+    pointerTypeGroup->setExclusive(false);
+    // If button group is exclusive at least one button needs to checked
+    // this is a workaround
+    pointerTypeGroup->button(int(SchemaArea::MoveBlock))->setChecked(false);
+    pointerTypeGroup->button(int(SchemaArea::InsertConnection))->setChecked(false);
+    pointerTypeGroup->setExclusive(true);
     this->schema_area->setBlockType(blck_type(blockTypeGroup->checkedId()));
     this->schema_area->setMode(SchemaArea::InsertBlock);
-    // this->pointerTypeGroup->button(int(SchemaArea::MoveBlock))->setChecked(false);
 }
 
 void MainWindow::newFile() {
@@ -322,12 +327,18 @@ void MainWindow::connectBlocks() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::rerender() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::authors() {
     // TODO: na macu my nevypisuje Title :/ overit
-    QMessageBox::about(this, "BlockEditor Authors", "Matej Kastak <xkasta02>\nAdam Venger <xvenge00>");
+    QMessageBox::about(this, "BlockEditor Authors", "Matej Kastak <xkasta02>\nAdam Venger <xvenge00>\n");
 }
 void MainWindow::license() { LOGE("NOT YET IMPLEMENTED!"); }
 
 void MainWindow::about() {
-    QMessageBox::about(this, "BlockEditor About", "This program was created as a project for ICP");
+    QMessageBox aboutBox(this);
+    aboutBox.setWindowTitle("About");
+    aboutBox.setTextFormat(Qt::RichText); // this is what makes the links clickable
+    // aboutBox.setText("<a href='mailto:someone@somewhere.com?Subject=My%20Subject>Email me</a>");
+    aboutBox.setText(
+        "This program was created as a project for ICP<br/>We are using <a href='https://icons8.com/'>Icons8</a>");
+    aboutBox.exec();
 }
 
 void MainWindow::QtInfo() { QMessageBox::aboutQt(this, "BlockEditor QT"); }
