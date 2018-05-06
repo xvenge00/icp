@@ -29,8 +29,17 @@ Schema::~Schema() {
 }
 
 void Schema::addBlock(Block *blck) {
-    unsigned int id = ++this->block_id_gen;
-    this->blocks[id] = blck;
+    unsigned newID = blck->getID();
+    if (newID > block_id_gen+1) { block_id_gen = newID +1; }
+
+    this->blocks[newID] = blck;
+}
+
+void Schema::addConnection(Connection *conn) {
+    unsigned newID = conn->getID();
+    if (newID > conn_id_gen) { conn_id_gen = newID + 1; }
+
+    this->connections[newID] = conn;
 }
 
 void Schema::loadBlck(Block *blck) { this->blocks[blck->getID()] = blck; }

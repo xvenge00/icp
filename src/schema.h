@@ -71,6 +71,8 @@ class Schema {
 
     void addBlock(Block *blck);
 
+    void addConnection(Connection *conn);
+
     friend ostream &operator<<(ostream &s, const Schema &schema);
 
     friend std::istream &operator>>(std::ifstream &s, Schema &b);

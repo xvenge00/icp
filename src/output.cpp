@@ -18,7 +18,7 @@
 
 std::ostream &operator<<(std::ostream &s, const Block &b) {
     s << "\tID: " << b.ID << "\n"
-      << "\ttype: " << b.block_type << "\n";
+      << "\ttype: " << b.block_type;
     switch (b.block_type) {
     case DIV:
     case SUB:
@@ -27,11 +27,11 @@ std::ostream &operator<<(std::ostream &s, const Block &b) {
         return s;
     case ADD:
     case MUL:
-        return s << "\tin_size: " << b.input_size;
+        return s << "\n\tin_size: " << b.input_size;
     case OUT:
-        return s << "\toutput: " << b.output;
+        return s << "\n\toutput: " << b.output;
     default:
-        return s << "\tin_size: " << b.input_size << "\n"
+        return s << "\n\tin_size: " << b.input_size << "\n"
                  << "\toutput: " << b.output;
     }
 }
@@ -68,10 +68,8 @@ std::ostream &operator<<(std::ostream &s, const Connection &c) {
 std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c) { return s << *c._connection; }
 
 std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
-    for (const auto &i : a.items(Qt::AscendingOrder)) {
-        LOGD("before cast");
+    for (const auto &i : a.items(Qt::DescendingOrder)) {
         BlockGraphicsObject *casted_b = dynamic_cast<BlockGraphicsObject *>(i);
-        LOGD("after cast");
         if (casted_b != nullptr) {
             s << *casted_b;
         } else {
