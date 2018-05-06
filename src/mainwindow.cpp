@@ -314,10 +314,9 @@ void MainWindow::openFile() {
 }
 
 void MainWindow::saveFile() {
-    LOGE("PARTIALY IMPLEMENTED!");
-    if (schema_area->getEdited()) { // TODO: correct edits handling
+    if (schema_area->getEdited()) {
         schema_area->save(schema_area->getFilePath());
-        schema_area->setEdited(true);
+        schema_area->setEdited(false);
     }
 }
 

@@ -130,9 +130,7 @@ Block *SchemaArea::getNewBlock() {
     case POW:
         return this->schema.newPowBlock();
     case NEG:
-        // return this->schema.newAddBlock(2);
-        LOGE("NOT YET IMPLEMENTED!");
-        break;
+        return this->schema.newNegBlock();
     case OUT:
         block_output = QInputDialog::getDouble(dynamic_cast<QWidget *>(this), tr("Input the constant block value"),
                                                tr("Output: "));

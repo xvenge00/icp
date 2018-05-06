@@ -63,6 +63,7 @@ bool Block::tryCompute() {
 
     for (int i = 0; i < this->input_size; i++) {
         if (this->input[i] == nullptr) {
+            return false;
             std::cout << "Zadajte vstupnú hodnotu pre " << i + 1 << ". vstup: ";
             std::cin >> value;
 
