@@ -19,8 +19,8 @@
 
 QT_BEGIN_MOC_NAMESPACE
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[29];
-    char stringdata0[326];
+    QByteArrayData data[30];
+    char stringdata0[333];
 };
 #define QT_MOC_LITERAL(idx, ofs, len)                                                                                  \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(                                                           \
@@ -41,27 +41,28 @@ static const qt_meta_stringdata_MainWindow_t qt_meta_stringdata_MainWindow = {
         QT_MOC_LITERAL(11, 97, 7),   // "authors"
         QT_MOC_LITERAL(12, 105, 7),  // "license"
         QT_MOC_LITERAL(13, 113, 5),  // "about"
-        QT_MOC_LITERAL(14, 119, 7),  // "toFront"
-        QT_MOC_LITERAL(15, 127, 6),  // "toBack"
-        QT_MOC_LITERAL(16, 134, 9),  // "calculate"
-        QT_MOC_LITERAL(17, 144, 13), // "calculateStep"
-        QT_MOC_LITERAL(18, 158, 19), // "lineButtonTriggered"
-        QT_MOC_LITERAL(19, 178, 16), // "itemColorChanged"
-        QT_MOC_LITERAL(20, 195, 12), // "itemInserted"
-        QT_MOC_LITERAL(21, 208, 20), // "BlockGraphicsObject*"
-        QT_MOC_LITERAL(22, 229, 1),  // "o"
-        QT_MOC_LITERAL(23, 231, 19), // "fillButtonTriggered"
-        QT_MOC_LITERAL(24, 251, 16), // "lineColorChanged"
-        QT_MOC_LITERAL(25, 268, 17), // "sceneScaleChanged"
-        QT_MOC_LITERAL(26, 286, 19), // "pointerGroupClicked"
-        QT_MOC_LITERAL(27, 306, 2),  // "id"
-        QT_MOC_LITERAL(28, 309, 16)  // "toolGroupClicked"
+        QT_MOC_LITERAL(14, 119, 6),  // "QtInfo"
+        QT_MOC_LITERAL(15, 126, 7),  // "toFront"
+        QT_MOC_LITERAL(16, 134, 6),  // "toBack"
+        QT_MOC_LITERAL(17, 141, 9),  // "calculate"
+        QT_MOC_LITERAL(18, 151, 13), // "calculateStep"
+        QT_MOC_LITERAL(19, 165, 19), // "lineButtonTriggered"
+        QT_MOC_LITERAL(20, 185, 16), // "itemColorChanged"
+        QT_MOC_LITERAL(21, 202, 12), // "itemInserted"
+        QT_MOC_LITERAL(22, 215, 20), // "BlockGraphicsObject*"
+        QT_MOC_LITERAL(23, 236, 1),  // "o"
+        QT_MOC_LITERAL(24, 238, 19), // "fillButtonTriggered"
+        QT_MOC_LITERAL(25, 258, 16), // "lineColorChanged"
+        QT_MOC_LITERAL(26, 275, 17), // "sceneScaleChanged"
+        QT_MOC_LITERAL(27, 293, 19), // "pointerGroupClicked"
+        QT_MOC_LITERAL(28, 313, 2),  // "id"
+        QT_MOC_LITERAL(29, 316, 16)  // "toolGroupClicked"
 
     },
     "MainWindow\0newFile\0\0openFile\0saveFile\0"
     "saveAsFile\0quit\0add\0deleteSelection\0"
     "connectBlocks\0rerender\0authors\0license\0"
-    "about\0toFront\0toBack\0calculate\0"
+    "about\0QtInfo\0toFront\0toBack\0calculate\0"
     "calculateStep\0lineButtonTriggered\0"
     "itemColorChanged\0itemInserted\0"
     "BlockGraphicsObject*\0o\0fillButtonTriggered\0"
@@ -75,7 +76,7 @@ static const uint qt_meta_data_MainWindow[] = {
     7,      // revision
     0,      // classname
     0, 0,   // classinfo
-    24, 14, // methods
+    25, 14, // methods
     0, 0,   // properties
     0, 0,   // enums/sets
     0, 0,   // constructors
@@ -83,21 +84,22 @@ static const uint qt_meta_data_MainWindow[] = {
     0,      // signalCount
 
     // slots: name, argc, parameters, tag, flags
-    1, 0, 134, 2, 0x08 /* Private */, 3, 0, 135, 2, 0x08 /* Private */, 4, 0, 136, 2, 0x08 /* Private */, 5, 0, 137, 2,
-    0x08 /* Private */, 6, 0, 138, 2, 0x08 /* Private */, 7, 0, 139, 2, 0x08 /* Private */, 8, 0, 140, 2,
-    0x08 /* Private */, 9, 0, 141, 2, 0x08 /* Private */, 10, 0, 142, 2, 0x08 /* Private */, 11, 0, 143, 2,
-    0x08 /* Private */, 12, 0, 144, 2, 0x08 /* Private */, 13, 0, 145, 2, 0x08 /* Private */, 14, 0, 146, 2,
-    0x08 /* Private */, 15, 0, 147, 2, 0x08 /* Private */, 16, 0, 148, 2, 0x08 /* Private */, 17, 0, 149, 2,
-    0x08 /* Private */, 18, 0, 150, 2, 0x08 /* Private */, 19, 0, 151, 2, 0x08 /* Private */, 20, 1, 152, 2,
-    0x08 /* Private */, 23, 0, 155, 2, 0x08 /* Private */, 24, 0, 156, 2, 0x08 /* Private */, 25, 1, 157, 2,
-    0x08 /* Private */, 26, 1, 160, 2, 0x08 /* Private */, 28, 1, 163, 2, 0x08 /* Private */,
+    1, 0, 139, 2, 0x08 /* Private */, 3, 0, 140, 2, 0x08 /* Private */, 4, 0, 141, 2, 0x08 /* Private */, 5, 0, 142, 2,
+    0x08 /* Private */, 6, 0, 143, 2, 0x08 /* Private */, 7, 0, 144, 2, 0x08 /* Private */, 8, 0, 145, 2,
+    0x08 /* Private */, 9, 0, 146, 2, 0x08 /* Private */, 10, 0, 147, 2, 0x08 /* Private */, 11, 0, 148, 2,
+    0x08 /* Private */, 12, 0, 149, 2, 0x08 /* Private */, 13, 0, 150, 2, 0x08 /* Private */, 14, 0, 151, 2,
+    0x08 /* Private */, 15, 0, 152, 2, 0x08 /* Private */, 16, 0, 153, 2, 0x08 /* Private */, 17, 0, 154, 2,
+    0x08 /* Private */, 18, 0, 155, 2, 0x08 /* Private */, 19, 0, 156, 2, 0x08 /* Private */, 20, 0, 157, 2,
+    0x08 /* Private */, 21, 1, 158, 2, 0x08 /* Private */, 24, 0, 161, 2, 0x08 /* Private */, 25, 0, 162, 2,
+    0x08 /* Private */, 26, 1, 163, 2, 0x08 /* Private */, 27, 1, 166, 2, 0x08 /* Private */, 29, 1, 169, 2,
+    0x08 /* Private */,
 
     // slots: parameters
     QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void,
     QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void,
     QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 21, 22, QMetaType::Void, QMetaType::Void, QMetaType::Void, QMetaType::QString, 2,
-    QMetaType::Void, QMetaType::Int, 27, QMetaType::Void, QMetaType::Int, 27,
+    QMetaType::Void, QMetaType::Void, 0x80000000 | 22, 23, QMetaType::Void, QMetaType::Void, QMetaType::Void,
+    QMetaType::QString, 2, QMetaType::Void, QMetaType::Int, 28, QMetaType::Void, QMetaType::Int, 28,
 
     0 // eod
 };
@@ -144,39 +146,42 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
             _t->about();
             break;
         case 12:
-            _t->toFront();
+            _t->QtInfo();
             break;
         case 13:
-            _t->toBack();
+            _t->toFront();
             break;
         case 14:
-            _t->calculate();
+            _t->toBack();
             break;
         case 15:
-            _t->calculateStep();
+            _t->calculate();
             break;
         case 16:
-            _t->lineButtonTriggered();
+            _t->calculateStep();
             break;
         case 17:
-            _t->itemColorChanged();
+            _t->lineButtonTriggered();
             break;
         case 18:
-            _t->itemInserted((*reinterpret_cast<BlockGraphicsObject *(*)>(_a[1])));
+            _t->itemColorChanged();
             break;
         case 19:
-            _t->fillButtonTriggered();
+            _t->itemInserted((*reinterpret_cast<BlockGraphicsObject *(*)>(_a[1])));
             break;
         case 20:
-            _t->lineColorChanged();
+            _t->fillButtonTriggered();
             break;
         case 21:
-            _t->sceneScaleChanged((*reinterpret_cast<QString(*)>(_a[1])));
+            _t->lineColorChanged();
             break;
         case 22:
-            _t->pointerGroupClicked((*reinterpret_cast<int(*)>(_a[1])));
+            _t->sceneScaleChanged((*reinterpret_cast<QString(*)>(_a[1])));
             break;
         case 23:
+            _t->pointerGroupClicked((*reinterpret_cast<int(*)>(_a[1])));
+            break;
+        case 24:
             _t->toolGroupClicked((*reinterpret_cast<int(*)>(_a[1])));
             break;
         default:;
@@ -204,13 +209,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a) {
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 24)
+        if (_id < 25)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 24;
+        _id -= 25;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 24)
+        if (_id < 25)
             *reinterpret_cast<int *>(_a[0]) = -1;
-        _id -= 24;
+        _id -= 25;
     }
     return _id;
 }

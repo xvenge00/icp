@@ -169,6 +169,9 @@ void MainWindow::createActions() {
     aboutAction->setShortcut(tr("Ctrl+B"));
     connect(aboutAction, SIGNAL(triggered()), this, SLOT(about()));
 
+    QtInfoAction = new QAction(tr("Qt Info"), this);
+    connect(QtInfoAction, SIGNAL(triggered()), this, SLOT(QtInfo()));
+
     toFrontAction = new QAction(tr("Move object to front"), this);
     connect(toFrontAction, SIGNAL(triggered()), this, SLOT(toFront()));
     toBackAction = new QAction(tr("Move object to back"), this);
@@ -198,6 +201,7 @@ void MainWindow::createMenus() {
     helpMenu = menuBar()->addMenu(tr("&Help"));
     helpMenu->addAction(authorsAction);
     helpMenu->addAction(licenseAction);
+    helpMenu->addAction(QtInfoAction);
     helpMenu->addAction(aboutAction);
 }
 
@@ -336,6 +340,8 @@ void MainWindow::rerender() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::authors() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::license() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::about() { LOGE("NOT YET IMPLEMENTED!"); }
+
+void MainWindow::QtInfo() { QMessageBox::aboutQt(this, "BlockEditor QT"); }
 
 void MainWindow::toFront() {
     if (this->schema_area->selectedItems().isEmpty())

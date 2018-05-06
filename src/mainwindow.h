@@ -32,6 +32,7 @@ class MainWindow : public QMainWindow {
     void authors();
     void license();
     void about();
+    void QtInfo();
 
     void toFront();
     void toBack();
@@ -68,6 +69,7 @@ class MainWindow : public QMainWindow {
     QAction *authorsAction;
     QAction *licenseAction;
     QAction *aboutAction;
+    QAction *QtInfoAction;
 
     QAction *toFrontAction;
     QAction *toBackAction;
