@@ -157,6 +157,7 @@ bool SchemaArea::save(string file_name) {
     out_stream.close();
 
     return true; // TODO(adam): bool je pre error handling?
+    setEdited(false);
 }
 
 void SchemaArea::resetSchema() {
