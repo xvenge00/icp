@@ -4,6 +4,10 @@
  * @author Adam  Venger <xvenge00>
  */
 
+#include <QToolTip>
+#include <iomanip>
+#include <sstream>
+
 #include "connection_graphics_object.h"
 #include "debug.h"
 
@@ -15,6 +19,7 @@ ConnectionGraphicsObject::ConnectionGraphicsObject(BlockGraphicsObject *s, Block
 
     updateConnectionPoints();
     pen().setColor(Qt::black);
+    setAcceptHoverEvents(true);
     setFlag(QGraphicsItem::ItemIsMovable, false);
     setFlag(QGraphicsItem::ItemIsSelectable, true);
     setFlag(QGraphicsItem::ItemSendsGeometryChanges, true);
@@ -22,6 +27,31 @@ ConnectionGraphicsObject::ConnectionGraphicsObject(BlockGraphicsObject *s, Block
 
 void ConnectionGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     QGraphicsLineItem::paint(painter, option, widget);
+}
+
+void ConnectionGraphicsObject::hoverLeaveEvent(QGraphicsSceneHoverEvent *event) {
+    QToolTip::hideText();
+    QGraphicsLineItem::hoverLeaveEvent(event);
+}
+
+void ConnectionGraphicsObject::hoverMoveEvent(QGraphicsSceneHoverEvent *event) {
+    QToolTip::showText(event->screenPos(), this->getStringValue());
+    QGraphicsLineItem::hoverMoveEvent(event);
+}
+
+void ConnectionGraphicsObject::hoverEnterEvent(QGraphicsSceneHoverEvent *event) {
+    LOGD("HOVER ENTER");
+    QToolTip::showText(event->screenPos(), this->getStringValue());
+    QGraphicsLineItem::hoverEnterEvent(event);
+}
+
+QString ConnectionGraphicsObject::getStringValue() {
+    QString output = "?";
+    std::stringstream stream;
+    stream << std::fixed << std::setprecision(2) << this->_connection->getValue();
+    output = QString::fromUtf8(stream.str().c_str());
+    LOGD("Output of the connection is: " << output.toStdString());
+    return output;
 }
 
 void ConnectionGraphicsObject::updateConnectionPoints() { setLine(getConnectionLine()); }

@@ -11,6 +11,7 @@
 
 #include <QGraphicsLineItem>
 #include <QGraphicsObject>
+#include <QGraphicsSceneHoverEvent>
 #include <QPainter>
 #include <QPoint>
 
@@ -45,6 +46,12 @@ class ConnectionGraphicsObject : public QGraphicsLineItem {
      * @return Line with properly set starting and ending points.
      */
     QLineF getConnectionLine();
+
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
+    void hoverMoveEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
+    void hoverEnterEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
+
+    QString getStringValue();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
 
