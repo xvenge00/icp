@@ -15,7 +15,15 @@ SchemaArea::SchemaArea() {
 
 void SchemaArea::loadSchema(std::string path) {
     // path.toStdString() vrati std::string utf8
+    ifstream s;
+    s.open(path); // TODO if fail
+
+    s >> *this;
+
+    s.close();
+
     LOGD("Trying to load schema from path = " << path);
+
 }
 
 void SchemaArea::mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) {

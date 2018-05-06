@@ -5,6 +5,7 @@
 
 #include "block.h"
 #include "block_graphics_object.h"
+#include "connection_graphics_object.h"
 #include "schema.h"
 
 class SchemaArea : public QGraphicsScene {
@@ -22,6 +23,8 @@ class SchemaArea : public QGraphicsScene {
     void setEdited(bool e) { this->schema_edited = e; }
 
     friend std::ostream &operator<<(std::ostream &s, const SchemaArea &a);
+    friend std::istream &operator>>(std::ifstream &s, SchemaArea &area);
+    friend ConnectionGraphicsObject *parseGraphicsConn(std::ifstream &s, SchemaArea &area);
 
   private:
     Schema schema;

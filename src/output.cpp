@@ -1,4 +1,6 @@
 #include <iostream>
+#include <algorithm>
+#include <QGraphicsScene>
 
 #include "block.h"
 #include "block_graphics_object.h"
@@ -6,35 +8,32 @@
 #include "connection_graphics_object.h"
 #include "schema.h"
 #include "schema_area.h"
+#include "debug.h"
 
 std::ostream &operator<<(std::ostream &s, const Block &b) {
+    s << "\tID: " << b.ID << "\n"
+      << "\ttype: " << b.block_type << "\n";
     switch (b.block_type) {
-    case ADD:
-    case MUL:
-        return s << "\ttype: " << b.block_type << "\n"
-                 << "\tID: " << b.ID << "\n"
-                 << "\tin_size: " << b.input_size;
-    case SUB:
-        return s << "\ttype: " << b.block_type << "\n"
-                 << "\tID: " << b.ID;
-    case DIV:
-        return s << "Neni implementovane\n";
-    case OUT:
-        return s << "\ttype: " << b.block_type << "\n"
-                 << "\tID: " << b.ID << "\n"
-                 << "\toutput: " << b.output;
-    default:
-        return s << "Block: {\n"
-                 << "\tID: " << b.ID << "\n"
-                 << "\tin_size: " << b.input_size << "\n"
-                 << "\ttype: " << b.block_type << "\n"
-                 << "\toutput: " << b.output << "\n" //TODO otestuj na NaN
-                 << "}\n";
+        case DIV:
+        case SUB:
+        case POW:
+        case NEG:
+            return s;
+        case ADD:
+        case MUL:
+            return s << "\tin_size: " << b.input_size;
+        case OUT:
+            return s << "\toutput: " << b.output;
+        default:
+            return s << "\tin_size: " << b.input_size << "\n"
+                     << "\toutput: " << b.output;
     }
 }
 
 std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
     return s << "Block {\n"
+             << "\twidth: " << b.width << "\n"
+             << "\theight: " << b.height << "\n"
              << "\tx: " << b.pos().x() << "\n"
              << "\ty: " << b.pos().y() << "\n"
              << *b._block << "\n"
@@ -63,8 +62,10 @@ std::ostream &operator<<(std::ostream &s, const Connection &c) {
 std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c) { return s << *c._connection; }
 
 std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
-    for (const auto &i : a.items()) {
+    for (const auto &i : a.items(Qt::AscendingOrder)) {
+        LOGD("before cast");
         BlockGraphicsObject *casted_b = dynamic_cast<BlockGraphicsObject *>(i);
+        LOGD("after cast");
         if (casted_b != nullptr) {
             s << *casted_b;
         } else {
