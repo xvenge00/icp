@@ -7,6 +7,7 @@
 #include <QFileDialog>
 #include <QGraphicsSceneMouseEvent>
 #include <QInputDialog>
+#include <QMessageBox>
 #include <fstream>
 
 #include "block_graphics_object.h"
@@ -98,10 +99,15 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
             BlockGraphicsObject *startItem = qgraphicsitem_cast<BlockGraphicsObject *>(startItems.first());
             BlockGraphicsObject *endItem = qgraphicsitem_cast<BlockGraphicsObject *>(endItems.first());
             Connection *con = this->schema.newConnection(startItem->getBlock(), endItem->getBlock());
-            ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(startItem, endItem, con);
-            con_graphics->setZValue(-1000.0);
-            addItem(con_graphics);
-            setEdited(true);
+            if (con) {
+                ConnectionGraphicsObject *con_graphics = new ConnectionGraphicsObject(startItem, endItem, con);
+                con_graphics->setZValue(-1000.0);
+                addItem(con_graphics);
+                setEdited(true);
+            } else {
+                QMessageBox::warning(dynamic_cast<QWidget *>(this), tr("Connection error"),
+                                     tr("Connection cannot be created..."));
+            }
         }
     }
     line = 0;
