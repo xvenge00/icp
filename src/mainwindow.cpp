@@ -337,9 +337,15 @@ void MainWindow::deleteSelection() {
 }
 void MainWindow::connectBlocks() { LOGE("NOT YET IMPLEMENTED!"); }
 void MainWindow::rerender() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::authors() { LOGE("NOT YET IMPLEMENTED!"); }
+void MainWindow::authors() {
+    // TODO: na macu my nevypisuje Title :/ overit
+    QMessageBox::about(this, "BlockEditor Authors", "Matej Kastak <xkasta02>\nAdam Venger <xvenge00>");
+}
 void MainWindow::license() { LOGE("NOT YET IMPLEMENTED!"); }
-void MainWindow::about() { LOGE("NOT YET IMPLEMENTED!"); }
+
+void MainWindow::about() {
+    QMessageBox::about(this, "BlockEditor About", "This program was created as a project for ICP");
+}
 
 void MainWindow::QtInfo() { QMessageBox::aboutQt(this, "BlockEditor QT"); }
 
