@@ -72,7 +72,6 @@ void SchemaArea::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent) {
         QLineF newLine(line->line().p1(), mouseEvent->scenePos());
         line->setLine(newLine);
     } else if (this->operationMode == MoveBlock) {
-        // LOGD("Moving the block");
         QGraphicsScene::mouseMoveEvent(mouseEvent);
     }
 }

@@ -32,7 +32,7 @@ REMOTE_EVA=$(AUTHOR)@eva.fit.vutbr.cz
 REMOTE_TRANSFER_FILES=*.cc *.h Makefile
 REMOTE_TRANSFER_FILES=$(FINAL_ARCHIVE).zip
 
-ARCHIVE_FILES=src/*.cpp src/images/* src/*.h src/*.pro src/*.qrc examples/* doc/* README.txt Makefile
+ARCHIVE_FILES=src/*.cpp src/images/* src/*.h src/*.pro src/*.qrc examples/* doc/ README.txt Makefile
 
 # TODO(mato): change to release
 all : debug

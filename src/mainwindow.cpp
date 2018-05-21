@@ -295,7 +295,8 @@ void MainWindow::openFile() {
         }
     }
     schema_area->resetSchema();
-    schema_area->loadSchema(QFileDialog::getOpenFileName(this, tr("Open file"), "~/").toStdString());
+    //schema_area->loadSchema(QFileDialog::getOpenFileName(this, tr("Open file"), "~/").toStdString());
+    QMessageBox::warning(this, tr("Load file error"), tr("Currently not implemented"));
 }
 
 void MainWindow::saveFile() {
@@ -422,4 +423,11 @@ void MainWindow::calculate() {
         QMessageBox::warning(this, tr("Calculation error"), tr("Schema could not be calculated..."));
     }
 }
-void MainWindow::calculateStep() { LOGE("NOT YET IMPLEMENTED!"); }
+
+void MainWindow::calculateStep() {
+    if (this->schema_area->calculate()) {
+        this->schema_area->update();
+    } else {
+        QMessageBox::warning(this, tr("Calculation error"), tr("Schema could not be calculated..."));
+    }
+}

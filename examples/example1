@@ -1,0 +1,69 @@
+Block {
+	width: 60
+	height: 80
+	x: 2343
+	y: 2514
+	ID: 5
+	type: 6
+	output: 2
+}
+Block {
+	width: 60
+	height: 80
+	x: 2218
+	y: 2440
+	ID: 4
+	type: 6
+	output: 22
+}
+Block {
+	width: 60
+	height: 80
+	x: 2223
+	y: 2306
+	ID: 3
+	type: 6
+	output: 20
+}
+Block {
+	width: 60
+	height: 80
+	x: 2479
+	y: 2389
+	ID: 2
+	type: 2
+	in_size: 2
+}
+Block {
+	width: 60
+	height: 80
+	x: 2345
+	y: 2328
+	ID: 1
+	type: 0
+	in_size: 2
+}
+Connection: {
+	ID: 4
+	in: 1
+	out: 2
+	index: 1
+}
+Connection: {
+	ID: 3
+	in: 5
+	out: 2
+	index: 0
+}
+Connection: {
+	ID: 2
+	in: 4
+	out: 1
+	index: 1
+}
+Connection: {
+	ID: 1
+	in: 3
+	out: 1
+	index: 0
+}
