@@ -164,8 +164,7 @@ void SchemaArea::resetSchema() {
     LOGD("Reseting the schema");
     clear();
     update();
-
-//    delete schema;
+    schema.clear();
 
     // TODO(adam): vymazat obsah schemy, ulozeny by uz mal byt staci len clear vsetko
 }
