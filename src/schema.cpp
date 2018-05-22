@@ -21,12 +21,12 @@ Schema::Schema() {
 }
 
 Schema::~Schema() {
-    for (const auto &i : this->blocks) {
-        delete i.second;
-    }
-    for (const auto &i : this->connections) {
-        delete i.second;
-    }
+    clear();
+}
+
+void Schema::clear() {
+    blocks.clear();
+    connections.clear();
 }
 
 void Schema::addBlock(Block *blck) {

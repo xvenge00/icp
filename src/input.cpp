@@ -42,14 +42,14 @@ ConnectionGraphicsObject *parseGraphicsConn(std::ifstream &s, SchemaArea &area) 
 
     Block *in = new_conn->getInput();
     Block *out = new_conn->getOutBlock();
-    BlockGraphicsObject *g_in, *g_out;
+    BlockGraphicsObject *g_in = nullptr, *g_out= nullptr;
 
     for (const auto &i : area.items(Qt::AscendingOrder)) {
         BlockGraphicsObject *ptr = dynamic_cast<BlockGraphicsObject *>(i);
         if (ptr != nullptr) {
             if (ptr->getBlock() == in) {
                 g_in = ptr;
-            } else {
+            } else if (ptr->getBlock() == out){
                 g_out = ptr;
             }
         }
@@ -62,7 +62,7 @@ ConnectionGraphicsObject *parseGraphicsConn(std::ifstream &s, SchemaArea &area) 
     }
 }
 
-BlockGraphicsObject *parseGraphicsBlock(std::ifstream &s, Schema &schema) {
+BlockGraphicsObject *parseGraphicsBlock(std::ifstream &s, SchemaArea &area) {
     Block *block;
     BlockGraphicsObject *block_graphics;
 
@@ -94,21 +94,28 @@ BlockGraphicsObject *parseGraphicsBlock(std::ifstream &s, Schema &schema) {
         block = new BlockNeg{ID};
         break;
     case ADD:
+        s >> dump >> input_size;
         block = new BlockAdd{ID};
         break;
     case MUL:
+        s >> dump >> input_size;
         block = new BlockMul{ID};
         break;
     case OUT:
+        s >> dump >> output;
         block = new BlockOut{ID, output};
         break;
     default:
         return nullptr;
     }
-    schema.addBlock(block);
 
+    getline(s, dump);
+    getline(s, dump);
+
+    area.schema.addBlock(block);
     block_graphics = new BlockGraphicsObject(block);
 
+    area.addItem(block_graphics);
     block_graphics->setPos(QPointF(pos_x, pos_y));
     return block_graphics;
 }
@@ -118,13 +125,12 @@ std::istream &operator>>(std::ifstream &s, SchemaArea &area) {
 
     while (getline(s, line)) {
         if (line == "Block {") {
-            BlockGraphicsObject *new_blck = parseGraphicsBlock(s, area.schema);
-            area.addItem(new_blck);
+            BlockGraphicsObject *new_blck = parseGraphicsBlock(s, area);
         } else if (line == "Connection: {") {
             ConnectionGraphicsObject *new_conn = parseGraphicsConn(s, area);
             area.addItem(new_conn);
         } else {
-            std::cerr << "Demaged file!\n";
+            std::cerr << "Damaged file!\n";
         }
     }
 

@@ -38,6 +38,8 @@ class Schema {
 
     ~Schema();
 
+    void clear();
+
     BlockAdd *newAddBlock(unsigned int in_size = DEFAULT_ADD_INPUT_SIZE);
     BlockMul *newMulBlock(unsigned int in_size = DEFAULT_MUL_INPUT_SIZE);
     BlockSub *newSubBlock();

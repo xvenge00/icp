@@ -89,6 +89,7 @@ class SchemaArea : public QGraphicsScene {
     void removeBlock(Block *b);
     void removeConnection(Connection *c);
 
+    friend BlockGraphicsObject *parseGraphicsBlock(std::ifstream &s, SchemaArea &area);
     friend std::ostream &operator<<(std::ostream &s, const SchemaArea &a);
     friend std::istream &operator>>(std::ifstream &s, SchemaArea &area);
     friend ConnectionGraphicsObject *parseGraphicsConn(std::ifstream &s, SchemaArea &area);
