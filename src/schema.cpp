@@ -11,6 +11,7 @@
 #include "block.h"
 #include "connection.h"
 #include "schema.h"
+#include "debug.h"
 
 Schema::Schema() {
     this->blocks = std::map<int, Block *>{};
@@ -180,15 +181,16 @@ Block *Schema::getBlckByID(unsigned int ID) { return this->blocks[ID]; }
 
 Connection *Schema::getConByID(unsigned int ID) { return this->connections[ID]; }
 
-bool Schema::compute() {
-    /* Here are blocks that have not been calcualted yet */
-    /* Output Blocks are ignored */
-    std::list<Block *> to_calculate{};
-    for (const auto &i : this->blocks) {
-        if (i.second->getType() != OUT) {
-            to_calculate.push_back(i.second);
+void Schema::unset() {
+    for (auto &i : blocks) {
+        if (i.second->getType() != OUT ){
+            i.second->unset();
         }
     }
+}
+
+bool Schema::compute() {
+    beforeCalc();
 
     bool cont{true};
 
@@ -209,6 +211,30 @@ bool Schema::compute() {
     }
 
     return to_calculate.empty(); // ked je prazdne tak sa podarilo priradit vsetko
+}
+
+bool Schema::beforeCalc() {
+    unset();
+    this->to_calculate = std::list<Block *>{};
+    for (const auto &i : this->blocks) {
+        if (i.second->getType() != OUT) {
+            to_calculate.push_back(i.second);
+        }
+    }
+    LOGD("to_calculate filled\n");
+}
+
+bool Schema::step() {
+    for (auto i = to_calculate.begin(); i != to_calculate.end();) {
+        if ((*i)->tryCompute()) {
+            i = to_calculate.erase(i);
+            return true;
+        } else {
+            i++;
+        }
+    }
+
+    return to_calculate.empty();
 }
 
 void Schema::clearSchema() {

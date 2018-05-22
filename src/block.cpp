@@ -48,6 +48,8 @@ unsigned Block::getFirstFreeIdx() {
 
 bool Block::isSet() { return this->out_set; }
 
+void Block::unset() { this->out_set = false; }
+
 double Block::compute(std::vector<double> &params) { return 0; }
 
 bool Block::tryCompute() {

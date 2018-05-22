@@ -165,12 +165,16 @@ void SchemaArea::resetSchema() {
     clear();
     update();
 
+//    delete schema;
+
     // TODO(adam): vymazat obsah schemy, ulozeny by uz mal byt staci len clear vsetko
 }
 
+bool SchemaArea::beforeCalc() { return this->schema.beforeCalc(); }
+
 bool SchemaArea::calculate() { return this->schema.compute(); }
 
-bool SchemaArea::calculateStep() {}
+bool SchemaArea::calculateStep() { return this->schema.step(); }
 
 std::string SchemaArea::getFilePath() {
     if (this->file_path.empty()) {

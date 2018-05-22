@@ -47,6 +47,8 @@ class SchemaArea : public QGraphicsScene {
      * Clear the display and reset the schema
      */
     void resetSchema();
+
+    bool beforeCalc();
     /**
      * Start the schema calculation.
      * @return True on success, else false.

@@ -66,6 +66,8 @@ class Block {
 
     bool isSet();
 
+    void unset();
+
     friend std::ostream &operator<<(std::ostream &s, const Block &b);
 };
 

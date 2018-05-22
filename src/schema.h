@@ -25,9 +25,13 @@ class Schema {
     unsigned int block_id_gen;
     unsigned int conn_id_gen;
 
+    std::list<Block *> to_calculate;
+
     void loadBlck(Block *blck);
 
     void loadConn(Connection *conn);
+
+    void unset();
 
   public:
     Schema();
@@ -62,7 +66,9 @@ class Schema {
      * Calculate the value of blocks in schema
      * @return True if computation is successfull, otherwise false.
      */
+    bool beforeCalc();
     bool compute();
+    bool step();
 
     /**
      * Reset the schema to initial state
