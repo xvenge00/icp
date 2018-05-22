@@ -129,6 +129,7 @@ std::istream &operator>>(std::ifstream &s, SchemaArea &area) {
         } else if (line == "Connection: {") {
             ConnectionGraphicsObject *new_conn = parseGraphicsConn(s, area);
             area.addItem(new_conn);
+	    new_conn->setZValue(-1000.0);
         } else {
             std::cerr << "Damaged file!\n";
         }
