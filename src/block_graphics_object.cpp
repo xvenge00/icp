@@ -34,13 +34,25 @@ QPointF BlockGraphicsObject::getOutputPoint() {
 
 void BlockGraphicsObject::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) {
     QPen p;
+    QBrush b;
+    QPainterPath path;
+    path.addRoundedRect(0, 0, this->width, this->height, 10.0, 10.0);
     p.setColor(Qt::black);
+    // b.setColor(QColor::fromRgb(82, 82, 82));
+    // painter->fillPath(path, QColor::fromRgb(82, 82, 82));
     if (isSelected()) {
-        p.setColor(Qt::red);
+        // p.setColor(Qt::blue);
+        // b.setColor(QColor::fromRgb(92, 116, 116));
+        painter->fillPath(path, QColor::fromRgb(92, 116, 116));
     }
-    painter->setPen(p);
-    painter->fillRect(0, 0, this->width, this->height, Qt::white);
-    painter->drawRect(0, 0, this->width, this->height);
+    // painter->setPen(p);
+
+    painter->fillPath(path, b);
+    // painter->fillPath(path, QColor::fromRgb(90, 90, 90));
+    painter->drawPath(path);
+
+    painter->fillRect(0, 17, this->width, this->height - 30, QColor::fromRgb(95, 95, 95));
+    painter->drawRect(0, 17, this->width, this->height - 30);
 
     // TODO(mato): zvazit parametre nasledujucich funkcii
     paintBlockName(painter, option, widget);
@@ -70,9 +82,11 @@ void BlockGraphicsObject::paintBlockValue(QPainter *painter, const QStyleOptionG
 void BlockGraphicsObject::paintConnectionPoints(QPainter *painter, const QStyleOptionGraphicsItem *option,
                                                 QWidget *widget) {
     // output connection points
+    painter->setBrush(Qt::yellow);
     paintEllipseFromCenter(painter, 0 + this->width, 0 + this->height / 2, CONNECTION_POINT_SIZE);
 
     // input connection points
+    painter->setBrush(QColor::fromRgb(70, 200, 40));
     unsigned connection_step = this->height / (this->_block->getInputSize() + 1);
     for (unsigned i = 1; i <= this->_block->getInputSize(); ++i) {
         paintEllipseFromCenter(painter, 0, 0 + connection_step * i, CONNECTION_POINT_SIZE);
@@ -81,7 +95,6 @@ void BlockGraphicsObject::paintConnectionPoints(QPainter *painter, const QStyleO
 
 void BlockGraphicsObject::paintEllipseFromCenter(QPainter *painter, qreal x, qreal y, unsigned edge) {
     unsigned half_edge = edge / 2;
-    painter->setBrush(Qt::white);
     painter->drawEllipse(x - half_edge, y - half_edge, edge, edge);
 }
 

@@ -14,7 +14,6 @@
 #include <iostream>
 #include <string>
 
-
 Connection *parseConn(std::ifstream &ins, Schema &b) {
     Block *input{};
     Block *output{};
@@ -78,42 +77,35 @@ BlockGraphicsObject *parseGraphicsBlock(std::ifstream &s, Schema &schema) {
     unsigned input_size{};
     std::string dump;
 
-    s >> dump >> width
-      >> dump >> height
-      >> dump >> pos_x
-      >> dump >> pos_y
-      >> dump >> ID
-      >> dump >> type_alias;
-
+    s >> dump >> width >> dump >> height >> dump >> pos_x >> dump >> pos_y >> dump >> ID >> dump >> type_alias;
 
     type = static_cast<blck_type>(type_alias);
     switch (type) {
     case DIV:
-            block = new BlockDiv{ID};
+        block = new BlockDiv{ID};
         break;
     case SUB:
-            block = new BlockSub{ID};
+        block = new BlockSub{ID};
         break;
     case POW:
-            block = new BlockPow{ID};
+        block = new BlockPow{ID};
         break;
     case NEG:
-            block = new BlockNeg{ID};
+        block = new BlockNeg{ID};
         break;
     case ADD:
-            block = new BlockAdd{ID};
+        block = new BlockAdd{ID};
         break;
     case MUL:
-            block = new BlockMul{ID};
+        block = new BlockMul{ID};
         break;
     case OUT:
-            block = new BlockOut{ID, output};
+        block = new BlockOut{ID, output};
         break;
     default:
         return nullptr;
     }
     schema.addBlock(block);
-
 
     block_graphics = new BlockGraphicsObject(block);
 

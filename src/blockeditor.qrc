@@ -7,7 +7,7 @@
     <file>images/delete.png</file>
     <file>images/sendtoback.png</file>
     <file>images/step.png</file>
-    <file>images/background.png</file>
+    <file>images/scene_background.png</file>
 </qresource>
 </RCC>
 

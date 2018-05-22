@@ -16,11 +16,11 @@
 
 #include "block.h"
 
-const unsigned WIDTH = 60;
-const unsigned HEIGHT = 80;
+const unsigned WIDTH = 110;
+const unsigned HEIGHT = 120;
 const unsigned CONNECTION_POINT_SIZE = 10;
 
-const std::string blck_type_strings[] = {"+", "-", "*", "/", "^", "!", "CONST"};
+const std::string blck_type_strings[] = {"+", "-", "*", "÷", "^", "!", "CONST"};
 
 /**
  * Internal graphical representation of the block

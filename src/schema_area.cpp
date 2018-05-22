@@ -15,7 +15,7 @@
 #include "debug.h"
 #include "schema_area.h"
 
-SchemaArea::SchemaArea() {
+SchemaArea::SchemaArea() : background_image(":/images/scene_background.png") {
     this->operationMode = InsertBlock;
     this->schema_edited = false;
     this->selectedBlockType = OUT;
@@ -113,6 +113,10 @@ void SchemaArea::mouseReleaseEvent(QGraphicsSceneMouseEvent *mouseEvent) {
     QGraphicsScene::mouseReleaseEvent(mouseEvent);
 }
 
+void SchemaArea::drawBackground(QPainter *painter, const QRectF &rect) {
+    painter->drawTiledPixmap(this->sceneRect(), background_image);
+}
+
 Block *SchemaArea::getNewBlock() {
     LOGD("Creating new block... type: " << static_cast<int>(this->selectedBlockType));
     double block_output = 0;
@@ -152,8 +156,8 @@ bool SchemaArea::save(string file_name) {
     out_stream << *this;
     out_stream.close();
 
-    return true; // TODO(adam): bool je pre error handling?
     setEdited(false);
+    return true; // TODO(adam): bool je pre error handling?
 }
 
 void SchemaArea::resetSchema() {

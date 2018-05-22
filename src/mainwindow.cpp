@@ -76,6 +76,7 @@ MainWindow::MainWindow() {
     this->templates->setLayout(template_layout);
 
     this->view = new QGraphicsView(schema_area);
+    this->view->setRenderHints(QPainter::Antialiasing | QPainter::TextAntialiasing);
     view->setViewportUpdateMode(QGraphicsView::FullViewportUpdate);
     layout->addWidget(this->templates);
     layout->addWidget(this->view);
@@ -295,7 +296,7 @@ void MainWindow::openFile() {
         }
     }
     schema_area->resetSchema();
-    //schema_area->loadSchema(QFileDialog::getOpenFileName(this, tr("Open file"), "~/").toStdString());
+    // schema_area->loadSchema(QFileDialog::getOpenFileName(this, tr("Open file"), "~/").toStdString());
     QMessageBox::warning(this, tr("Load file error"), tr("Currently not implemented"));
 }
 

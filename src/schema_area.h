@@ -99,6 +99,7 @@ class SchemaArea : public QGraphicsScene {
     bool schema_edited;
     QGraphicsLineItem *line;
     Block *getNewBlock();
+    QPixmap background_image;
 
   signals:
     void itemSelected(QGraphicsItem *item);
@@ -108,6 +109,9 @@ class SchemaArea : public QGraphicsScene {
      * MousePressedHandler
      */
     void mousePressEvent(QGraphicsSceneMouseEvent *mouseEvent) Q_DECL_OVERRIDE;
+
+    void drawBackground(QPainter *painter, const QRectF &rect) Q_DECL_OVERRIDE;
+
     /**
      * MouseMoveHandler
      */
