@@ -87,6 +87,11 @@ class MainWindow : public QMainWindow {
      */
     void calculateStep();
 
+    /**
+     * Prepare the calculation
+     */
+    void beforeStep();
+
     void sceneScaleChanged(const QString &scale);
     void pointerGroupClicked(int id);
     void toolGroupClicked(int id);
@@ -118,6 +123,7 @@ class MainWindow : public QMainWindow {
     QAction *toBackAction;
     QAction *calculateAction;
     QAction *calculateStepAction;
+    QAction *beforeStepAction;
 
     QToolBar *editToolbar;
     QToolBar *colorToolbar;

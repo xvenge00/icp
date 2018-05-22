@@ -109,6 +109,7 @@ MainWindow::MainWindow() {
     calculationToolbar = addToolBar(tr("Calculations"));
     calculationToolbar->addAction(calculateAction);
     calculationToolbar->addAction(calculateStepAction);
+    calculationToolbar->addAction(beforeStepAction);
 
     QWidget *w = new QWidget();
     w->setLayout(layout);
@@ -171,6 +172,9 @@ void MainWindow::createActions() {
 
     calculateStepAction = new QAction(QIcon(":/images/step.png"), tr("Step calculation"), this);
     connect(calculateStepAction, SIGNAL(triggered()), this, SLOT(calculateStep()));
+
+    beforeStepAction = new QAction(QIcon(":/images/scene_background.png"), tr("Prepare stepping calculation"), this);
+    connect(beforeStepAction, SIGNAL(triggered()), this, SLOT(beforeStep()));
 }
 
 void MainWindow::createMenus() {
@@ -425,8 +429,6 @@ void MainWindow::calculate() {
     }
 }
 
-//TODO button for this->schema_area->beforeCalc();
-
 /*
  * Needs to be called after this->schema_area->beforeCalc();
  */
@@ -436,4 +438,8 @@ void MainWindow::calculateStep() {
     } else {
         QMessageBox::warning(this, tr("Calculation error"), tr("Schema could not be calculated..."));
     }
+}
+
+void MainWindow::beforeStep() {
+    this->schema_area->beforeCalc();
 }
