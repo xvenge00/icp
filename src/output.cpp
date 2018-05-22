@@ -68,6 +68,7 @@ std::ostream &operator<<(std::ostream &s, const Connection &c) {
 std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c) { return s << *c._connection; }
 
 std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
+    std::vector<ConnectionGraphicsObject *> save_buffer;
     for (const auto &i : a.items(Qt::DescendingOrder)) {
         BlockGraphicsObject *casted_b = dynamic_cast<BlockGraphicsObject *>(i);
         if (casted_b != nullptr) {
@@ -75,9 +76,12 @@ std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
         } else {
             ConnectionGraphicsObject *casted_c = dynamic_cast<ConnectionGraphicsObject *>(i);
             if (casted_c != nullptr) {
-                s << *casted_c;
+		save_buffer.push_back(casted_c);
             }
         }
+    }
+    for(const auto &c : save_buffer) {
+	s << *c;
     }
     return s;
 }
