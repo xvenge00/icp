@@ -1,50 +1,48 @@
 Block {
 	width: 110
 	height: 120
-	x: 2396
-	y: 2375
-	ID: 1
-	type: 2
-	in_size: 2
+	x: 2386
+	y: 2523
+	ID: 3
+	type: 5
 }
 Block {
 	width: 110
 	height: 120
-	x: 2602
-	y: 2493
+	x: 2257
+	y: 2312
 	ID: 2
+	type: 3
+}
+Block {
+	width: 110
+	height: 120
+	x: 2545
+	y: 2283
+	ID: 1
 	type: 1
 }
-Block {
-	width: 110
-	height: 120
-	x: 2255
-	y: 2440
-	ID: 3
-	type: 6
-	output: 3
-}
 Connection: {
-	ID: 1
-	in: 3
-	out: 1
-	index: 0
-}
-Connection: {
-	ID: 2
-	in: 3
-	out: 1
-	index: 1
-}
-Connection: {
-	ID: 3
+	ID: 4
 	in: 1
 	out: 2
 	index: 0
 }
 Connection: {
-	ID: 4
+	ID: 3
 	in: 3
-	out: 2
+	out: 1
 	index: 1
+}
+Connection: {
+	ID: 2
+	in: 2
+	out: 3
+	index: 0
+}
+Connection: {
+	ID: 1
+	in: 2
+	out: 1
+	index: 0
 }

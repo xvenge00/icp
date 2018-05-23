@@ -173,7 +173,7 @@ void MainWindow::createActions() {
     calculateStepAction = new QAction(QIcon(":/images/step.png"), tr("Step calculation"), this);
     connect(calculateStepAction, SIGNAL(triggered()), this, SLOT(calculateStep()));
 
-    beforeStepAction = new QAction(QIcon(":/images/scene_background.png"), tr("Prepare stepping calculation"), this);
+    beforeStepAction = new QAction(QIcon(":/images/reset.png"), tr("Prepare stepping calculation"), this);
     connect(beforeStepAction, SIGNAL(triggered()), this, SLOT(beforeStep()));
 }
 
@@ -301,6 +301,8 @@ void MainWindow::openFile() {
     }
     schema_area->resetSchema();
     schema_area->loadSchema(QFileDialog::getOpenFileName(this, tr("Open file"), "~/").toStdString());
+    schema_area->beforeCalc();
+    schema_area->setEdited(false);
 //    QMessageBox::warning(this, tr("Load file error"), tr("Currently not implemented"));
 }
 
@@ -441,5 +443,7 @@ void MainWindow::calculateStep() {
 }
 
 void MainWindow::beforeStep() {
+    this->schema_area->unsetValues();
     this->schema_area->beforeCalc();
+    this->schema_area->update();
 }

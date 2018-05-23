@@ -187,6 +187,7 @@ std::string SchemaArea::setFilePath() {
     if (!text.isEmpty()) {
         this->file_path = text.toStdString();
     }
+    // TODO(mato): nastavit title okna aby obsahovalo aj meno suboru
     return this->file_path;
 }
 

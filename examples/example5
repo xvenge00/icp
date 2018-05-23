@@ -1,8 +1,16 @@
 Block {
 	width: 110
 	height: 120
-	x: 2411
-	y: 2330
+	x: 2785
+	y: 2451
+	ID: 7
+	type: 5
+}
+Block {
+	width: 110
+	height: 120
+	x: 2436
+	y: 2378
 	ID: 1
 	type: 0
 	in_size: 2
@@ -10,60 +18,70 @@ Block {
 Block {
 	width: 110
 	height: 120
-	x: 2595
-	y: 2393
+	x: 2628
+	y: 2446
 	ID: 2
-	type: 2
-	in_size: 2
+	type: 1
 }
 Block {
 	width: 110
 	height: 120
-	x: 2222
-	y: 2300
+	x: 2467
+	y: 2572
 	ID: 3
-	type: 6
-	output: 20
+	type: 5
 }
 Block {
 	width: 110
 	height: 120
-	x: 2234
-	y: 2442
+	x: 2280
+	y: 2294
 	ID: 4
 	type: 6
-	output: 22
+	output: 56
 }
 Block {
 	width: 110
 	height: 120
-	x: 2386
-	y: 2508
+	x: 2254
+	y: 2541
 	ID: 5
 	type: 6
-	output: 2
+	output: 89
+}
+Connection: {
+	ID: 7
+	in: 2
+	out: 7
+	index: 0
 }
 Connection: {
 	ID: 1
-	in: 3
+	in: 4
 	out: 1
 	index: 0
 }
 Connection: {
 	ID: 2
-	in: 4
+	in: 5
 	out: 1
 	index: 1
 }
 Connection: {
 	ID: 3
-	in: 5
-	out: 2
+	in: 4
+	out: 3
 	index: 0
 }
 Connection: {
 	ID: 4
 	in: 1
+	out: 2
+	index: 0
+}
+Connection: {
+	ID: 5
+	in: 3
 	out: 2
 	index: 1
 }

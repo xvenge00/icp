@@ -81,7 +81,12 @@ class SchemaArea : public QGraphicsScene {
      * Set the schema edited variable
      * @param e True if schema was edited, else false
      */
-    void setEdited(bool e) { this->schema_edited = e; }
+    void setEdited(bool e) {
+    LOGD("Schema edited " << e); this->schema_edited = e; }
+
+    void unsetValues() {
+	this->schema.unset();
+    }
 
     std::string getFilePath();
     std::string setFilePath();

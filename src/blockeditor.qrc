@@ -8,6 +8,7 @@
     <file>images/sendtoback.png</file>
     <file>images/step.png</file>
     <file>images/scene_background.png</file>
+    <file>images/reset.png</file>
 </qresource>
 </RCC>
 

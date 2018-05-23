@@ -31,12 +31,13 @@ class Schema {
 
     void loadConn(Connection *conn);
 
-    void unset();
 
   public:
     Schema();
 
     ~Schema();
+
+    void unset();
 
     void clear();
 
