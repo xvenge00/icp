@@ -35,7 +35,7 @@ REMOTE_TRANSFER_FILES=$(FINAL_ARCHIVE).zip
 ARCHIVE_FILES=src/*.cpp src/images/* src/*.h src/*.pro src/*.qrc examples/* doc/ README.txt Makefile
 
 # TODO(mato): change to release
-all : debug
+all : compile
 
 .PHONY : run clean dist-clean pack format merlin eva debug compile doxygen
 
