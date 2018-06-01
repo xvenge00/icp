@@ -157,7 +157,7 @@ bool SchemaArea::save(string file_name) {
     out_stream.close();
 
     setEdited(false);
-    return true; // TODO(adam): bool je pre error handling?
+    return true;
 }
 
 void SchemaArea::resetSchema() {
@@ -165,8 +165,6 @@ void SchemaArea::resetSchema() {
     clear();
     update();
     schema.clear();
-
-    // TODO(adam): vymazat obsah schemy, ulozeny by uz mal byt staci len clear vsetko
 }
 
 bool SchemaArea::beforeCalc() { return this->schema.beforeCalc(); }
@@ -187,7 +185,6 @@ std::string SchemaArea::setFilePath() {
     if (!text.isEmpty()) {
         this->file_path = text.toStdString();
     }
-    // TODO(mato): nastavit title okna aby obsahovalo aj meno suboru
     return this->file_path;
 }
 
