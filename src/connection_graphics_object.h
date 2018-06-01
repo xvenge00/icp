@@ -23,7 +23,6 @@
  */
 class ConnectionGraphicsObject : public QGraphicsLineItem {
   public:
-
     /**
      * @param s starting graphics block
      * @param e ending graphics block

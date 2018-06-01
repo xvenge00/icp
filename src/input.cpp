@@ -54,14 +54,14 @@ ConnectionGraphicsObject *parseGraphicsConn(std::ifstream &s, SchemaArea &area) 
 
     Block *in = new_conn->getInput();
     Block *out = new_conn->getOutBlock();
-    BlockGraphicsObject *g_in = nullptr, *g_out= nullptr;
+    BlockGraphicsObject *g_in = nullptr, *g_out = nullptr;
 
     for (const auto &i : area.items(Qt::AscendingOrder)) {
         BlockGraphicsObject *ptr = dynamic_cast<BlockGraphicsObject *>(i);
         if (ptr != nullptr) {
             if (ptr->getBlock() == in) {
                 g_in = ptr;
-            } else if (ptr->getBlock() == out){
+            } else if (ptr->getBlock() == out) {
                 g_out = ptr;
             }
         }
@@ -153,7 +153,7 @@ std::istream &operator>>(std::ifstream &s, SchemaArea &area) {
         } else if (line == "Connection: {") {
             ConnectionGraphicsObject *new_conn = parseGraphicsConn(s, area);
             area.addItem(new_conn);
-	    new_conn->setZValue(-1000.0);
+            new_conn->setZValue(-1000.0);
         } else {
             std::cerr << "Damaged file!\n";
         }

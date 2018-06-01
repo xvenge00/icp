@@ -74,8 +74,7 @@ bool Block::tryCompute() {
             //            Connection virt_conn = Connection{};
 
             in_values.push_back(value);
-        }
-        else {
+        } else {
             value = this->input[i]->getValue();
             in_values.push_back(value);
         }

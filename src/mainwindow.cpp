@@ -261,7 +261,7 @@ void MainWindow::openFile() {
     schema_area->loadSchema(QFileDialog::getOpenFileName(this, tr("Open file"), "~/").toStdString());
     schema_area->beforeCalc();
     schema_area->setEdited(false);
-//    QMessageBox::warning(this, tr("Load file error"), tr("Currently not implemented"));
+    //    QMessageBox::warning(this, tr("Load file error"), tr("Currently not implemented"));
 }
 
 void MainWindow::saveFile() {

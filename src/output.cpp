@@ -21,8 +21,8 @@
  * Must be part of BlockGraphicsObject.
  * example:
     ID: 1
-	type: 0
-	in_size: 2
+        type: 0
+        in_size: 2
  * @param s output stream
  * @param b block to serialize
  * @return output stream
@@ -95,12 +95,12 @@ std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
         } else {
             ConnectionGraphicsObject *casted_c = dynamic_cast<ConnectionGraphicsObject *>(i);
             if (casted_c != nullptr) {
-		save_buffer.push_back(casted_c);
+                save_buffer.push_back(casted_c);
             }
         }
     }
-    for(const auto &c : save_buffer) {
-	s << *c;
+    for (const auto &c : save_buffer) {
+        s << *c;
     }
     return s;
 }

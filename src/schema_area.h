@@ -56,7 +56,7 @@ class SchemaArea : public QGraphicsScene {
      * Prepare schema for the calculation and reset block values.
      */
     bool beforeCalc();
-    
+
     /**
      * Start the schema calculation.
      * @return True on success, else false.
@@ -93,14 +93,15 @@ class SchemaArea : public QGraphicsScene {
      * Set the schema edited variable
      * @param e True if schema was edited, else false
      */
-    void setEdited(bool e) { LOGD("Schema edited " << e); this->schema_edited = e; }
+    void setEdited(bool e) {
+        LOGD("Schema edited " << e);
+        this->schema_edited = e;
+    }
 
     /**
      * Wrapper function for the schema values to be reseted.
      */
-    void unsetValues() {
-	this->schema.unset();
-    }
+    void unsetValues() { this->schema.unset(); }
 
     /**
      * Return the file name of the current schema.

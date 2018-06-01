@@ -10,8 +10,8 @@
 
 #include "block.h"
 #include "connection.h"
-#include "schema.h"
 #include "debug.h"
+#include "schema.h"
 
 Schema::Schema() {
     this->blocks = std::map<int, Block *>{};
@@ -20,9 +20,7 @@ Schema::Schema() {
     this->conn_id_gen = 0;
 }
 
-Schema::~Schema() {
-    clear();
-}
+Schema::~Schema() { clear(); }
 
 void Schema::clear() {
     blocks.clear();
@@ -47,9 +45,9 @@ void Schema::addConnection(Connection *conn) {
     this->connections[newID] = conn;
 }
 
-//void Schema::loadBlck(Block *blck) { this->blocks[blck->getID()] = blck; }
+// void Schema::loadBlck(Block *blck) { this->blocks[blck->getID()] = blck; }
 
-//void Schema::loadConn(Connection *conn) { this->connections[conn->getID()] = conn; }
+// void Schema::loadConn(Connection *conn) { this->connections[conn->getID()] = conn; }
 
 BlockAdd *Schema::newAddBlock(unsigned int in_size) {
     unsigned int id = ++this->block_id_gen;
@@ -123,14 +121,14 @@ bool Schema::deleteBlock(Block *b) {
             this->deleteConnection(i);
         }
 
-        //delete all connections that lead from block b
+        // delete all connections that lead from block b
         for (auto &i : this->connections) {
             if (i.second->getInput() == b) {
                 this->deleteConnection(i.second);
             }
         }
 
-        //delete block b
+        // delete block b
         delete b;
         this->blocks.erase(b_ID);
 
@@ -186,7 +184,7 @@ Connection *Schema::getConByID(unsigned int ID) { return this->connections[ID]; 
 
 void Schema::unset() {
     for (auto &i : blocks) {
-        if (i.second->getType() != OUT ){
+        if (i.second->getType() != OUT) {
             i.second->unset();
         }
     }
