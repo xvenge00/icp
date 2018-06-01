@@ -55,6 +55,5 @@
 #endif /* ICP_DEBUG */
 
 void hexdump(void *ptr, int buflen);
-// TODO: Add functions to print basic classes(blocs, schemas,...) to stderr
 
 #endif /* DEBUG_H */

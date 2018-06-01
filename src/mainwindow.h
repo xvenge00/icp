@@ -92,12 +92,31 @@ class MainWindow : public QMainWindow {
      */
     void beforeStep();
 
+    /**
+     * Function to handle scale changes. It scales the scene
+     * acording to what was selected by the user.
+     */
     void sceneScaleChanged(const QString &scale);
+    /**
+     * Function to deselect other block type from the pointer group, when the new block type is selected.
+     */
     void pointerGroupClicked(int id);
+    /**
+     * Function to deselect tool type from the tool group, when the new tool is selected.
+     */
     void toolGroupClicked(int id);
 
   private:
+    /**
+     * Pointer to painting area of the main program.
+     *
+     * This area also contains all graphics objects for painting.
+     */
     SchemaArea *schema_area;
+
+    /**
+     * View handling the schema area.
+     */
     QGraphicsView *view;
     QFrame *templates;
 
@@ -148,11 +167,14 @@ class MainWindow : public QMainWindow {
      * Link and create corespoding actions used in window
      */
     void createActions();
+    /**
+     * Function to inflate the menus.
+     */
     void createMenus();
+    /**
+     * Function to inflate the templates.
+     */
     void createTemplates();
-    QMenu *createColorMenu(const char *slot, QColor defaultColor);
-    QIcon createColorIcon(QColor color);
-    QIcon createColorToolButtonIcon(const QString &imageFile, QColor color);
 };
 
 #endif // MAINWINDOW_H

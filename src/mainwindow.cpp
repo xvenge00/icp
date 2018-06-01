@@ -205,48 +205,6 @@ void MainWindow::createTemplates() {
     editToolbar->addAction(deleteAction);
 }
 
-QMenu *MainWindow::createColorMenu(const char *slot, QColor defaultColor) {
-    QList<QColor> colors;
-    colors << Qt::black << Qt::white << Qt::red << Qt::blue << Qt::yellow;
-    QStringList names;
-    names << tr("black") << tr("white") << tr("red") << tr("blue") << tr("yellow");
-
-    QMenu *colorMenu = new QMenu(this);
-    for (int i = 0; i < colors.count(); ++i) {
-        QAction *action = new QAction(names.at(i), this);
-        action->setData(colors.at(i));
-        action->setIcon(createColorIcon(colors.at(i)));
-        connect(action, SIGNAL(triggered()), this, slot);
-        colorMenu->addAction(action);
-        if (colors.at(i) == defaultColor)
-            colorMenu->setDefaultAction(action);
-    }
-    return colorMenu;
-}
-
-QIcon MainWindow::createColorToolButtonIcon(const QString &imageFile, QColor color) {
-    QPixmap pixmap(50, 80);
-    pixmap.fill(Qt::transparent);
-    QPainter painter(&pixmap);
-    QPixmap image(imageFile);
-    // Draw icon centred horizontally on button.
-    QRect target(4, 0, 42, 43);
-    QRect source(0, 0, 42, 43);
-    painter.fillRect(QRect(0, 60, 50, 80), color);
-    painter.drawPixmap(target, image, source);
-
-    return QIcon(pixmap);
-}
-
-QIcon MainWindow::createColorIcon(QColor color) {
-    QPixmap pixmap(20, 20);
-    QPainter painter(&pixmap);
-    painter.setPen(Qt::NoPen);
-    painter.fillRect(QRect(0, 0, 20, 20), color);
-
-    return QIcon(pixmap);
-}
-
 void MainWindow::sceneScaleChanged(const QString &scale) {
     double newScale = scale.left(scale.indexOf(tr("%"))).toDouble() / 100.0;
     QMatrix oldMatrix = view->matrix();
