@@ -2,11 +2,15 @@
 
 ## Moznosti programu
 
-### Editovanie
+### Editovanie schemy
 Je mozne hybat s blokmi ktore su vlozene do schemy.
 Schema je identifikovana menom suboru do ktoreho bude ulozena.
 Program umoznuje pridavane u odoberanie blokov pomocou tlacitka v lavom hornom toolbare.
 Prepojenia medzi blokmi sa vytvaraju v poradi blok s vystupom a blok so vstupom.
+
+### Editovanie konstantnych blokov
+
+Konstantne bloky je mozne editovat pomocou dvojiteho kliknutia na dany blok.
 
 ### Krokovanie
 
