@@ -19,10 +19,11 @@
 #include "connection.h"
 
 /**
- * Internal graphical representation of connection between blocks
+ * Internal graphical representation of connection between blocks.
  */
 class ConnectionGraphicsObject : public QGraphicsLineItem {
   public:
+
     /**
      * @param s starting graphics block
      * @param e ending graphics block
@@ -49,10 +50,20 @@ class ConnectionGraphicsObject : public QGraphicsLineItem {
      */
     QLineF getConnectionLine();
 
-    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
+    /**
+     * Function used for displaying tooltip when hovering with mouse on connection
+     * objects.
+     */
     void hoverMoveEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
+    void hoverLeaveEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
     void hoverEnterEvent(QGraphicsSceneHoverEvent *event) Q_DECL_OVERRIDE;
 
+    /**
+     * Helper function to convert the double value from the data representation to
+     * string representation.
+     *
+     * This function is used when displaying the tooltip on hover events.
+     */
     QString getStringValue();
 
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget) Q_DECL_OVERRIDE;
@@ -70,6 +81,10 @@ class ConnectionGraphicsObject : public QGraphicsLineItem {
      * Line is connected to input of this block
      */
     BlockGraphicsObject *end_block;
+
+    /**
+     * Pointer to connection data representation.
+     */
     Connection *_connection;
 };
 
