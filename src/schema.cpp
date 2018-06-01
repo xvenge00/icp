@@ -47,9 +47,9 @@ void Schema::addConnection(Connection *conn) {
     this->connections[newID] = conn;
 }
 
-void Schema::loadBlck(Block *blck) { this->blocks[blck->getID()] = blck; }
+//void Schema::loadBlck(Block *blck) { this->blocks[blck->getID()] = blck; }
 
-void Schema::loadConn(Connection *conn) { this->connections[conn->getID()] = conn; }
+//void Schema::loadConn(Connection *conn) { this->connections[conn->getID()] = conn; }
 
 BlockAdd *Schema::newAddBlock(unsigned int in_size) {
     unsigned int id = ++this->block_id_gen;
@@ -117,17 +117,20 @@ BlockNeg *Schema::newNegBlock() {
 bool Schema::deleteBlock(Block *b) {
     if (b != nullptr) {
         unsigned b_ID = b->getID();
+        // delete input connections
         std::vector<Connection *> inputs = b->getInputs();
         for (const auto &i : inputs) {
             this->deleteConnection(i);
         }
 
+        //delete all connections that lead from block b
         for (auto &i : this->connections) {
             if (i.second->getInput() == b) {
                 this->deleteConnection(i.second);
             }
         }
 
+        //delete block b
         delete b;
         this->blocks.erase(b_ID);
 

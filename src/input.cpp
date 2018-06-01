@@ -14,6 +14,12 @@
 #include <iostream>
 #include <string>
 
+/**
+ * Parse connection on input.
+ * @param ins input stream
+ * @param b schema in which in/out blocks are located
+ * @return pointer to connection
+ */
 Connection *parseConn(std::ifstream &ins, Schema &b) {
     Block *input{};
     Block *output{};
@@ -36,6 +42,12 @@ Connection *parseConn(std::ifstream &ins, Schema &b) {
     return new_con;
 }
 
+/**
+ * Parse Connection, adds to schemaArea.
+ * @param s input stream
+ * @param area schema area
+ * @return pointer to ConnectionGraphicsObject
+ */
 ConnectionGraphicsObject *parseGraphicsConn(std::ifstream &s, SchemaArea &area) {
     Connection *new_conn = parseConn(s, area.schema);
     area.schema.addConnection(new_conn);
@@ -62,6 +74,12 @@ ConnectionGraphicsObject *parseGraphicsConn(std::ifstream &s, SchemaArea &area) 
     }
 }
 
+/**
+ * Parses BlockGraphicsObject and adds it to schema area.
+ * @param s Input stream
+ * @param area schema area
+ * @return pointer to BlockGraphicsObject
+ */
 BlockGraphicsObject *parseGraphicsBlock(std::ifstream &s, SchemaArea &area) {
     Block *block;
     BlockGraphicsObject *block_graphics;
@@ -120,6 +138,12 @@ BlockGraphicsObject *parseGraphicsBlock(std::ifstream &s, SchemaArea &area) {
     return block_graphics;
 }
 
+/**
+ * Parse schema area.
+ * @param s Input stream
+ * @param area schema area to fill
+ * @return input stream
+ */
 std::istream &operator>>(std::ifstream &s, SchemaArea &area) {
     std::string line;
 

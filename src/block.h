@@ -33,6 +33,11 @@ class Block {
     double output;
     blck_type block_type;
 
+    /**
+     * Block specific function.
+     * @param params input values in correct order
+     * @return f(params)
+     */
     virtual double compute(std::vector<double> &params);
 
   public:
@@ -46,40 +51,52 @@ class Block {
 
     blck_type getType();
 
+    /**
+     * @return Pointers to all input connections of a block in a vector.
+     */
     std::vector<Connection *> getInputs();
 
     unsigned int getInputSize();
 
-    /* If nothing is free, then returns input_size */
+    /**
+     * @return First free index. If nothing is free, then returns input_size.
+     */
     unsigned getFirstFreeIdx();
 
+    /** Adds new connection to the input.
+     * @param con Pointer to Connection. Should be initialized.
+     * @param pos Which input it is. Indexed from 0.
+     * @return true if successful, else false
+     */
     bool setNewInput(Connection *con, unsigned int pos);
 
-    /* deletes Connection, returns ID of deleted CONNECTION */
+    /** Deletes Connection.
+     * @param pos index of input to delete
+     * @return ID of deleted connection
+     */
     unsigned int unsetInput(unsigned int pos);
 
-    /*
-     * If possible, compute block output, set output, return true.
-     * If not possible, return false.
+    /**
+     * If possible, compute block output, set output.
+     * @return True if successful, else false.
      */
     virtual bool tryCompute();
 
     bool isSet();
 
+    /**
+     * Set output as not valid.
+     */
     void unset();
 
     friend std::ostream &operator<<(std::ostream &s, const Block &b);
 };
 
 class BlockOut : public Block {
-    //    virtual double compute(std::vector<double> &params) override;
   public:
     BlockOut(unsigned int ID, double output);
 
     bool tryCompute() override;
-
-    //    void changeOutput(double output);   //neviem ci to bude fungovat, asi
-    //    nie
 };
 
 class BlockAdd : public Block {

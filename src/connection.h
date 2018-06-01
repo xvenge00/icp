@@ -41,6 +41,10 @@ class Connection {
 
     Block *getInput();
 
+    /**
+     * Checks if value in input block is valid.
+     * @return True if valid.
+     */
     bool isInputSet();
 
     friend std::ostream &operator<<(std::ostream &s, const Connection &c);

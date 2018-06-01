@@ -16,6 +16,17 @@
 #include "schema.h"
 #include "schema_area.h"
 
+/**
+ * Outputs text representation of block.
+ * Must be part of BlockGraphicsObject.
+ * example:
+    ID: 1
+	type: 0
+	in_size: 2
+ * @param s output stream
+ * @param b block to serialize
+ * @return output stream
+ */
 std::ostream &operator<<(std::ostream &s, const Block &b) {
     s << "\tID: " << b.ID << "\n"
       << "\ttype: " << b.block_type;
@@ -46,14 +57,17 @@ std::ostream &operator<<(std::ostream &s, const BlockGraphicsObject &b) {
              << "}\n";
 }
 
-/*
+/**
  * Used in Schema output.
  * out example:
- * Connection: {
- *      in: 0
- *      out: 1
- *      index: 2
- * }
+ Connection: {
+       in: 0
+       out: 1
+       index: 2
+  }
+ * @param s output stream
+ * @param c connection
+ * @return output stream
  */
 std::ostream &operator<<(std::ostream &s, const Connection &c) {
     s << "Connection: {\n"
@@ -67,6 +81,11 @@ std::ostream &operator<<(std::ostream &s, const Connection &c) {
 
 std::ostream &operator<<(std::ostream &s, const ConnectionGraphicsObject &c) { return s << *c._connection; }
 
+/** Serialization of Schema area.
+ * @param s output stream.
+ * @param a schema area
+ * @return output stream
+ */
 std::ostream &operator<<(std::ostream &s, const SchemaArea &a) {
     std::vector<ConnectionGraphicsObject *> save_buffer;
     for (const auto &i : a.items(Qt::DescendingOrder)) {
